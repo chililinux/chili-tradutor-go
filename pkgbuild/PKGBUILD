@@ -20,7 +20,7 @@ package() {
 	echo $PWD
 	echo $pkgdir
  	for dir in "${dirs[@]}"; do
-		if [ -d "$${dir}" ]; then
+		if [ -d "${dir}" ]; then
 			cp -a "${dir}" "$pkgdir/"
 		fi
 	done
