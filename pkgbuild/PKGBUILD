@@ -18,6 +18,7 @@ package() {
 
 	cd ${srcdir}/${pkgname}
 	echo $PWD
+	echo $pkgdir
  	for dir in "${dirs[@]}"; do
 		if [ -d "$${dir}" ]; then
 			cp -a "${dir}" "$pkgdir/"
