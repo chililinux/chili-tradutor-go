@@ -21,7 +21,7 @@ git clone https://github.com/chililinux/chili-tradutor-go.git
 cd chili-tradutor-go/src
 go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
 sudo mv chili-tradutor-go /usr/local/bin/
-```bash
+```
 
 ## 🛠️ Uso
 
