@@ -4,6 +4,7 @@
 # Automatically generated, 2026.
 #
 msgid ""
+msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-12 13:22-0400\n"

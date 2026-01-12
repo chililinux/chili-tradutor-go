@@ -7,8 +7,8 @@
 
     Created:   dom 01 out 2023 09:00:00 -03
     Altered:   qui 05 out 2023 10:00:00 -03
-    Updated:   seg 12 jan 2026 13:22:00 -04
-    Version:   2.1.11
+    Updated:   seg 12 jan 2026 16:30:00 -04
+    Version:   2.1.10
 
     Copyright (c) 2019-2026, Vilmar Catafesta <vcatafesta@gmail.com>
     Copyright (c) 2019-2026, ChiliLinux Team
@@ -21,6 +21,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"os"
@@ -36,7 +37,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-// Estrutura para o Cache com Timestamp
+// Estrutura para o Cache com Timestamp (v2.1.10)
 type CacheEntry struct {
 	Value    string    `json:"v"`
 	LastUsed time.Time `json:"t"`
@@ -44,8 +45,19 @@ type CacheEntry struct {
 
 const (
 	_APP_     = "chili-tradutor-go"
-	_VERSION_ = "2.1.11-20260112"
+	_VERSION_ = "2.1.10-20260112"
 	_COPY_    = "Copyright (C) 2023-2026 Vilmar Catafesta"
+)
+
+// --- CONFIGURAÇÃO DE CORES ---
+var (
+	cyan    = color.New(color.Bold, color.FgCyan).SprintFunc()
+	green   = color.New(color.FgGreen).SprintFunc()
+	white   = color.New(color.FgWhite).SprintFunc()
+	red     = color.New(color.FgRed).SprintFunc()
+	blue    = color.New(color.FgBlue).SprintFunc()
+	yellow  = color.New(color.Bold, color.FgYellow).SprintFunc()
+	magenta = color.New(color.Bold, color.FgMagenta).SprintFunc()
 )
 
 // --- VARIÁVEIS GLOBAIS ---
@@ -60,6 +72,7 @@ var (
 	versionFlag    bool
 	cleanCacheFlag bool
 	languages      []string
+	logger         *log.Logger
 	cacheFile      string
 	cacheData      map[string]map[string]CacheEntry
 	mu             sync.Mutex
@@ -72,17 +85,6 @@ var (
 	langPositions  map[string]int
 )
 
-// Cores
-var (
-	cyan    = color.New(color.Bold, color.FgCyan).SprintFunc()
-	green   = color.New(color.FgGreen).SprintFunc()
-	white   = color.New(color.FgWhite).SprintFunc()
-	red     = color.New(color.FgRed).SprintFunc()
-	blue    = color.New(color.FgBlue).SprintFunc()
-	yellow  = color.New(color.Bold, color.FgYellow).SprintFunc()
-	magenta = color.New(color.Bold, color.FgMagenta).SprintFunc()
-)
-
 var supportedLanguages = []string{
 	"ar", "bg", "cs", "da", "de", "el", "en", "es", "et",
 	"fa", "fi", "fr", "he", "hi", "hr", "hu", "is", "it",
@@ -92,8 +94,7 @@ var supportedLanguages = []string{
 
 var defaultLanguages = []string{"en", "es", "it", "de", "fr", "ru", "zh-CN", "zh-TW", "ja", "ko"}
 
-// --- INTERNACIONALIZAÇÃO ---
-
+// --- INTERNACIONALIZAÇÃO (T) ---
 func T(msgid string) string {
 	lang := os.Getenv("LANG")
 	if strings.HasPrefix(lang, "en") || lang == "" {
@@ -104,7 +105,7 @@ func T(msgid string) string {
 	if err != nil {
 		return msgid
 	}
-	return string(out)
+	return strings.TrimSpace(string(out))
 }
 
 func init() {
@@ -167,28 +168,37 @@ func main() {
 	fmt.Printf("%s %s %s\n", cyan(">>"), white(_APP_), white(_VERSION_))
 
 	fmt.Printf("%s %s\n", yellow("[STEP 1]"), white(T("Analisando formato do arquivo e preparando ambiente...")))
+	
+	// Criação das pastas base da v2.1.9
+	os.MkdirAll("pot", 0755)
+	
 	if ext == ".md" || ext == ".markdown" {
 		os.MkdirAll("doc", 0755)
 	} else if ext == ".json" || ext == ".yaml" || ext == ".yml" {
 		os.MkdirAll("translated", 0755)
+	} else if ext == ".pot" {
+		// Se for .pot, garantimos que esteja dentro da pasta pot/ para o fluxo seguinte
+		target := filepath.Join("pot", baseName)
+		if inputFile != target {
+			copyFile(inputFile, target)
+		}
 	} else {
-		os.MkdirAll("pot", 0755)
-		if ext != ".pot" {
+		if ext == ".sh" || ext == ".py" || ext == ".go" {
 			prepareGettext(inputFile, baseName)
 		}
 	}
 
 	fmt.Printf("%s %s\n", yellow("[STEP 2]"), white(T("Configurações de tradução:")))
-	fmt.Printf("    %s %-12s: %s\n", blue("→"), white(T("Origem")), magenta(sourceLang))
-	fmt.Printf("    %s %-12s: %s\n", blue("→"), white(T("Idiomas")), cyan(strings.Join(targetLangs, ", ")))
-	fmt.Printf("    %s %-12s: %s\n", blue("→"), white(T("Motor")), green(engine))
-	fmt.Printf("    %s %-12s: %s\n", blue("→"), white(T("Jobs")), red(jobs))
+	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Origem")), magenta(sourceLang))
+	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Idiomas")), cyan(strings.Join(targetLangs, ", ")))
+	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Motor")), green(engine))
+	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Jobs")), red(jobs))
 
 	netStatus := green(T("Online (Internet OK)"))
 	if !isOnline {
 		netStatus = red(T("Offline (Apenas Cache)"))
 	}
-	fmt.Printf("    %s %-12s: %s\n", blue("→"), white(T("Rede")), netStatus)
+	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Rede")), netStatus)
 	fmt.Println()
 
 	totalLangs := len(targetLangs)
@@ -231,19 +241,55 @@ func main() {
 	showFinalSummary(start)
 }
 
-// --- CORE TRANSLATION ---
+// --- UI STATS & ALINHAMENTO ---
+
+func updateProgress(lang string, current, total int, suffix string) {
+	if quietFlag { return }
+	muConsole.Lock()
+	defer muConsole.Unlock()
+	pos := langPositions[lang]
+	if pos == 0 { return }
+	percent := (current * 100) / total
+	width := 50
+	filled := (percent * width) / 100
+	bar := blue(strings.Repeat("░", filled)) + strings.Repeat(" ", width-filled)
+	langStr := fmt.Sprintf("%-7s", lang)
+	fmt.Printf("\033[%dA\r\033[K    %s %s [%s] %3d%% %-5s\033[%dB",
+		pos, blue("→"), cyan(langStr), bar, percent, cyan(suffix), pos)
+}
+
+func showQuickStats(start time.Time) {
+	total := cacheHits + netCalls
+	pCache, pNet := 0.0, 0.0
+	if total > 0 {
+		pCache = (float64(cacheHits) / float64(total)) * 100
+		pNet = (float64(netCalls) / float64(total)) * 100
+	}
+	fmt.Printf("\n\n%s %s em %v | %s %d (%.2f%%) | %s %d (%.2f%%) | %s %d\n",
+		green("✔"), white(T("Concluído")), time.Since(start).Round(time.Second),
+		blue(T("Cache:")), cacheHits, pCache, yellow(T("Net:")), netCalls, pNet, white(T("Total:")), total)
+}
+
+func showFinalSummary(start time.Time) {
+	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO:")))
+	fmt.Printf("    %s %-15s: %v\n", blue("→"), T("Tempo Total"), time.Since(start).Round(time.Second))
+	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Cache Hits"), cacheHits)
+	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Chamadas Rede"), netCalls)
+	if atomic.LoadInt32(&failedCalls) > 0 {
+		fmt.Printf("    %s %-15s: %s\n", red("→"), T("Falhas"), red(atomic.LoadInt32(&failedCalls)))
+	}
+	fmt.Printf("%s\n\n", white(strings.Repeat("-", 60)))
+}
+
+// --- CORE: TRADUTOR ---
 
 func callUniversalTranslator(text, lang string) string {
 	text = strings.TrimSpace(text)
-	if text == "" {
-		return ""
-	}
+	if text == "" { return "" }
 	normID := strings.ToLower(text)
 
 	mu.Lock()
-	if _, ok := cacheData[lang]; !ok {
-		cacheData[lang] = make(map[string]CacheEntry)
-	}
+	if _, ok := cacheData[lang]; !ok { cacheData[lang] = make(map[string]CacheEntry) }
 	if entry, exists := cacheData[lang][normID]; exists && !forceFlag {
 		entry.LastUsed = time.Now()
 		cacheData[lang][normID] = entry
@@ -253,9 +299,7 @@ func callUniversalTranslator(text, lang string) string {
 	}
 	mu.Unlock()
 
-	if !isOnline {
-		return text
-	}
+	if !isOnline { return text }
 	protectedText, placeholders := protectVariables(text)
 
 	var res string
@@ -285,53 +329,6 @@ func callUniversalTranslator(text, lang string) string {
 	return res
 }
 
-// --- UI & PROGRESS ---
-
-func updateProgress(lang string, current, total int, suffix string) {
-	if quietFlag || total <= 0 {
-		return
-	}
-	muConsole.Lock()
-	defer muConsole.Unlock()
-
-	pos := langPositions[lang]
-	if pos == 0 {
-		return
-	}
-
-	percent := (current * 100) / total
-	width := 50
-	filled := (percent * width) / 100
-	bar := blue(strings.Repeat("░", filled)) + strings.Repeat(" ", width-filled)
-
-	langStr := fmt.Sprintf("%-7s", lang)
-	fmt.Printf("\033[%dA\r\033[K    %s %s [%s] %3d%% %-5s\033[%dB",
-		pos, blue("→"), cyan(langStr), bar, percent, cyan(suffix), pos)
-}
-
-func showQuickStats(start time.Time) {
-	total := cacheHits + netCalls
-	pCache, pNet := 0.0, 0.0
-	if total > 0 {
-		pCache = (float64(cacheHits) / float64(total)) * 100
-		pNet = (float64(netCalls) / float64(total)) * 100
-	}
-	fmt.Printf("\n\n%s %s %s %v | %s %d (%.2f%%) | %s %d (%.2f%%) | %s %d\n",
-		green("✔"), white(T("Concluído")), T("em"), time.Since(start).Round(time.Second),
-		blue(T("Cache:")), cacheHits, pCache, yellow(T("Net:")), netCalls, pNet, white(T("Total:")), total)
-}
-
-func showFinalSummary(start time.Time) {
-	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO:")))
-	fmt.Printf("    %s %-15s: %v\n", blue("→"), T("Tempo Total"), time.Since(start).Round(time.Second))
-	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Cache Hits"), cacheHits)
-	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Chamadas Rede"), netCalls)
-	if atomic.LoadInt32(&failedCalls) > 0 {
-		fmt.Printf("    %s %-15s: %s\n", red("→"), T("Falhas"), red(atomic.LoadInt32(&failedCalls)))
-	}
-	fmt.Printf("%s\n\n", white(strings.Repeat("-", 60)))
-}
-
 // --- PROCESSADORES ---
 
 func translateMarkdown(inputPath, lang string) {
@@ -359,53 +356,48 @@ func translateMarkdown(inputPath, lang string) {
 }
 
 func translateFile(baseName, lang string) {
-	baseClean := strings.TrimSuffix(baseName, ".pot")
-	poTmp := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", baseClean, lang))
-	poFinal := filepath.Join("pot", fmt.Sprintf("%s-%s.po", baseClean, lang))
-
+	// Se baseName já terminar em .pot, removemos para não duplicar na lógica de nomes
+	cleanBase := strings.TrimSuffix(baseName, ".pot")
+	poTmp := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", cleanBase, lang))
+	poFinal := filepath.Join("pot", fmt.Sprintf("%s-%s.po", cleanBase, lang))
+	
 	file, err := os.Open(poTmp)
-	if err != nil {
-		return
-	}
-
+	if err != nil { return }
+	
+	output, _ := os.Create(poFinal)
+	
 	var lines []string
 	scanner := bufio.NewScanner(file)
+	for scanner.Scan() { lines = append(lines, scanner.Text()) }
+	file.Close() // Fecha antes de tentar remover
+
 	totalMsgids := 0
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-		if strings.HasPrefix(line, "msgid \"") && line != "msgid \"\"" {
-			totalMsgids++
-		}
-	}
-	file.Close() // Fecha para permitir remoção posterior
+	for _, l := range lines { if strings.HasPrefix(l, "msgid ") { totalMsgids++ } }
 
-	if totalMsgids == 0 {
-		updateProgress(lang, 0, 0, "EMPTY")
-		os.Remove(poTmp)
-		return
-	}
-
-	output, _ := os.Create(poFinal)
 	current := 0
+	var isMsgid bool
+	var msgidLines []string
+
 	for _, line := range lines {
-		if strings.HasPrefix(line, "msgid \"") && line != "msgid \"\"" {
+		if strings.HasPrefix(line, "msgid ") {
+			isMsgid = true
+			msgidLines = []string{strings.TrimPrefix(line, "msgid ")}
+		} else if strings.HasPrefix(line, "msgstr ") && isMsgid {
 			current++
 			updateProgress(lang, current, totalMsgids, "PO")
-			msgid := strings.Trim(strings.TrimPrefix(line, "msgid"), "\" ")
-			translated := callUniversalTranslator(msgid, lang)
-			fmt.Fprintf(output, "msgid \"%s\"\n", msgid)
-			fmt.Fprintf(output, "msgstr \"%s\"\n", translated)
-		} else if strings.HasPrefix(line, "msgstr") {
-			continue
+			translated := callUniversalTranslator(strings.Trim(strings.Join(msgidLines, " "), `"`), lang)
+			fmt.Fprintf(output, "msgid %s\nmsgstr \"%s\"\n", strings.Join(msgidLines, "\n"), translated)
+			isMsgid = false
+		} else if isMsgid {
+			msgidLines = append(msgidLines, line)
 		} else {
 			fmt.Fprintln(output, line)
 		}
 	}
 	output.Close()
-
-	// Limpeza do arquivo temporário após conclusão
-	os.Remove(poTmp)
+	
+	// --- LIMPEZA DE TEMPORÁRIOS ---
+	os.Remove(poTmp) // Remove o arquivo .po temporário após o uso
 	
 	updateProgress(lang, totalMsgids, totalMsgids, "OK")
 }
@@ -431,13 +423,36 @@ func translateMap(m map[string]interface{}, lang string) {
 	}
 }
 
-// --- PERSISTÊNCIA & SISTEMA ---
+// --- AUXILIARES & PERSISTÊNCIA ---
+
+func copyFile(src, dst string) error {
+	source, err := os.Open(src)
+	if err != nil { return err }
+	defer source.Close()
+	destination, err := os.Create(dst)
+	if err != nil { return err }
+	defer destination.Close()
+	_, err = io.Copy(destination, source)
+	return err
+}
 
 func loadCache() {
 	cacheData = make(map[string]map[string]CacheEntry)
 	file, err := os.ReadFile(cacheFile)
 	if err == nil {
 		json.Unmarshal(file, &cacheData)
+		now := time.Now()
+		modified := false
+		for lang := range cacheData {
+			for id, entry := range cacheData[lang] {
+				if entry.LastUsed.IsZero() {
+					entry.LastUsed = now
+					cacheData[lang][id] = entry
+					modified = true
+				}
+			}
+		}
+		if modified { saveCache() }
 	}
 }
 
@@ -464,9 +479,7 @@ func doCleanCache() {
 
 func checkInternet() bool {
 	conn, err := net.DialTimeout("tcp", "8.8.8.8:53", 2*time.Second)
-	if err != nil {
-		return false
-	}
+	if err != nil { return false }
 	conn.Close()
 	return true
 }
@@ -479,31 +492,53 @@ func checkDependencies() {
 	}
 }
 
+func usage() {
+	fmt.Fprintf(os.Stderr, "\n%s %s\n%s\n\n", cyan(_APP_), white(_VERSION_), white(_COPY_))
+	fmt.Fprintf(os.Stderr, "%s: %s %s %s\n\n", yellow(T("Uso")), green(_APP_), yellow("-i"), green(T("<arquivo> [opções]")))
+	fmt.Fprintf(os.Stderr, "%s:\n", yellow(T("Opções")))
+	defLangs := strings.Join(defaultLanguages, ",")
+	flags := []struct { short, long, desc string }{
+		{"-i", "--inputfile", "Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)"},
+		{"-e", "--engine", "Motor: google, bing, yandex (padrão: google)"},
+		{"-s", "--source", "Idioma de origem (ex: pt, en) (padrão: auto)"},
+		{"-l", "--language", fmt.Sprintf("Idiomas (ex: pt-BR,en) ou 'all' (padrão: %s)", defLangs)},
+		{"-j", "--jobs", "Traduções simultâneas (padrão: 8)"},
+		{"-f", "--force", "Força nova tradução (ignora cache)"},
+		{"", "--clean-cache", "Remove entradas de cache não usadas há 30 dias"},
+		{"-q", "--quiet", "Modo silencioso"},
+		{"-v", "--verbose", "Mostrar detalhes"},
+		{"-V", "--version", "Mostra a versão do programa"},
+	}
+	for _, f := range flags {
+		s := f.short
+		if s == "" { s = "   " }
+		fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan(s), cyan(f.long), white(T(f.desc)))
+	}
+}
+
 func prepareGettext(input, base string) {
 	pot := filepath.Join("pot", base+".pot")
-	exec.Command("xgettext", "--from-code=UTF-8", "--keyword=T", "--keyword=gettext", "--keyword=_", "-o", pot, input).Run()
+	exec.Command("xgettext", "--from-code=UTF-8", "--language=shell", "--keyword=gettext", "--keyword=_", "--keyword=T", "-o", pot, input).Run()
 	exec.Command("sed", "-i", "s/charset=CHARSET/charset=UTF-8/", pot).Run()
 }
 
 func prepareMsginit(base, lang string) {
-	baseClean := strings.TrimSuffix(base, ".pot")
-	pot := filepath.Join("pot", baseClean+".pot")
-	po := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", baseClean, lang))
-
-	if _, err := os.Stat(pot); os.IsNotExist(err) && strings.HasSuffix(inputFile, ".pot") {
-		content, _ := os.ReadFile(inputFile)
-		os.WriteFile(pot, content, 0644)
-	}
-
+	cleanBase := strings.TrimSuffix(base, ".pot")
+	pot := filepath.Join("pot", cleanBase+".pot")
+	po := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", cleanBase, lang))
 	os.Remove(po)
 	exec.Command("msginit", "--no-translator", "-l", lang, "-i", pot, "-o", po).Run()
 }
 
 func writeMsgfmtToMo(base, lang string) {
-	baseClean := strings.TrimSuffix(base, ".pot")
+	cleanBase := strings.TrimSuffix(base, ".pot")
 	dir := filepath.Join("usr/share/locale", lang, "LC_MESSAGES")
 	os.MkdirAll(dir, 0755)
-	exec.Command("msgfmt", filepath.Join("pot", fmt.Sprintf("%s-%s.po", baseClean, lang)), "-o", filepath.Join(dir, baseClean+".mo")).Run()
+	
+	poFile := filepath.Join("pot", fmt.Sprintf("%s-%s.po", cleanBase, lang))
+	moFile := filepath.Join(dir, cleanBase+".mo")
+	
+	exec.Command("msgfmt", poFile, "-o", moFile).Run()
 }
 
 func protectVariables(text string) (string, map[string]string) {
@@ -519,26 +554,8 @@ func protectVariables(text string) (string, map[string]string) {
 }
 
 func restoreVariables(text string, p map[string]string) string {
-	for k, v := range p {
-		text = strings.Replace(text, k, v, -1)
-	}
+	for k, v := range p { text = strings.Replace(text, k, v, -1) }
 	return text
-}
-
-func usage() {
-	fmt.Fprintf(os.Stderr, "\n%s %s\n%s\n\n", cyan(_APP_), white(_VERSION_), white(_COPY_))
-	fmt.Fprintf(os.Stderr, "%s: %s %s %s\n\n", yellow(T("Uso")), green(_APP_), yellow("-i"), green(T("<arquivo> [opções]")))
-	fmt.Fprintf(os.Stderr, "%s:\n", yellow(T("Opções")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-i"), cyan("--inputfile"), white(T("Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-e"), cyan("--engine"), white(T("Motor: google, bing, yandex (padrão: google)")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-s"), cyan("--source"), white(T("Idioma de origem (padrão: auto)")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-l"), cyan("--language"), white(T("Idiomas (ex: pt-BR,en) ou 'all'")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-j"), cyan("--jobs"), white(T("Traduções simultâneas (padrão: 8)")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-f"), cyan("--force"), white(T("Força nova tradução (ignora cache)")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("    "), cyan("--clean-cache"), white(T("Remove itens obsoletos do cache")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-q"), cyan("--quiet"), white(T("Modo silencioso")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-v"), cyan("--verbose"), white(T("Mostrar detalhes")))
-	fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan("-V"), cyan("--version"), white(T("Mostra a versão do programa")))
 }
 
 func showVersion() { fmt.Printf("%s %s\n%s\n", cyan(_APP_), white(_VERSION_), white(_COPY_)) }
