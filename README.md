@@ -16,13 +16,12 @@ Sua principal vantagem é o Cache Inteligente v2.1.9, que reduz drasticamente as
 ## 🚀 Instalação
 
 Certifique-se de ter o Go instalado e as dependências de sistema (gettext, trans).
-
-sh
-git clone https://github.com/vcatafesta/chili.git
-cd chili/go/tradutor
-go build -o chili-tradutor-go
+```bash
+git clone https://github.com/chililinux/chili-tradutor-go.git
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
 sudo mv chili-tradutor-go /usr/local/bin/
-
+```bash
 
 ## 🛠️ Uso
 
