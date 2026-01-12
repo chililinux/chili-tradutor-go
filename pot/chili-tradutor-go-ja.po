@@ -1,0 +1,161 @@
+# Japanese translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
+msgid ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-12 13:22-0400\n"
+"PO-Revision-Date: 2026-01-12 13:22-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: chili-tradutor-go-v2.1.11.go:169
+msgid "Analisando formato do arquivo e preparando ambiente..."
+msgstr "ファイル形式を解析して、環境を準備しています..."
+
+#: chili-tradutor-go-v2.1.11.go:181
+msgid "Configurações de tradução:"
+msgstr "翻訳設定："
+
+#: chili-tradutor-go-v2.1.11.go:182
+msgid "Origem"
+msgstr "起源"
+
+#: chili-tradutor-go-v2.1.11.go:183
+msgid "Idiomas"
+msgstr "言語"
+
+#: chili-tradutor-go-v2.1.11.go:184
+msgid "Motor"
+msgstr "モーター"
+
+#: chili-tradutor-go-v2.1.11.go:185
+msgid "Jobs"
+msgstr "仕事"
+
+#: chili-tradutor-go-v2.1.11.go:187
+msgid "Online (Internet OK)"
+msgstr "オンライン（インターネット可）"
+
+#: chili-tradutor-go-v2.1.11.go:189
+msgid "Offline (Apenas Cache)"
+msgstr "オフライン（キャッシュのみ）"
+
+#: chili-tradutor-go-v2.1.11.go:191
+msgid "Rede"
+msgstr "ネットワーク"
+
+#: chili-tradutor-go-v2.1.11.go:198
+msgid "[Aguardando...]"
+msgstr "[待機中...]"
+
+#: chili-tradutor-go-v2.1.11.go:223
+msgid "idiomas concluídos..."
+msgstr "言語が完了しました..."
+
+#: chili-tradutor-go-v2.1.11.go:320
+msgid "Concluído"
+msgstr "完了"
+
+#: chili-tradutor-go-v2.1.11.go:320
+msgid "em"
+msgstr "で"
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Cache:"
+msgstr "キャッシュ:"
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Net:"
+msgstr "合計："
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Total:"
+msgstr "合計:"
+
+#: chili-tradutor-go-v2.1.11.go:325
+msgid "RESUMO EXECUTIVO:"
+msgstr "エグゼクティブサマリー："
+
+#: chili-tradutor-go-v2.1.11.go:326
+msgid "Tempo Total"
+msgstr "合計時間"
+
+#: chili-tradutor-go-v2.1.11.go:327
+msgid "Cache Hits"
+msgstr "キャッシュヒット"
+
+#: chili-tradutor-go-v2.1.11.go:328
+msgid "Chamadas Rede"
+msgstr "ネットワーク通話"
+
+#: chili-tradutor-go-v2.1.11.go:330
+msgid "Falhas"
+msgstr "障害"
+
+#: chili-tradutor-go-v2.1.11.go:462
+msgid "Removidos"
+msgstr "削除済み"
+
+#: chili-tradutor-go-v2.1.11.go:462
+msgid "itens obsoletos do cache."
+msgstr "キャッシュの古い項目。"
+
+#: chili-tradutor-go-v2.1.11.go:530
+msgid "Uso"
+msgstr "使用"
+
+#: chili-tradutor-go-v2.1.11.go:530
+msgid "<arquivo> [opções]"
+msgstr "<ファイル> [オプション]"
+
+#: chili-tradutor-go-v2.1.11.go:531
+msgid "Opções"
+msgstr "オプション"
+
+#: chili-tradutor-go-v2.1.11.go:532
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml)"
+msgstr "ソースファイル (.sh, .py, .md, .json, .yaml)"
+
+#: chili-tradutor-go-v2.1.11.go:533
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "検索エンジン: Google、Bing、Yandex（デフォルト: Google）"
+
+#: chili-tradutor-go-v2.1.11.go:534
+msgid "Idioma de origem (padrão: auto)"
+msgstr "元の言語（デフォルト：自動）"
+
+#: chili-tradutor-go-v2.1.11.go:535
+msgid "Idiomas (ex: pt-BR,en) ou 'all'"
+msgstr "言語（例：pt-BR、en）または「all」"
+
+#: chili-tradutor-go-v2.1.11.go:536
+msgid "Traduções simultâneas (padrão: 8)"
+msgstr "同時通訳（標準：8）"
+
+#: chili-tradutor-go-v2.1.11.go:537
+msgid "Força nova tradução (ignora cache)"
+msgstr "強制新しい翻訳（キャッシュを無視）"
+
+#: chili-tradutor-go-v2.1.11.go:538
+msgid "Remove itens obsoletos do cache"
+msgstr "キャッシュから不要なアイテムを削除する"
+
+#: chili-tradutor-go-v2.1.11.go:539
+msgid "Modo silencioso"
+msgstr "サイレントモード"
+
+#: chili-tradutor-go-v2.1.11.go:540
+msgid "Mostrar detalhes"
+msgstr "詳細を表示"
+
+#: chili-tradutor-go-v2.1.11.go:541
+msgid "Mostra a versão do programa"
+msgstr "プログラムのバージョンを表示する"

@@ -1,0 +1,160 @@
+# Language zh-TW translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
+msgid ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-12 13:22-0400\n"
+"PO-Revision-Date: 2026-01-12 13:22-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh-TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: chili-tradutor-go-v2.1.11.go:169
+msgid "Analisando formato do arquivo e preparando ambiente..."
+msgstr "正在分析檔案格式並準備環境..."
+
+#: chili-tradutor-go-v2.1.11.go:181
+msgid "Configurações de tradução:"
+msgstr "翻譯設定："
+
+#: chili-tradutor-go-v2.1.11.go:182
+msgid "Origem"
+msgstr "來源"
+
+#: chili-tradutor-go-v2.1.11.go:183
+msgid "Idiomas"
+msgstr "語言"
+
+#: chili-tradutor-go-v2.1.11.go:184
+msgid "Motor"
+msgstr "馬達"
+
+#: chili-tradutor-go-v2.1.11.go:185
+msgid "Jobs"
+msgstr "工作"
+
+#: chili-tradutor-go-v2.1.11.go:187
+msgid "Online (Internet OK)"
+msgstr "線上（網路可）"
+
+#: chili-tradutor-go-v2.1.11.go:189
+msgid "Offline (Apenas Cache)"
+msgstr "離線（僅快取）"
+
+#: chili-tradutor-go-v2.1.11.go:191
+msgid "Rede"
+msgstr "網路"
+
+#: chili-tradutor-go-v2.1.11.go:198
+msgid "[Aguardando...]"
+msgstr "[等待中...]"
+
+#: chili-tradutor-go-v2.1.11.go:223
+msgid "idiomas concluídos..."
+msgstr "語言已完成..."
+
+#: chili-tradutor-go-v2.1.11.go:320
+msgid "Concluído"
+msgstr "完成"
+
+#: chili-tradutor-go-v2.1.11.go:320
+msgid "em"
+msgstr "在"
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Cache:"
+msgstr "快取:"
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Net:"
+msgstr "淨額："
+
+#: chili-tradutor-go-v2.1.11.go:321
+msgid "Total:"
+msgstr "總計："
+
+#: chili-tradutor-go-v2.1.11.go:325
+msgid "RESUMO EXECUTIVO:"
+msgstr "執行摘要："
+
+#: chili-tradutor-go-v2.1.11.go:326
+msgid "Tempo Total"
+msgstr "總時間"
+
+#: chili-tradutor-go-v2.1.11.go:327
+msgid "Cache Hits"
+msgstr "快取命中"
+
+#: chili-tradutor-go-v2.1.11.go:328
+msgid "Chamadas Rede"
+msgstr "網絡通話"
+
+#: chili-tradutor-go-v2.1.11.go:330
+msgid "Falhas"
+msgstr "故障"
+
+#: chili-tradutor-go-v2.1.11.go:462
+msgid "Removidos"
+msgstr "已移除"
+
+#: chili-tradutor-go-v2.1.11.go:462
+msgid "itens obsoletos do cache."
+msgstr "快取中的過時項目。"
+
+#: chili-tradutor-go-v2.1.11.go:530
+msgid "Uso"
+msgstr "使用"
+
+#: chili-tradutor-go-v2.1.11.go:530
+msgid "<arquivo> [opções]"
+msgstr "<檔案> [選項]"
+
+#: chili-tradutor-go-v2.1.11.go:531
+msgid "Opções"
+msgstr "選項"
+
+#: chili-tradutor-go-v2.1.11.go:532
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml)"
+msgstr "源檔案 (.sh, .py, .md, .json, .yaml)"
+
+#: chili-tradutor-go-v2.1.11.go:533
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "搜尋引擎：google、bing、yandex（預設：google）"
+
+#: chili-tradutor-go-v2.1.11.go:534
+msgid "Idioma de origem (padrão: auto)"
+msgstr "原始語言（預設：自動）"
+
+#: chili-tradutor-go-v2.1.11.go:535
+msgid "Idiomas (ex: pt-BR,en) ou 'all'"
+msgstr "語言（例如：pt-BR,en）或「all」"
+
+#: chili-tradutor-go-v2.1.11.go:536
+msgid "Traduções simultâneas (padrão: 8)"
+msgstr "同聲傳譯（預設：8）"
+
+#: chili-tradutor-go-v2.1.11.go:537
+msgid "Força nova tradução (ignora cache)"
+msgstr "強制新翻譯（忽略快取）"
+
+#: chili-tradutor-go-v2.1.11.go:538
+msgid "Remove itens obsoletos do cache"
+msgstr "移除快取中的過時項目"
+
+#: chili-tradutor-go-v2.1.11.go:539
+msgid "Modo silencioso"
+msgstr "靜音模式"
+
+#: chili-tradutor-go-v2.1.11.go:540
+msgid "Mostrar detalhes"
+msgstr "顯示詳情"
+
+#: chili-tradutor-go-v2.1.11.go:541
+msgid "Mostra a versão do programa"
+msgstr "顯示程式版本"
