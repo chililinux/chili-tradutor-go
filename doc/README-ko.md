@@ -1,5 +1,5 @@
 `
-# 칠리-번역가-고 🌶️
+# 칠리 번역기 이동 🌶️
 
 chilli-translator-go는 Go로 작성된 범용 기계 번역 래퍼입니다. 변수, 링크 및 기술 구문의 무결성을 유지하면서 스크립트(.sh, .py), 문서 파일(Markdown) 및 데이터 파일(JSON)을 번역하도록 설계되었습니다.
 
@@ -17,10 +17,10 @@ chilli-translator-go는 Go로 작성된 범용 기계 번역 래퍼입니다. �
 
 Go가 설치되어 있고 시스템 종속성(gettext, trans)이 있는지 확인하세요.
 ```bash
-자식 클론 https://github.com/chililinux/chili-tradutor-go.git
-CD 칠리-번역기-go/src
-go build -o chill-translator-go chill-translator-go-v2.1.9.go
-sudo mv chill-translator-go /usr/local/bin/
+git clone https://github.com/chililinux/chili-tradutor-go.git
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
+sudo mv chili-tradutor-go /usr/local/bin/
 ```
 
 ## 🛠️ 사용법
@@ -36,7 +36,7 @@ sudo mv chill-translator-go /usr/local/bin/
 cheli-treducer-go -and tutorial.md
 
 
-### 캐시 삭제
+### 캐시 지우기
 지난 30일 동안 사용되지 않은 캐시 항목을 제거합니다.
 
 칠리 번역기-go --clean-cache
@@ -68,9 +68,9 @@ cheli-treducer-go -and tutorial.md
 캐시는 ~/.cache/chili-tradutor-go/cache.json에 저장됩니다.
 
 * 자동 마이그레이션: 이전 버전(v2.1.8)의 기록을 감지할 때 도구는 기록 데이터 손실을 방지하기 위해 레거시 기록에 현재 타임스탬프를 자동으로 스탬프 처리합니다.
-* 자동 업데이트: 캐시에서 항목이 발견될 때마다 해당 항목의 "마지막 사용" 타임스탬프가 업데이트되어 향후 자동 정리로부터 항목을 보호합니다.
+* 자동 업데이트: 캐시에서 항목이 발견될 때마다 "마지막 사용" 타임스탬프가 업데이트되어 향후 자동 삭제로부터 항목을 보호합니다.
 * 보안: --clean-cache를 통한 정리는 실제로 사용되지 않는 항목만 제거하여 번역 지식 기반이 건강하게 성장하도록 보장합니다.
 
-
+---
 개발자: Vilmar Catafesta <vcatafesta@gmail.com>
 저작권 © 2023-2026 ChiliLinux 팀

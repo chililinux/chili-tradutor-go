@@ -1,5 +1,5 @@
 `
-#チリ翻訳者号 🌶️
+# チリ翻訳者ゴー 🌶️
 
 chili-translator-go は、Go で書かれたユニバーサル機械翻訳ラッパーです。変数、リンク、技術構文の整合性を維持しながら、スクリプト (.sh、.py)、ドキュメント ファイル (Markdown)、およびデータ ファイル (JSON) を翻訳するように設計されています。
 
@@ -8,22 +8,22 @@ chili-translator-go は、Go で書かれたユニバーサル機械翻訳ラッ
 ## ✨ 特徴
 
 * マルチフォーマット: .sh、.py、.md、.json、.yaml をサポートします。
-* 構文の保持: 翻訳プロセス中にシェル変数 ($VAR、${VAR})、マークダウン リンク、文字列プレースホルダーを自動的に保護します。
-* 並列翻訳: Goroutines を使用して複数の言語を同時に処理します (-j で調整可能)。
+* 構文の保持: 翻訳プロセス中にシェル変数 ($VAR、${VAR})、Markdown リンク、文字列プレースホルダーを自動的に保護します。
+* 並列翻訳: Goroutine を使用して複数の言語を同時に処理します (-j で調整可能)。
 * タイムスタンプ付き永続キャッシュ: 翻訳をローカルに保存し、データのライフサイクルを管理して、インテリジェントなクリーニングを可能にします。
-* プログレッシブ インターフェイス: 言語コード サイズ (例: en 対 zh-CN) に関係なく、完璧な視覚的調整により各言語の進行状況をリアルタイムに表示します。
+* プログレッシブ インターフェイス: 言語のコード サイズ (例: en と zh-CN) に関係なく、完璧な視覚的調整により各言語の進行状況をリアルタイムに表示します。
 
 ## 🚀 インストール
 
 Go がインストールされており、システムの依存関係 (gettext、trans) がインストールされていることを確認してください。
 ```bash
 git clone https://github.com/chililinux/chili-tradutor-go.git
-cd chili-translator-go/src
-go build -o chili-translator-go chili-translator-go-v2.1.9.go
-sudo mv chili-translator-go /usr/local/bin/
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
+sudo mv chili-tradutor-go /usr/local/bin/
 ```
 
-## 🛠️ 使用法
+## 🛠️使用法
 
 ### 基本的な翻訳
 ファイルを標準言語 (EN、ES、IT、DE、FR、RU、ZH、JA、KO) に翻訳するには:
@@ -36,7 +36,7 @@ chili-translator-go -i meu_script.sh
 cheli-treducer-go -およびtutorial.md
 
 
-### キャッシュクリア
+### キャッシュのクリア
 過去 30 日間使用されていないキャッシュ エントリを削除します。
 
 chili-translator-go --clean-cache
@@ -59,7 +59,7 @@ chili-translator-go --clean-cache
 
 ## 📁 出力構造
 
-* Scripts/POT: ./pot/ に .po ファイルを生成し、./usr/share/locale/ に .mo バイナリ ファイルを生成します。
+* スクリプト/POT: .po ファイルを ./pot/ に生成し、.mo バイナリ ファイルを ./usr/share/locale/ に生成します。
 * Markdown: ./doc/ に翻訳版を生成します (例: README-en.md)。
 * JSON: ./transrated/ に翻訳されたバージョンを生成します。
 
@@ -68,9 +68,9 @@ chili-translator-go --clean-cache
 キャッシュは ~/.cache/chili-tradutor-go/cache.json に保存されます。
 
 * 自動移行: 以前のバージョン (v2.1.8) からのレコードを検出すると、ツールは履歴データの損失を避けるために、従来のレコードに現在のタイムスタンプを自動的にスタンプします。
-* 自動更新: キャッシュ内でアイテムが見つかるたびに、そのアイテムの「最後に使用された」タイムスタンプが更新され、将来の自動クリーニングからアイテムを保護します。
+* 自動更新: キャッシュ内でアイテムが見つかるたびに、そのアイテムの「最後に使用された」タイムスタンプが更新され、将来の自動クリアからアイテムを保護します。
 * セキュリティ: --clean-cache によるクリーニングでは、実際に使用されていないもののみが削除され、翻訳知識ベースが健全に成長することが保証されます。
 
-
+---
 開発者: Vilmar Catafesta <vcatafesta@gmail.com>
 著作権 © 2023-2026 ChiliLinux チーム

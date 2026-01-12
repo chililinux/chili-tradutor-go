@@ -18,9 +18,9 @@ Son principal avantage est Smart Cache v2.1.9, qui réduit considérablement les
 Assurez-vous que Go est installé et que les dépendances du système (gettext, trans).
 ```bash
 git clone https://github.com/chililinux/chili-tradutor-go.git
-cd chili-traducteur-go/src
-allez construire -o chili-translator-go chili-translator-go-v2.1.9.go
-sudo mv chili-translator-go /usr/local/bin/
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
+sudo mv chili-tradutor-go /usr/local/bin/
 ```
 
 ## 🛠️ Utilisation
@@ -67,10 +67,10 @@ chili-translator-go --clean-cache
 
 Le cache est stocké dans ~/.cache/chili-tradutor-go/cache.json.
 
-* Migration automatique : lors de la détection des enregistrements des versions précédentes (v2.1.8), l'outil marque automatiquement l'horodatage actuel sur les enregistrements hérités pour éviter la perte de données historiques.
-* Mise à jour automatique : chaque fois qu'un élément est trouvé dans le cache, son horodatage "Dernière utilisation" est mis à jour, le protégeant ainsi d'un futur nettoyage automatique.
+* Migration automatique : lors de la détection des enregistrements des versions précédentes (v2.1.8), l'outil marque automatiquement l'horodatage actuel sur les enregistrements existants pour éviter la perte de données historiques.
+* Mise à jour automatique : chaque fois qu'un élément est trouvé dans le cache, son horodatage "Dernière utilisation" est mis à jour, le protégeant ainsi des futurs effacements automatiques.
 * Sécurité : le nettoyage via --clean-cache supprime uniquement ce qui est réellement hors d'usage, garantissant ainsi une croissance saine de votre base de connaissances en matière de traduction.
 
-
+---
 Développé par : Vilmar Catafesta <vcatafesta@gmail.com>
 Copyright © 2023-2026 Équipe ChiliLinux

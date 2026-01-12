@@ -5,14 +5,8 @@
     Site:      https://chililinux.com
     GitHub:    https://github.com/vcatafesta/chili/go
 
-    Created:   dom 01 out 2023 09:00:00 -03
-    Altered:   qui 05 out 2023 10:00:00 -03
-    Updated:   seg 12 jan 2026 16:30:00 -04
-    Version:   2.1.10
-
-    Copyright (c) 2019-2026, Vilmar Catafesta <vcatafesta@gmail.com>
-    Copyright (c) 2019-2026, ChiliLinux Team
-    All rights reserved.
+    Updated:   seg 12 jan 2026 23:25:00 -04
+    Version:   2.1.29
 */
 
 package main
@@ -37,7 +31,8 @@ import (
 	"github.com/spf13/pflag"
 )
 
-// Estrutura para o Cache com Timestamp (v2.1.10)
+// --- ESTRUTURAS E VARIÁVEIS GLOBAIS ---
+
 type CacheEntry struct {
 	Value    string    `json:"v"`
 	LastUsed time.Time `json:"t"`
@@ -45,11 +40,10 @@ type CacheEntry struct {
 
 const (
 	_APP_     = "chili-tradutor-go"
-	_VERSION_ = "2.1.10-20260112"
+	_VERSION_ = "2.1.29-20260112"
 	_COPY_    = "Copyright (C) 2023-2026 Vilmar Catafesta"
 )
 
-// --- CONFIGURAÇÃO DE CORES ---
 var (
 	cyan    = color.New(color.Bold, color.FgCyan).SprintFunc()
 	green   = color.New(color.FgGreen).SprintFunc()
@@ -60,7 +54,6 @@ var (
 	magenta = color.New(color.Bold, color.FgMagenta).SprintFunc()
 )
 
-// --- VARIÁVEIS GLOBAIS ---
 var (
 	inputFile      string
 	engine         string
@@ -71,8 +64,9 @@ var (
 	verboseFlag    bool
 	versionFlag    bool
 	cleanCacheFlag bool
+	selfFlag       bool
 	languages      []string
-	logger         *log.Logger
+	targetLangs    []string
 	cacheFile      string
 	cacheData      map[string]map[string]CacheEntry
 	mu             sync.Mutex
@@ -94,69 +88,118 @@ var supportedLanguages = []string{
 
 var defaultLanguages = []string{"en", "es", "it", "de", "fr", "ru", "zh-CN", "zh-TW", "ja", "ko"}
 
-// --- INTERNACIONALIZAÇÃO (T) ---
-func T(msgid string) string {
-	lang := os.Getenv("LANG")
-	if strings.HasPrefix(lang, "en") || lang == "" {
-		return msgid
-	}
-	cmd := exec.Command("gettext", "-d", _APP_, msgid)
-	out, err := cmd.Output()
-	if err != nil {
-		return msgid
-	}
-	return strings.TrimSpace(string(out))
-}
-
-func init() {
-	home, _ := os.UserHomeDir()
-	cacheDir := filepath.Join(home, ".cache", _APP_)
-	os.MkdirAll(cacheDir, 0755)
-	cacheFile = filepath.Join(cacheDir, "cache.json")
-	langPositions = make(map[string]int)
-}
+// --- MAIN (O MAESTRO) ---
 
 func main() {
 	checkDependencies()
 	isOnline = checkInternet()
-
-	pflag.Usage = usage
-	pflag.StringVarP(&inputFile, "inputfile", "i", "", "")
-	pflag.StringVarP(&engine, "engine", "e", "google", "")
-	pflag.StringVarP(&sourceLang, "source", "s", "auto", "")
-	pflag.StringSliceVarP(&languages, "language", "l", nil, "")
-	pflag.IntVarP(&jobs, "jobs", "j", 8, "")
-	pflag.BoolVarP(&forceFlag, "force", "f", false, "")
-	pflag.BoolVar(&cleanCacheFlag, "clean-cache", false, "")
-	pflag.BoolVarP(&quietFlag, "quiet", "q", false, "")
-	pflag.BoolVarP(&verboseFlag, "verbose", "v", false, "")
-	pflag.BoolVarP(&versionFlag, "version", "V", false, "")
-	pflag.Parse()
+	parseFlags()
 
 	if versionFlag {
 		showVersion()
 		os.Exit(0)
 	}
 
-	loadCache()
-
 	if cleanCacheFlag {
+		loadCache()
 		doCleanCache()
 		saveCache()
 		os.Exit(0)
 	}
 
 	if inputFile == "" {
-		usage()
+		if pflag.NArg() > 0 {
+			inputFile = pflag.Arg(0)
+		} else {
+			usage()
+			os.Exit(1)
+		}
+	}
+
+	if _, err := os.Stat(inputFile); os.IsNotExist(err) {
+		fmt.Printf("%s %s '%s'\n", red(T("ERRO:")), white(T("Arquivo não encontrado:")), yellow(inputFile))
 		os.Exit(1)
 	}
 
+	loadCache()
 	defer saveCache()
 
+	ext, langName, desc := detectFileType(inputFile)
 	baseName := filepath.Base(inputFile)
-	ext := strings.ToLower(filepath.Ext(baseName))
+	setupEnvironment(ext, baseName, langName)
 
-	targetLangs := defaultLanguages
+	printWelcome(desc)
+	start := time.Now()
+
+	if !hasActualContent(ext, baseName) {
+		fmt.Printf("%s %s\n", yellow(T("[AVISO]")), white(T("Nada para traduzir ou arquivo protegido.")))
+		cleanupEmpty(ext, baseName)
+	} else {
+		fmt.Printf("%s %s\n\n", yellow(T("[STEP 2]")), white(T("Iniciando processamento paralelo...")))
+		for _, lang := range targetLangs {
+			fmt.Printf("    → %s %s\n", cyan(fmt.Sprintf("%-7s", lang)), yellow(T("[Aguardando...]")))
+		}
+		runTranslationLoop(ext, baseName)
+	}
+
+	showQuickStats(start)
+	showFinalSummary(start)
+}
+
+// --- FUNÇÕES DE LÓGICA ---
+
+func hasActualContent(ext, baseName string) bool {
+	if ext == ".md" || ext == ".markdown" || ext == ".json" || ext == ".yaml" || ext == ".yml" {
+		data, _ := os.ReadFile(inputFile)
+		return len(strings.TrimSpace(string(data))) > 0
+	}
+	potName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
+	if selfFlag { potName = _APP_ }
+
+	potPath := filepath.Join("pot", potName+".pot")
+	data, err := os.ReadFile(potPath)
+	if err != nil { return false }
+	re := regexp.MustCompile(`msgid\s+"[^"]+"`)
+	matches := re.FindAllString(string(data), -1)
+	for _, m := range matches {
+		if m != `msgid ""` { return true }
+	}
+	return false
+}
+
+func cleanupEmpty(ext, baseName string) {
+	if ext == ".md" || ext == ".markdown" || ext == ".json" || ext == ".yaml" || ext == ".yml" {
+		return
+	}
+	potName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
+	if selfFlag { potName = _APP_ }
+	targetPot := filepath.Join("pot", potName+".pot")
+
+	absInput, _ := filepath.Abs(inputFile)
+	absTarget, _ := filepath.Abs(targetPot)
+	if absInput == absTarget {
+		return
+	}
+	
+	os.Remove(targetPot)
+}
+
+func parseFlags() {
+	pflag.Usage = usage
+	pflag.StringVarP(&inputFile, "inputfile", "i", "", T("Arquivo fonte"))
+	pflag.StringVarP(&engine, "engine", "e", "google", T("Motor de tradução"))
+	pflag.StringVarP(&sourceLang, "source", "s", "auto", T("Idioma de origem"))
+	pflag.StringSliceVarP(&languages, "language", "l", nil, T("Idiomas destino"))
+	pflag.IntVarP(&jobs, "jobs", "j", 8, T("Traduções simultâneas"))
+	pflag.BoolVarP(&forceFlag, "force", "f", false, T("Ignora o cache"))
+	pflag.BoolVar(&cleanCacheFlag, "clean-cache", false, T("Limpa cache antigo"))
+	pflag.BoolVar(&selfFlag, "self", false, T("Extração especializada para o próprio chili-tradutor-go"))
+	pflag.BoolVarP(&quietFlag, "quiet", "q", false, T("Modo silencioso"))
+	pflag.BoolVarP(&verboseFlag, "verbose", "v", false, T("Modo detalhado"))
+	pflag.BoolVarP(&versionFlag, "version", "V", false, T("Mostra versão"))
+	pflag.Parse()
+
+	targetLangs = defaultLanguages
 	if len(languages) > 0 {
 		if languages[0] == "all" {
 			targetLangs = supportedLanguages
@@ -164,144 +207,98 @@ func main() {
 			targetLangs = languages
 		}
 	}
-
-	fmt.Printf("%s %s %s\n", cyan(">>"), white(_APP_), white(_VERSION_))
-
-	fmt.Printf("%s %s\n", yellow("[STEP 1]"), white(T("Analisando formato do arquivo e preparando ambiente...")))
-	
-	// Criação das pastas base da v2.1.9
-	os.MkdirAll("pot", 0755)
-	
-	if ext == ".md" || ext == ".markdown" {
-		os.MkdirAll("doc", 0755)
-	} else if ext == ".json" || ext == ".yaml" || ext == ".yml" {
-		os.MkdirAll("translated", 0755)
-	} else if ext == ".pot" {
-		// Se for .pot, garantimos que esteja dentro da pasta pot/ para o fluxo seguinte
-		target := filepath.Join("pot", baseName)
-		if inputFile != target {
-			copyFile(inputFile, target)
-		}
-	} else {
-		if ext == ".sh" || ext == ".py" || ext == ".go" {
-			prepareGettext(inputFile, baseName)
-		}
-	}
-
-	fmt.Printf("%s %s\n", yellow("[STEP 2]"), white(T("Configurações de tradução:")))
-	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Origem")), magenta(sourceLang))
-	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Idiomas")), cyan(strings.Join(targetLangs, ", ")))
-	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Motor")), green(engine))
-	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Jobs")), red(jobs))
-
-	netStatus := green(T("Online (Internet OK)"))
-	if !isOnline {
-		netStatus = red(T("Offline (Apenas Cache)"))
-	}
-	fmt.Printf("    %s %-8s: %s\n", blue("→"), white(T("Rede")), netStatus)
-	fmt.Println()
-
-	totalLangs := len(targetLangs)
+	langPositions = make(map[string]int)
 	for i, lang := range targetLangs {
-		langPositions[lang] = totalLangs - i
-		langStr := fmt.Sprintf("%-7s", lang)
-		fmt.Printf("    %s %s %s\n", blue("→"), cyan(langStr), yellow(T("[Aguardando...]")))
+		langPositions[lang] = len(targetLangs) - i
 	}
+}
 
-	start := time.Now()
+func detectFileType(path string) (ext string, lang string, desc string) {
+	ext = strings.ToLower(filepath.Ext(path))
+	extMap := map[string]string{
+		".sh": "shell", ".py": "python", ".php": "php", ".c": "c",
+		".cpp": "c++", ".go": "go", ".pl": "perl", ".rb": "ruby",
+	}
+	if ext == "" {
+		detected, _ := getShebangInfo(path)
+		return "", detected, fmt.Sprintf(T("Script (%s)"), green(detected))
+	}
+	if l, ok := extMap[ext]; ok {
+		return ext, l, fmt.Sprintf(T("Código %s (%s)"), ext, green(l))
+	}
+	switch ext {
+	case ".md", ".markdown": return ext, "markdown", T("Markdown")
+	case ".json": return ext, "json", T("JSON")
+	case ".yaml", ".yml": return ext, "yaml", T("YAML")
+	case ".pot": return ext, "gettext", T("Template POT")
+	}
+	return ext, "shell", fmt.Sprintf(T("Arquivo %s"), ext)
+}
+
+func setupEnvironment(ext, baseName, langName string) {
+	switch ext {
+	case ".md", ".markdown": os.MkdirAll("doc", 0755)
+	case ".json": os.MkdirAll("json", 0755)
+	case ".yaml", ".yml": os.MkdirAll("yml", 0755)
+	default:
+		os.MkdirAll("pot", 0755)
+		targetPot := filepath.Join("pot", baseName)
+
+		if ext == ".pot" {
+			absInput, _ := filepath.Abs(inputFile)
+			absTarget, _ := filepath.Abs(targetPot)
+			if absInput != absTarget {
+				copyFile(inputFile, targetPot)
+			}
+		} else {
+			if selfFlag {
+				prepareGettextSelf(inputFile)
+			} else {
+				prepareGettext(inputFile, baseName, langName)
+			}
+		}
+	}
+}
+
+func runTranslationLoop(ext, baseName string) {
 	var wg sync.WaitGroup
 	sem := make(chan struct{}, jobs)
+	targetBase := baseName
+	if selfFlag { targetBase = _APP_ + ".go" } 
 
 	for _, lang := range targetLangs {
 		wg.Add(1)
 		go func(l string) {
-			defer wg.Done()
-			sem <- struct{}{}
-
-			if ext == ".md" || ext == ".markdown" {
-				translateMarkdown(inputFile, l)
-			} else if ext == ".json" {
-				translateJSON(inputFile, l)
-			} else {
-				prepareMsginit(baseName, l)
-				translateFile(baseName, l)
-				writeMsgfmtToMo(baseName, l)
+			defer wg.Done(); sem <- struct{}{}
+			switch ext {
+			case ".md", ".markdown": translateMarkdown(inputFile, l)
+			case ".json", ".yaml", ".yml": translateJSON(inputFile, l)
+			default:
+				prepareMsginit(targetBase, l)
+				translateFile(targetBase, l)
+				writeMsgfmtToMo(targetBase, l)
 			}
-
 			atomic.AddInt32(&langsDone, 1)
 			muConsole.Lock()
-			fmt.Printf("\r    %s %s / %s %s", yellow("[STATUS]"), green(langsDone), green(totalLangs), T("idiomas concluídos..."))
-			muConsole.Unlock()
-			<-sem
+			fmt.Printf("\r    %s %s / %s %s", yellow(T("[STATUS]")), green(langsDone), green(len(targetLangs)), T("idiomas concluídos..."))
+			muConsole.Unlock(); <-sem
 		}(lang)
 	}
 	wg.Wait()
-
-	showQuickStats(start)
-	showFinalSummary(start)
 }
-
-// --- UI STATS & ALINHAMENTO ---
-
-func updateProgress(lang string, current, total int, suffix string) {
-	if quietFlag { return }
-	muConsole.Lock()
-	defer muConsole.Unlock()
-	pos := langPositions[lang]
-	if pos == 0 { return }
-	percent := (current * 100) / total
-	width := 50
-	filled := (percent * width) / 100
-	bar := blue(strings.Repeat("░", filled)) + strings.Repeat(" ", width-filled)
-	langStr := fmt.Sprintf("%-7s", lang)
-	fmt.Printf("\033[%dA\r\033[K    %s %s [%s] %3d%% %-5s\033[%dB",
-		pos, blue("→"), cyan(langStr), bar, percent, cyan(suffix), pos)
-}
-
-func showQuickStats(start time.Time) {
-	total := cacheHits + netCalls
-	pCache, pNet := 0.0, 0.0
-	if total > 0 {
-		pCache = (float64(cacheHits) / float64(total)) * 100
-		pNet = (float64(netCalls) / float64(total)) * 100
-	}
-	fmt.Printf("\n\n%s %s em %v | %s %d (%.2f%%) | %s %d (%.2f%%) | %s %d\n",
-		green("✔"), white(T("Concluído")), time.Since(start).Round(time.Second),
-		blue(T("Cache:")), cacheHits, pCache, yellow(T("Net:")), netCalls, pNet, white(T("Total:")), total)
-}
-
-func showFinalSummary(start time.Time) {
-	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO:")))
-	fmt.Printf("    %s %-15s: %v\n", blue("→"), T("Tempo Total"), time.Since(start).Round(time.Second))
-	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Cache Hits"), cacheHits)
-	fmt.Printf("    %s %-15s: %d\n", blue("→"), T("Chamadas Rede"), netCalls)
-	if atomic.LoadInt32(&failedCalls) > 0 {
-		fmt.Printf("    %s %-15s: %s\n", red("→"), T("Falhas"), red(atomic.LoadInt32(&failedCalls)))
-	}
-	fmt.Printf("%s\n\n", white(strings.Repeat("-", 60)))
-}
-
-// --- CORE: TRADUTOR ---
 
 func callUniversalTranslator(text, lang string) string {
-	text = strings.TrimSpace(text)
-	if text == "" { return "" }
+	text = strings.TrimSpace(text); if text == "" { return "" }
 	normID := strings.ToLower(text)
-
 	mu.Lock()
 	if _, ok := cacheData[lang]; !ok { cacheData[lang] = make(map[string]CacheEntry) }
 	if entry, exists := cacheData[lang][normID]; exists && !forceFlag {
-		entry.LastUsed = time.Now()
-		cacheData[lang][normID] = entry
-		cacheHits++
-		mu.Unlock()
-		return entry.Value
+		entry.LastUsed = time.Now(); cacheData[lang][normID] = entry; cacheHits++
+		mu.Unlock(); return entry.Value
 	}
 	mu.Unlock()
-
 	if !isOnline { return text }
 	protectedText, placeholders := protectVariables(text)
-
 	var res string
 	var err error
 	for i := 0; i < 3; i++ {
@@ -309,187 +306,209 @@ func callUniversalTranslator(text, lang string) string {
 		cmd.Stdin = strings.NewReader(protectedText)
 		out, errCmd := cmd.Output()
 		if errCmd == nil {
-			res = restoreVariables(strings.TrimSpace(string(out)), placeholders)
-			err = nil
-			break
+			res = restoreVariables(strings.TrimSpace(string(out)), placeholders); err = nil; break
 		}
-		err = errCmd
-		time.Sleep(time.Duration(i+1) * time.Second)
+		err = errCmd; time.Sleep(time.Duration(i+1) * time.Second)
 	}
-
-	if err != nil {
-		atomic.AddInt32(&failedCalls, 1)
-		return text
-	}
-
+	if err != nil { atomic.AddInt32(&failedCalls, 1); return text }
 	netCalls++
-	mu.Lock()
-	cacheData[lang][normID] = CacheEntry{Value: res, LastUsed: time.Now()}
-	mu.Unlock()
+	mu.Lock(); cacheData[lang][normID] = CacheEntry{Value: res, LastUsed: time.Now()}; mu.Unlock()
 	return res
 }
 
-// --- PROCESSADORES ---
+func protectVariables(text string) (string, map[string]string) {
+	re := regexp.MustCompile(`(\$\{[A-Za-z0-9_.]+\}|\$[A-Za-z0-9_.]+|%[a-z]|!\[.*?\]\(.*?\)|\[.*?\]\(.*?\)|https?://[^\s]+)`)
+	placeholders := make(map[string]string)
+	protected := text; matches := re.FindAllString(text, -1)
+	for i, match := range matches {
+		p := fmt.Sprintf("CHILI_REF_%d_CHILI", i); placeholders[p] = match
+		protected = strings.Replace(protected, match, p, 1)
+	}
+	return protected, placeholders
+}
+
+func restoreVariables(text string, p map[string]string) string {
+	for k, v := range p { text = strings.Replace(text, k, v, -1) }; return text
+}
 
 func translateMarkdown(inputPath, lang string) {
-	content, _ := os.ReadFile(inputPath)
-	lines := strings.Split(string(content), "\n")
-	var translatedLines []string
-	total := len(lines)
-	ext := filepath.Ext(inputPath)
-	base := strings.TrimSuffix(filepath.Base(inputPath), ext)
+	content, _ := os.ReadFile(inputPath); lines := strings.Split(string(content), "\n")
+	var translatedLines []string; inCodeBlock := false
+	ext := filepath.Ext(inputPath); base := strings.TrimSuffix(filepath.Base(inputPath), ext)
 	outFile := filepath.Join("doc", fmt.Sprintf("%s-%s%s", base, lang, ext))
-
 	for i, line := range lines {
 		trimmed := strings.TrimSpace(line)
-		if trimmed == "" || strings.HasPrefix(trimmed, "```") || strings.HasPrefix(trimmed, "`") {
-			translatedLines = append(translatedLines, line)
-		} else {
-			translatedLines = append(translatedLines, callUniversalTranslator(line, lang))
-		}
-		if i%5 == 0 || i == total-1 {
-			updateProgress(lang, i+1, total, "MD")
-		}
+		if strings.HasPrefix(trimmed, "```") { inCodeBlock = !inCodeBlock; translatedLines = append(translatedLines, line); continue }
+		if inCodeBlock || trimmed == "" { translatedLines = append(translatedLines, line); continue }
+		rePrefix := regexp.MustCompile(`^(\s*#+\s*|\s*[\*\-\+]\s*|\s*\d+\.\s*)`)
+		prefix, textToTranslate := "", line
+		if loc := rePrefix.FindStringIndex(line); loc != nil { prefix = line[loc[0]:loc[1]]; textToTranslate = line[loc[1]:] }
+		translated := callUniversalTranslator(textToTranslate, lang)
+		translatedLines = append(translatedLines, prefix+translated)
+		if i%10 == 0 || i == len(lines)-1 { updateProgress(lang, i+1, len(lines), "MD") }
 	}
-	os.WriteFile(outFile, []byte(strings.Join(translatedLines, "\n")), 0644)
-	updateProgress(lang, total, total, "OK")
+	os.WriteFile(outFile, []byte(strings.Join(translatedLines, "\n")), 0644); updateProgress(lang, len(lines), len(lines), "OK")
 }
 
 func translateFile(baseName, lang string) {
-	// Se baseName já terminar em .pot, removemos para não duplicar na lógica de nomes
-	cleanBase := strings.TrimSuffix(baseName, ".pot")
+	cleanBase := strings.TrimSuffix(baseName, filepath.Ext(baseName))
 	poTmp := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", cleanBase, lang))
 	poFinal := filepath.Join("pot", fmt.Sprintf("%s-%s.po", cleanBase, lang))
-	
-	file, err := os.Open(poTmp)
-	if err != nil { return }
-	
-	output, _ := os.Create(poFinal)
-	
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() { lines = append(lines, scanner.Text()) }
-	file.Close() // Fecha antes de tentar remover
-
-	totalMsgids := 0
-	for _, l := range lines { if strings.HasPrefix(l, "msgid ") { totalMsgids++ } }
-
-	current := 0
-	var isMsgid bool
-	var msgidLines []string
-
+	file, err := os.Open(poTmp); if err != nil { return }; defer file.Close()
+	output, _ := os.Create(poFinal); defer output.Close()
+	var lines []string; scanner := bufio.NewScanner(file); for scanner.Scan() { lines = append(lines, scanner.Text()) }
+	totalMsgids := 0; for _, l := range lines { if strings.HasPrefix(l, "msgid ") && l != `msgid ""` { totalMsgids++ } }
+	current := 0; var isMsgid bool; var msgidLines []string
 	for _, line := range lines {
-		if strings.HasPrefix(line, "msgid ") {
-			isMsgid = true
-			msgidLines = []string{strings.TrimPrefix(line, "msgid ")}
+		if strings.HasPrefix(line, "msgid ") && line != `msgid ""` {
+			isMsgid = true; msgidLines = []string{strings.TrimPrefix(line, "msgid ")}
 		} else if strings.HasPrefix(line, "msgstr ") && isMsgid {
-			current++
-			updateProgress(lang, current, totalMsgids, "PO")
+			current++; updateProgress(lang, current, totalMsgids, "PO")
 			translated := callUniversalTranslator(strings.Trim(strings.Join(msgidLines, " "), `"`), lang)
 			fmt.Fprintf(output, "msgid %s\nmsgstr \"%s\"\n", strings.Join(msgidLines, "\n"), translated)
 			isMsgid = false
-		} else if isMsgid {
-			msgidLines = append(msgidLines, line)
-		} else {
-			fmt.Fprintln(output, line)
-		}
+		} else if isMsgid { msgidLines = append(msgidLines, line) } else { fmt.Fprintln(output, line) }
 	}
-	output.Close()
-	
-	// --- LIMPEZA DE TEMPORÁRIOS ---
-	os.Remove(poTmp) // Remove o arquivo .po temporário após o uso
-	
-	updateProgress(lang, totalMsgids, totalMsgids, "OK")
+	os.Remove(poTmp); updateProgress(lang, totalMsgids, totalMsgids, "OK")
 }
 
 func translateJSON(path, lang string) {
-	data, _ := os.ReadFile(path)
-	var obj map[string]interface{}
-	json.Unmarshal(data, &obj)
+	ext := strings.ToLower(filepath.Ext(path)); targetDir := "json"
+	if ext == ".yaml" || ext == ".yml" { targetDir = "yml" }
+	data, _ := os.ReadFile(path); var obj map[string]interface{}; json.Unmarshal(data, &obj)
 	translateMap(obj, lang)
 	out, _ := json.MarshalIndent(obj, "", "  ")
-	outFile := filepath.Join("translated", fmt.Sprintf("%s-%s.json", strings.TrimSuffix(filepath.Base(path), ".json"), lang))
-	os.WriteFile(outFile, out, 0644)
-	updateProgress(lang, 100, 100, "JSON")
+	outFile := filepath.Join(targetDir, fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filepath.Base(path), ext), lang, ext))
+	os.WriteFile(outFile, out, 0644); updateProgress(lang, 100, 100, strings.ToUpper(targetDir))
 }
 
 func translateMap(m map[string]interface{}, lang string) {
 	for k, v := range m {
-		if val, ok := v.(string); ok {
-			m[k] = callUniversalTranslator(val, lang)
-		} else if valMap, ok := v.(map[string]interface{}); ok {
-			translateMap(valMap, lang)
-		}
+		if val, ok := v.(string); ok { m[k] = callUniversalTranslator(val, lang)
+		} else if valMap, ok := v.(map[string]interface{}); ok { translateMap(valMap, lang) }
 	}
 }
 
-// --- AUXILIARES & PERSISTÊNCIA ---
-
-func copyFile(src, dst string) error {
-	source, err := os.Open(src)
-	if err != nil { return err }
-	defer source.Close()
-	destination, err := os.Create(dst)
-	if err != nil { return err }
-	defer destination.Close()
-	_, err = io.Copy(destination, source)
-	return err
+func updateProgress(lang string, current, total int, suffix string) {
+	if quietFlag || total == 0 { return }
+	muConsole.Lock(); defer muConsole.Unlock()
+	pos := langPositions[lang]; if pos == 0 { return }
+	percent := (current * 100) / total; width := 40; filled := (percent * width) / 100
+	bar := blue(strings.Repeat("░", filled)) + strings.Repeat(" ", width-filled)
+	langStr := fmt.Sprintf("%-7s", lang)
+	fmt.Printf("\033[%dA\r\033[K    → %s %s [%s] %3d%% %-5s\033[%dB", pos, blue("→"), cyan(langStr), bar, percent, cyan(suffix), pos)
 }
 
-func loadCache() {
-	cacheData = make(map[string]map[string]CacheEntry)
-	file, err := os.ReadFile(cacheFile)
-	if err == nil {
-		json.Unmarshal(file, &cacheData)
-		now := time.Now()
-		modified := false
-		for lang := range cacheData {
-			for id, entry := range cacheData[lang] {
-				if entry.LastUsed.IsZero() {
-					entry.LastUsed = now
-					cacheData[lang][id] = entry
-					modified = true
-				}
+func prepareGettext(inputPath, baseName, lang string) {
+	cleanName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
+	pot := filepath.Join("pot", cleanName+".pot")
+	exec.Command("xgettext", "--from-code=UTF-8", "--language="+lang, "--keyword=gettext", "--keyword=_", "--keyword=T", "--force-po", "-o", pot, inputPath).Run()
+	exec.Command("sed", "-i", "s/charset=CHARSET/charset=UTF-8/", pot).Run()
+}
+
+func prepareGettextSelf(inputPath string) {
+	pot := filepath.Join("pot", _APP_+".pot")
+	exec.Command("xgettext", "--from-code=UTF-8", "--keyword=T", "--no-wrap", "-o", pot, inputPath).Run()
+	exec.Command("sed", "-i", "s/charset=CHARSET/charset=UTF-8/", pot).Run()
+}
+
+func prepareMsginit(base, lang string) {
+	cleanBase := strings.TrimSuffix(base, filepath.Ext(base))
+	pot := filepath.Join("pot", cleanBase+".pot")
+	po := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", cleanBase, lang)); os.Remove(po)
+	exec.Command("msginit", "--no-translator", "-l", lang, "-i", pot, "-o", po).Run()
+}
+
+func writeMsgfmtToMo(base, lang string) {
+	cleanBase := strings.TrimSuffix(base, filepath.Ext(base))
+	dir := filepath.Join("usr/share/locale", lang, "LC_MESSAGES"); os.MkdirAll(dir, 0755)
+	poFile := filepath.Join("pot", fmt.Sprintf("%s-%s.po", cleanBase, lang))
+	moFile := filepath.Join(dir, cleanBase+".mo"); exec.Command("msgfmt", poFile, "-o", moFile).Run()
+}
+
+func getShebangInfo(path string) (string, string) {
+	f, err := os.Open(path); if err != nil { return "shell", "" }; defer f.Close()
+	scanner := bufio.NewScanner(f)
+	if scanner.Scan() {
+		line := scanner.Text()
+		if strings.HasPrefix(line, "#!") {
+			lower := strings.ToLower(line)
+			switch {
+			case strings.Contains(lower, "python"): return "python", line
+			case strings.Contains(lower, "php"): return "php", line
+			case strings.Contains(lower, "perl"): return "perl", line
+			case strings.Contains(lower, "ruby"): return "ruby", line
+			case strings.Contains(lower, "node"): return "javascript", line
 			}
-		}
-		if modified { saveCache() }
-	}
-}
-
-func saveCache() {
-	mu.Lock()
-	defer mu.Unlock()
-	data, _ := json.MarshalIndent(cacheData, "", "  ")
-	os.WriteFile(cacheFile, data, 0644)
-}
-
-func doCleanCache() {
-	limit := time.Now().AddDate(0, 0, -30)
-	count := 0
-	for l := range cacheData {
-		for id, e := range cacheData[l] {
-			if e.LastUsed.Before(limit) {
-				delete(cacheData[l], id)
-				count++
-			}
+			return "shell", line
 		}
 	}
-	fmt.Printf("%s %s %d %s\n", green("✔"), T("Removidos"), count, T("itens obsoletos do cache."))
+	return "shell", ""
+}
+
+func T(msgid string) string {
+	lang := os.Getenv("LANG")
+	if strings.HasPrefix(lang, "en") || lang == "" { return msgid }
+	cmd := exec.Command("gettext", "-d", _APP_, msgid)
+	out, err := cmd.Output(); if err != nil { return msgid }
+	return strings.TrimSpace(string(out))
 }
 
 func checkInternet() bool {
-	conn, err := net.DialTimeout("tcp", "8.8.8.8:53", 2*time.Second)
-	if err != nil { return false }
-	conn.Close()
-	return true
+	conn, err := net.DialTimeout("tcp", "8.8.8.8:53", 2*time.Second); if err != nil { return false }; conn.Close(); return true
 }
 
 func checkDependencies() {
 	for _, bin := range []string{"xgettext", "msginit", "msgfmt", "trans", "gettext"} {
-		if _, err := exec.LookPath(bin); err != nil {
-			log.Fatalf("Falta dependência: %s", bin)
-		}
+		if _, err := exec.LookPath(bin); err != nil { log.Fatalf(T("Falta dependência: %s"), bin) }
 	}
+}
+
+func loadCache() {
+	cacheData = make(map[string]map[string]CacheEntry)
+	file, err := os.ReadFile(cacheFile); if err == nil { json.Unmarshal(file, &cacheData) }
+}
+
+func saveCache() {
+	mu.Lock(); defer mu.Unlock(); data, _ := json.MarshalIndent(cacheData, "", "  ")
+	os.WriteFile(cacheFile, data, 0644)
+}
+
+func copyFile(src, dst string) error {
+	s, _ := os.Open(src); defer s.Close(); d, _ := os.Create(dst); defer d.Close()
+	_, err := io.Copy(d, s); return err
+}
+
+func printWelcome(desc string) {
+	fmt.Printf("%s %s %s\n", cyan(">>"), white(_APP_), white(_VERSION_))
+	fmt.Printf("%s %s\n", yellow(T("[STEP 1]")), white(T("Ambiente preparado com sucesso.")))
+	fmt.Printf("    → %-15s: %s\n", T("Arquivo"), white(inputFile))
+	fmt.Printf("    → %-15s: %s\n", T("Tipo"), cyan(desc))
+	fmt.Printf("    → %-15s: %s\n", T("Motor"), green(engine))
+	fmt.Printf("    → %-15s: %s (%s)\n", T("Origem"), green(sourceLang), T("Auto-detect se auto"))
+	fmt.Printf("    → %-15s: %s\n", T("Jobs"), yellow(jobs))
+	fmt.Printf("    → %-15s: %s\n\n", T("Cache"), blue(cacheFile))
+}
+
+func showQuickStats(start time.Time) {
+	total := cacheHits + netCalls; pCache, pNet := 0.0, 0.0
+	if total > 0 { pCache = (float64(cacheHits) / float64(total)) * 100; pNet = (float64(netCalls) / float64(total)) * 100 }
+	fmt.Printf("\n\n%s %s em %v | %s %d (%.2f%%) | %s %d (%.2f%%) | %s %d\n", green("✔"), white(T("Concluído")), time.Since(start).Round(time.Second), blue(T("Cache:")), cacheHits, pCache, yellow(T("Net:")), netCalls, pNet, white(T("Total:")), total)
+}
+
+func showFinalSummary(start time.Time) {
+	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO:")))
+	fmt.Printf("    → %-15s: %v\n", T("Tempo Total"), time.Since(start).Round(time.Second))
+	fmt.Printf("    → %-15s: %d\n", T("Cache Hits"), cacheHits)
+	fmt.Printf("    → %-15s: %d\n", T("Chamadas Rede"), netCalls)
+	if atomic.LoadInt32(&failedCalls) > 0 { fmt.Printf("    → %-15s: %s\n", T("Falhas"), red(atomic.LoadInt32(&failedCalls))) }
+	fmt.Printf("%s\n\n", white(strings.Repeat("-", 60)))
+}
+
+func doCleanCache() {
+	limit := time.Now().AddDate(0, 0, -30); count := 0
+	for l := range cacheData { for id, e := range cacheData[l] { if e.LastUsed.Before(limit) { delete(cacheData[l], id); count++ } } }
+	fmt.Printf("%s %s %d %s\n", green("✔"), T("Removidos"), count, T("itens obsoletos do cache."))
 }
 
 func usage() {
@@ -498,64 +517,27 @@ func usage() {
 	fmt.Fprintf(os.Stderr, "%s:\n", yellow(T("Opções")))
 	defLangs := strings.Join(defaultLanguages, ",")
 	flags := []struct { short, long, desc string }{
-		{"-i", "--inputfile", "Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)"},
-		{"-e", "--engine", "Motor: google, bing, yandex (padrão: google)"},
-		{"-s", "--source", "Idioma de origem (ex: pt, en) (padrão: auto)"},
-		{"-l", "--language", fmt.Sprintf("Idiomas (ex: pt-BR,en) ou 'all' (padrão: %s)", defLangs)},
-		{"-j", "--jobs", "Traduções simultâneas (padrão: 8)"},
-		{"-f", "--force", "Força nova tradução (ignora cache)"},
-		{"", "--clean-cache", "Remove entradas de cache não usadas há 30 dias"},
-		{"-q", "--quiet", "Modo silencioso"},
-		{"-v", "--verbose", "Mostrar detalhes"},
-		{"-V", "--version", "Mostra a versão do programa"},
+		{"-i", "--inputfile", T("Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)")},
+		{"-e", "--engine", T("Motor: google, bing, yandex (padrão: google)")},
+		{"-s", "--source", T("Idioma de origem (ex: pt, en) (padrão: auto)")},
+		{"-l", "--language", fmt.Sprintf(T("Idiomas (ex: pt-BR,en) ou 'all' (padrão: %s)"), defLangs)},
+		{"-j", "--jobs", T("Traduções simultâneas (padrão: 8)")},
+		{"-f", "--force", T("Força nova tradução (ignora cache)")},
+		{"", "--self", T("Extração especializada para o próprio chili-tradutor-go (keyword T, no-wrap)")},
+		{"", "--clean-cache", T("Remove entradas de cache não usadas há 30 dias")},
+		{"-q", "--quiet", T("Modo silencioso")},
+		{"-v", "--verbose", T("Mostrar detalhes")},
+		{"-V", "--version", T("Mostra a versão do programa")},
 	}
 	for _, f := range flags {
-		s := f.short
-		if s == "" { s = "   " }
-		fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan(s), cyan(f.long), white(T(f.desc)))
+		s := f.short; if s == "" { s = "    " }
+		fmt.Fprintf(os.Stderr, "  %s, %-12s %s\n", cyan(s), cyan(f.long), white(f.desc))
 	}
 }
 
-func prepareGettext(input, base string) {
-	pot := filepath.Join("pot", base+".pot")
-	exec.Command("xgettext", "--from-code=UTF-8", "--language=shell", "--keyword=gettext", "--keyword=_", "--keyword=T", "-o", pot, input).Run()
-	exec.Command("sed", "-i", "s/charset=CHARSET/charset=UTF-8/", pot).Run()
-}
-
-func prepareMsginit(base, lang string) {
-	cleanBase := strings.TrimSuffix(base, ".pot")
-	pot := filepath.Join("pot", cleanBase+".pot")
-	po := filepath.Join("pot", fmt.Sprintf("%s-temp-%s.po", cleanBase, lang))
-	os.Remove(po)
-	exec.Command("msginit", "--no-translator", "-l", lang, "-i", pot, "-o", po).Run()
-}
-
-func writeMsgfmtToMo(base, lang string) {
-	cleanBase := strings.TrimSuffix(base, ".pot")
-	dir := filepath.Join("usr/share/locale", lang, "LC_MESSAGES")
-	os.MkdirAll(dir, 0755)
-	
-	poFile := filepath.Join("pot", fmt.Sprintf("%s-%s.po", cleanBase, lang))
-	moFile := filepath.Join(dir, cleanBase+".mo")
-	
-	exec.Command("msgfmt", poFile, "-o", moFile).Run()
-}
-
-func protectVariables(text string) (string, map[string]string) {
-	re := regexp.MustCompile(`(\$\{[A-Za-z0-9_.]+\}|\$[A-Za-z0-9_.]+|%[a-z]|\[.*?\]\(.*?\)|https?://[^\s]+)`)
-	placeholders := make(map[string]string)
-	protected := text
-	for i, match := range re.FindAllString(text, -1) {
-		p := fmt.Sprintf("CHILI_REF_%d_CHILI", i)
-		placeholders[p] = match
-		protected = strings.Replace(protected, match, p, 1)
-	}
-	return protected, placeholders
-}
-
-func restoreVariables(text string, p map[string]string) string {
-	for k, v := range p { text = strings.Replace(text, k, v, -1) }
-	return text
+func init() {
+	home, _ := os.UserHomeDir(); cacheDir := filepath.Join(home, ".cache", _APP_)
+	os.MkdirAll(cacheDir, 0755); cacheFile = filepath.Join(cacheDir, "cache.json")
 }
 
 func showVersion() { fmt.Printf("%s %s\n%s\n", cyan(_APP_), white(_VERSION_), white(_COPY_)) }

@@ -10,7 +10,7 @@ Its main advantage is Smart Cache v2.1.9, which drastically reduces network call
 * Multiformat: Supports .sh, .py, .md, .json, .yaml.
 * Syntax Preservation: Automatically protects shell variables ($VAR, ${VAR}), Markdown links and string placeholders during the translation process.
 * Parallel Translation: Processes multiple languages simultaneously using Goroutines (tunable via -j).
-* Persistent Cache with Timestamp: Stores translations locally and manages the data lifecycle, allowing intelligent cleaning.
+* Persistent Cache with Timestamp: Stores translations locally and manages the data lifecycle, enabling intelligent cleaning.
 * Progressive Interface: Real-time display of the progress of each language with perfect visual alignment, regardless of the language code size (e.g. en vs zh-CN).
 
 ## 🚀 Installation
@@ -18,9 +18,9 @@ Its main advantage is Smart Cache v2.1.9, which drastically reduces network call
 Make sure you have Go installed and the system dependencies (gettext, trans).
 ```bash
 git clone https://github.com/chililinux/chili-tradutor-go.git
-cd chili-translator-go/src
-go build -o chili-translator-go chili-translator-go-v2.1.9.go
-sudo mv chili-translator-go /usr/local/bin/
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
+sudo mv chili-tradutor-go /usr/local/bin/
 ```
 
 ## 🛠️ Usage
@@ -68,9 +68,9 @@ chili-translator-go --clean-cache
 The cache is stored in ~/.cache/chili-tradutor-go/cache.json.
 
 * Automatic Migration: When detecting records from previous versions (v2.1.8), the tool automatically stamps the current timestamp on legacy records to avoid loss of historical data.
-* Auto-Update: Each time an item is found in the cache, its "Last Used" timestamp is updated, protecting it from future automatic cleaning.
+* Auto-Update: Each time an item is found in the cache, its "Last Used" timestamp is updated, protecting it from future automatic clears.
 * Security: Cleaning via --clean-cache only removes what is actually out of use, ensuring that your translation knowledge base grows healthily.
 
-
+---
 Developed by: Vilmar Catafesta <vcatafesta@gmail.com>
 Copyright © 2023-2026 ChiliLinux Team

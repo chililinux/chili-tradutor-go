@@ -1,5 +1,5 @@
 `
-#chili-übersetzer-go 🌶️
+# chili-übersetzer-go 🌶️
 
 chili-translator-go ist ein universeller Wrapper für maschinelle Übersetzung, der in Go geschrieben wurde. Es wurde entwickelt, um Skripte (.sh, .py), Dokumentationsdateien (Markdown) und Datendateien (JSON) zu übersetzen und dabei die Integrität von Variablen, Links und technischer Syntax zu wahren.
 
@@ -17,13 +17,13 @@ Sein Hauptvorteil ist Smart Cache v2.1.9, der Netzwerkaufrufe drastisch reduzier
 
 Stellen Sie sicher, dass Go installiert ist und die Systemabhängigkeiten (gettext, trans) vorhanden sind.
 ```bash
-Git-Klon https://github.com/chililinux/chili-tradutor-go.git
-cd chili-translator-go/src
-go build -o chili-translator-go chili-translator-go-v2.1.9.go
-sudo mv chili-translator-go /usr/local/bin/
+git clone https://github.com/chililinux/chili-tradutor-go.git
+cd chili-tradutor-go/src
+go build -o chili-tradutor-go chili-tradutor-go-v2.1.9.go
+sudo mv chili-tradutor-go /usr/local/bin/
 ```
 
-## 🛠️ Verwendung
+## 🛠️ Nutzung
 
 ### Grundlegende Übersetzung
 So übersetzen Sie eine Datei in Standardsprachen (EN, ES, IT, DE, FR, RU, ZH, JA, KO):
@@ -68,9 +68,9 @@ chili-translator-go --clean-cache
 Der Cache wird in ~/.cache/chili-tradutor-go/cache.json gespeichert.
 
 * Automatische Migration: Beim Erkennen von Datensätzen aus früheren Versionen (v2.1.8) stempelt das Tool automatisch den aktuellen Zeitstempel in ältere Datensätze, um den Verlust historischer Daten zu vermeiden.
-* Automatische Aktualisierung: Jedes Mal, wenn ein Element im Cache gefunden wird, wird sein Zeitstempel „Zuletzt verwendet“ aktualisiert, um es vor einer zukünftigen automatischen Reinigung zu schützen.
+* Automatische Aktualisierung: Jedes Mal, wenn ein Element im Cache gefunden wird, wird sein Zeitstempel „Zuletzt verwendet“ aktualisiert, um es vor zukünftigen automatischen Löschungen zu schützen.
 * Sicherheit: Beim Bereinigen über --clean-cache wird nur das entfernt, was tatsächlich nicht mehr verwendet wird, wodurch sichergestellt wird, dass Ihre Übersetzungswissensdatenbank gesund wächst.
 
-
+---
 Entwickelt von: Vilmar Catafesta <vcatafesta@gmail.com>
 Copyright © 2023-2026 ChiliLinux Team
