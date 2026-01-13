@@ -5,8 +5,8 @@
     Site:      https://chililinux.com
     GitHub:    https://github.com/vcatafesta/chili/go
 
-    Updated:   seg 12 jan 2026 23:25:00 -04
-    Version:   2.1.29
+    Updated:   seg 12 jan 2026 23:55:00 -04
+    Version:   2.1.30
 */
 
 package main
@@ -40,7 +40,7 @@ type CacheEntry struct {
 
 const (
 	_APP_     = "chili-tradutor-go"
-	_VERSION_ = "2.1.29-20260112"
+	_VERSION_ = "2.1.30-20260112"
 	_COPY_    = "Copyright (C) 2023-2026 Vilmar Catafesta"
 )
 
@@ -55,7 +55,8 @@ var (
 )
 
 var (
-	inputFile      string
+	inputFiles     []string
+	currentFile    string
 	engine         string
 	sourceLang     string
 	jobs           int
@@ -88,7 +89,7 @@ var supportedLanguages = []string{
 
 var defaultLanguages = []string{"en", "es", "it", "de", "fr", "ru", "zh-CN", "zh-TW", "ja", "ko"}
 
-// --- MAIN (O MAESTRO) ---
+// --- MAIN ---
 
 func main() {
 	checkDependencies()
@@ -100,32 +101,41 @@ func main() {
 		os.Exit(0)
 	}
 
-	if cleanCacheFlag {
-		loadCache()
-		doCleanCache()
-		saveCache()
-		os.Exit(0)
-	}
-
-	if inputFile == "" {
-		if pflag.NArg() > 0 {
-			inputFile = pflag.Arg(0)
-		} else {
-			usage()
-			os.Exit(1)
-		}
-	}
-
-	if _, err := os.Stat(inputFile); os.IsNotExist(err) {
-		fmt.Printf("%s %s '%s'\n", red(T("ERRO:")), white(T("Arquivo não encontrado:")), yellow(inputFile))
-		os.Exit(1)
-	}
-
 	loadCache()
 	defer saveCache()
 
-	ext, langName, desc := detectFileType(inputFile)
-	baseName := filepath.Base(inputFile)
+	if cleanCacheFlag {
+		doCleanCache()
+		os.Exit(0)
+	}
+
+	allFiles := append(inputFiles, pflag.Args()...)
+	if len(allFiles) == 0 {
+		usage()
+		os.Exit(1)
+	}
+
+	startGlobal := time.Now()
+	for _, file := range allFiles {
+		processSingleFile(file)
+	}
+
+	if len(allFiles) > 1 {
+		fmt.Printf("\n%s %s\n", green("✔"), white(T("Todos os arquivos foram processados!")))
+		showFinalSummary(startGlobal)
+	}
+}
+
+func processSingleFile(path string) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		fmt.Printf("%s %s '%s'\n", red(T("ERRO:")), white(T("Arquivo não encontrado:")), yellow(path))
+		return
+	}
+
+	currentFile = path
+	langsDone = 0
+	ext, langName, desc := detectFileType(path)
+	baseName := filepath.Base(path)
 	setupEnvironment(ext, baseName, langName)
 
 	printWelcome(desc)
@@ -141,21 +151,18 @@ func main() {
 		}
 		runTranslationLoop(ext, baseName)
 	}
-
 	showQuickStats(start)
-	showFinalSummary(start)
 }
 
-// --- FUNÇÕES DE LÓGICA ---
+// --- LÓGICA DE NEGÓCIO ---
 
 func hasActualContent(ext, baseName string) bool {
 	if ext == ".md" || ext == ".markdown" || ext == ".json" || ext == ".yaml" || ext == ".yml" {
-		data, _ := os.ReadFile(inputFile)
+		data, _ := os.ReadFile(currentFile)
 		return len(strings.TrimSpace(string(data))) > 0
 	}
 	potName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
 	if selfFlag { potName = _APP_ }
-
 	potPath := filepath.Join("pot", potName+".pot")
 	data, err := os.ReadFile(potPath)
 	if err != nil { return false }
@@ -168,25 +175,19 @@ func hasActualContent(ext, baseName string) bool {
 }
 
 func cleanupEmpty(ext, baseName string) {
-	if ext == ".md" || ext == ".markdown" || ext == ".json" || ext == ".yaml" || ext == ".yml" {
-		return
-	}
+	if ext == ".md" || ext == ".markdown" || ext == ".json" || ext == ".yaml" || ext == ".yml" { return }
 	potName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
 	if selfFlag { potName = _APP_ }
 	targetPot := filepath.Join("pot", potName+".pot")
-
-	absInput, _ := filepath.Abs(inputFile)
+	absInput, _ := filepath.Abs(currentFile)
 	absTarget, _ := filepath.Abs(targetPot)
-	if absInput == absTarget {
-		return
-	}
-	
+	if absInput == absTarget { return }
 	os.Remove(targetPot)
 }
 
 func parseFlags() {
 	pflag.Usage = usage
-	pflag.StringVarP(&inputFile, "inputfile", "i", "", T("Arquivo fonte"))
+	pflag.StringSliceVarP(&inputFiles, "inputfile", "i", nil, T("Arquivo fonte"))
 	pflag.StringVarP(&engine, "engine", "e", "google", T("Motor de tradução"))
 	pflag.StringVarP(&sourceLang, "source", "s", "auto", T("Idioma de origem"))
 	pflag.StringSliceVarP(&languages, "language", "l", nil, T("Idiomas destino"))
@@ -201,16 +202,10 @@ func parseFlags() {
 
 	targetLangs = defaultLanguages
 	if len(languages) > 0 {
-		if languages[0] == "all" {
-			targetLangs = supportedLanguages
-		} else {
-			targetLangs = languages
-		}
+		if languages[0] == "all" { targetLangs = supportedLanguages } else { targetLangs = languages }
 	}
 	langPositions = make(map[string]int)
-	for i, lang := range targetLangs {
-		langPositions[lang] = len(targetLangs) - i
-	}
+	for i, lang := range targetLangs { langPositions[lang] = len(targetLangs) - i }
 }
 
 func detectFileType(path string) (ext string, lang string, desc string) {
@@ -223,9 +218,7 @@ func detectFileType(path string) (ext string, lang string, desc string) {
 		detected, _ := getShebangInfo(path)
 		return "", detected, fmt.Sprintf(T("Script (%s)"), green(detected))
 	}
-	if l, ok := extMap[ext]; ok {
-		return ext, l, fmt.Sprintf(T("Código %s (%s)"), ext, green(l))
-	}
+	if l, ok := extMap[ext]; ok { return ext, l, fmt.Sprintf(T("Código %s (%s)"), ext, green(l)) }
 	switch ext {
 	case ".md", ".markdown": return ext, "markdown", T("Markdown")
 	case ".json": return ext, "json", T("JSON")
@@ -243,19 +236,12 @@ func setupEnvironment(ext, baseName, langName string) {
 	default:
 		os.MkdirAll("pot", 0755)
 		targetPot := filepath.Join("pot", baseName)
-
 		if ext == ".pot" {
-			absInput, _ := filepath.Abs(inputFile)
+			absInput, _ := filepath.Abs(currentFile)
 			absTarget, _ := filepath.Abs(targetPot)
-			if absInput != absTarget {
-				copyFile(inputFile, targetPot)
-			}
+			if absInput != absTarget { copyFile(currentFile, targetPot) }
 		} else {
-			if selfFlag {
-				prepareGettextSelf(inputFile)
-			} else {
-				prepareGettext(inputFile, baseName, langName)
-			}
+			if selfFlag { prepareGettextSelf(currentFile) } else { prepareGettext(currentFile, baseName, langName) }
 		}
 	}
 }
@@ -264,15 +250,14 @@ func runTranslationLoop(ext, baseName string) {
 	var wg sync.WaitGroup
 	sem := make(chan struct{}, jobs)
 	targetBase := baseName
-	if selfFlag { targetBase = _APP_ + ".go" } 
-
+	if selfFlag { targetBase = _APP_ + ".go" }
 	for _, lang := range targetLangs {
 		wg.Add(1)
 		go func(l string) {
 			defer wg.Done(); sem <- struct{}{}
 			switch ext {
-			case ".md", ".markdown": translateMarkdown(inputFile, l)
-			case ".json", ".yaml", ".yml": translateJSON(inputFile, l)
+			case ".md", ".markdown": translateMarkdown(currentFile, l)
+			case ".json", ".yaml", ".yml": translateJSON(currentFile, l)
 			default:
 				prepareMsginit(targetBase, l)
 				translateFile(targetBase, l)
@@ -447,10 +432,19 @@ func getShebangInfo(path string) (string, string) {
 }
 
 func T(msgid string) string {
-	lang := os.Getenv("LANG")
-	if strings.HasPrefix(lang, "en") || lang == "" { return msgid }
+	// Chamamos o gettext sem travas de prefixo. 
+	// O próprio binário 'gettext' do Linux resolve a hierarquia de 
+	// LANGUAGE > LC_ALL > LC_MESSAGES > LANG.
+   //	lang := os.Getenv("LANG")
+   //	if strings.HasPrefix(lang, "en") || lang == "" { return msgid }
+   //	cmd := exec.Command("gettext", "-d", _APP_, msgid)
+   //	out, err := cmd.Output(); if err != nil { return msgid }
+   //	return strings.TrimSpace(string(out))
 	cmd := exec.Command("gettext", "-d", _APP_, msgid)
-	out, err := cmd.Output(); if err != nil { return msgid }
+	out, err := cmd.Output()
+	if err != nil {
+		return msgid // Default: retorna o texto original em inglês
+	}
 	return strings.TrimSpace(string(out))
 }
 
@@ -480,9 +474,9 @@ func copyFile(src, dst string) error {
 }
 
 func printWelcome(desc string) {
-	fmt.Printf("%s %s %s\n", cyan(">>"), white(_APP_), white(_VERSION_))
+	fmt.Printf("\n%s %s %s\n", cyan(">>"), white(_APP_), white(_VERSION_))
 	fmt.Printf("%s %s\n", yellow(T("[STEP 1]")), white(T("Ambiente preparado com sucesso.")))
-	fmt.Printf("    → %-15s: %s\n", T("Arquivo"), white(inputFile))
+	fmt.Printf("    → %-15s: %s\n", T("Arquivo"), white(currentFile))
 	fmt.Printf("    → %-15s: %s\n", T("Tipo"), cyan(desc))
 	fmt.Printf("    → %-15s: %s\n", T("Motor"), green(engine))
 	fmt.Printf("    → %-15s: %s (%s)\n", T("Origem"), green(sourceLang), T("Auto-detect se auto"))
@@ -497,7 +491,7 @@ func showQuickStats(start time.Time) {
 }
 
 func showFinalSummary(start time.Time) {
-	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO:")))
+	fmt.Printf("%s\n %s\n", white(strings.Repeat("-", 60)), yellow(T("RESUMO EXECUTIVO FINAL:")))
 	fmt.Printf("    → %-15s: %v\n", T("Tempo Total"), time.Since(start).Round(time.Second))
 	fmt.Printf("    → %-15s: %d\n", T("Cache Hits"), cacheHits)
 	fmt.Printf("    → %-15s: %d\n", T("Chamadas Rede"), netCalls)

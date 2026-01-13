@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 17:14-0400\n"
-"PO-Revision-Date: 2026-01-12 17:14-0400\n"
+"POT-Creation-Date: 2026-01-13 00:49-0400\n"
+"PO-Revision-Date: 2026-01-13 00:49-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -17,252 +17,311 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/chili-tradutor-go-v2.1.10.go:120
+#: chili-tradutor-go-v2.1.12.go:129
+msgid "Todos os arquivos foram processados!"
+msgstr "Alle Dateien wurden verarbeitet!"
+
+#: chili-tradutor-go-v2.1.12.go:136
 msgid "ERRO:"
 msgstr "FEHLER:"
 
-#: src/chili-tradutor-go-v2.1.10.go:120
+#: chili-tradutor-go-v2.1.12.go:136
 msgid "Arquivo não encontrado:"
 msgstr "Datei nicht gefunden:"
 
-#: src/chili-tradutor-go-v2.1.10.go:135
+#: chili-tradutor-go-v2.1.12.go:150
 msgid "[AVISO]"
 msgstr "[BEACHTEN]"
 
-#: src/chili-tradutor-go-v2.1.10.go:135
+#: chili-tradutor-go-v2.1.12.go:150
 msgid "Nada para traduzir ou arquivo protegido."
 msgstr "Nichts zu übersetzen oder zu schützen."
 
-#: src/chili-tradutor-go-v2.1.10.go:138
+#: chili-tradutor-go-v2.1.12.go:153
 msgid "[STEP 2]"
 msgstr "[SCHRITT 2]"
 
-#: src/chili-tradutor-go-v2.1.10.go:138
+#: chili-tradutor-go-v2.1.12.go:153
 msgid "Iniciando processamento paralelo..."
 msgstr "Parallelverarbeitung starten..."
 
-#: src/chili-tradutor-go-v2.1.10.go:140
+#: chili-tradutor-go-v2.1.12.go:155
 msgid "[Aguardando...]"
 msgstr "[Warten...]"
 
-#: src/chili-tradutor-go-v2.1.10.go:189
+#: chili-tradutor-go-v2.1.12.go:189
+msgid "Dependências e Conectividade"
+msgstr "Abhängigkeiten und Konnektivität"
+
+#: chili-tradutor-go-v2.1.12.go:194
+msgid "Proteção de Variáveis ($VAR)"
+msgstr "Variablenschutz ($VAR)"
+
+#: chili-tradutor-go-v2.1.12.go:205
+msgid "Validação de Markdown (.md)"
+msgstr "Markdown-Validierung (.md)"
+
+#: chili-tradutor-go-v2.1.12.go:218
+msgid "Validação de YAML/JSON"
+msgstr "YAML/JSON-Validierung"
+
+#: chili-tradutor-go-v2.1.12.go:231
+msgid "Extração de Scripts (SH/PY)"
+msgstr "Skriptextraktion (SH/PY)"
+
+#: chili-tradutor-go-v2.1.12.go:244
+msgid "Stress de Concorrência (Async)"
+msgstr "Parallelitätsstress (asynchron)"
+
+#: chili-tradutor-go-v2.1.12.go:257
+msgid "Tradução Real (Network)"
+msgstr "Echte Übersetzung (Netzwerk)"
+
+#: chili-tradutor-go-v2.1.12.go:268
+msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
+msgstr "100 % VALIDIERTES SYSTEM AUF ALLEN EBENEN."
+
+#: chili-tradutor-go-v2.1.12.go:332
+msgid "[STATUS]"
+msgstr "[STATUS]"
+
+#: chili-tradutor-go-v2.1.12.go:332
+msgid "idiomas concluídos..."
+msgstr "Sprachen abgeschlossen..."
+
+#: chili-tradutor-go-v2.1.12.go:395
 msgid "Arquivo fonte"
 msgstr "Quelldatei"
 
-#: src/chili-tradutor-go-v2.1.10.go:190
+#: chili-tradutor-go-v2.1.12.go:396
 msgid "Motor de tradução"
 msgstr "Übersetzungsmaschine"
 
-#: src/chili-tradutor-go-v2.1.10.go:191
+#: chili-tradutor-go-v2.1.12.go:397
 msgid "Idioma de origem"
 msgstr "Ausgangssprache"
 
-#: src/chili-tradutor-go-v2.1.10.go:192
+#: chili-tradutor-go-v2.1.12.go:398
 msgid "Idiomas destino"
 msgstr "Zielsprachen"
 
-#: src/chili-tradutor-go-v2.1.10.go:193
+#: chili-tradutor-go-v2.1.12.go:399
 msgid "Traduções simultâneas"
 msgstr "Simultanübersetzungen"
 
-#: src/chili-tradutor-go-v2.1.10.go:194
+#: chili-tradutor-go-v2.1.12.go:400
 msgid "Ignora o cache"
 msgstr "Cache umgehen"
 
-#: src/chili-tradutor-go-v2.1.10.go:195
+#: chili-tradutor-go-v2.1.12.go:401
 msgid "Limpa cache antigo"
 msgstr "Leeren Sie den alten Cache"
 
-#: src/chili-tradutor-go-v2.1.10.go:196
+#: chili-tradutor-go-v2.1.12.go:402
 msgid "Extração especializada para o próprio chili-tradutor-go"
 msgstr "Spezialisierte Extraktion für Chili-Translator-Go selbst"
 
-#: src/chili-tradutor-go-v2.1.10.go:197 src/chili-tradutor-go-v2.1.10.go:528
+#: chili-tradutor-go-v2.1.12.go:403 chili-tradutor-go-v2.1.12.go:722
+msgid "Executa auto-teste de integridade"
+msgstr "Führt einen Integritätsselbsttest durch"
+
+#: chili-tradutor-go-v2.1.12.go:404 chili-tradutor-go-v2.1.12.go:724
 msgid "Modo silencioso"
 msgstr "Stiller Modus"
 
-#: src/chili-tradutor-go-v2.1.10.go:198
+#: chili-tradutor-go-v2.1.12.go:405
 msgid "Modo detalhado"
 msgstr "Detaillierter Modus"
 
-#: src/chili-tradutor-go-v2.1.10.go:199
+#: chili-tradutor-go-v2.1.12.go:406
 msgid "Mostra versão"
 msgstr "Version anzeigen"
 
-#: src/chili-tradutor-go-v2.1.10.go:224
+#: chili-tradutor-go-v2.1.12.go:533
 #, go-format
 msgid "Script (%s)"
 msgstr "Skript (%s)"
 
-#: src/chili-tradutor-go-v2.1.10.go:227
+#: chili-tradutor-go-v2.1.12.go:535
 #, go-format
 msgid "Código %s (%s)"
 msgstr "Code %s (%s)"
 
-#: src/chili-tradutor-go-v2.1.10.go:230
+#: chili-tradutor-go-v2.1.12.go:537
 msgid "Markdown"
 msgstr "Abschlag"
 
-#: src/chili-tradutor-go-v2.1.10.go:231
+#: chili-tradutor-go-v2.1.12.go:538
 msgid "JSON"
 msgstr "JSON"
 
-#: src/chili-tradutor-go-v2.1.10.go:232
+#: chili-tradutor-go-v2.1.12.go:539
 msgid "YAML"
 msgstr "YAML"
 
-#: src/chili-tradutor-go-v2.1.10.go:233
+#: chili-tradutor-go-v2.1.12.go:540
 msgid "Template POT"
 msgstr "POT-Vorlagen"
 
-#: src/chili-tradutor-go-v2.1.10.go:235
+#: chili-tradutor-go-v2.1.12.go:542
 #, go-format
 msgid "Arquivo %s"
 msgstr "%s-Datei"
 
-#: src/chili-tradutor-go-v2.1.10.go:283
-msgid "[STATUS]"
-msgstr "[STATUS]"
+#: chili-tradutor-go-v2.1.12.go:605
+msgid "Dependências ausentes: "
+msgstr "Fehlende Abhängigkeiten:"
 
-#: src/chili-tradutor-go-v2.1.10.go:283
-msgid "idiomas concluídos..."
-msgstr "Sprachen abgeschlossen..."
+#: chili-tradutor-go-v2.1.12.go:606
+msgid "Comandos de instalação sugeridos:"
+msgstr "Empfohlene Installationsbefehle:"
 
-#: src/chili-tradutor-go-v2.1.10.go:463
-#, go-format
-msgid "Falta dependência: %s"
-msgstr "Fehlende Abhängigkeit: %s"
+#: chili-tradutor-go-v2.1.12.go:625
+msgid "Deseja instalar automaticamente para"
+msgstr "Möchten Sie automatisch installieren?"
 
-#: src/chili-tradutor-go-v2.1.10.go:484
+#: chili-tradutor-go-v2.1.12.go:635
+msgid ""
+"\n"
+"Dependências instaladas! Reiniciando...\n"
+msgstr ""
+
+#: chili-tradutor-go-v2.1.12.go:643
+msgid ""
+"\n"
+"Por favor, instale as dependências manualmente e tente novamente."
+msgstr ""
+
+#: chili-tradutor-go-v2.1.12.go:679
 msgid "[STEP 1]"
 msgstr "[SCHRITT 1]"
 
-#: src/chili-tradutor-go-v2.1.10.go:484
+#: chili-tradutor-go-v2.1.12.go:679
 msgid "Ambiente preparado com sucesso."
 msgstr "Umgebung erfolgreich vorbereitet."
 
-#: src/chili-tradutor-go-v2.1.10.go:485
+#: chili-tradutor-go-v2.1.12.go:680
 msgid "Arquivo"
 msgstr "Datei"
 
-#: src/chili-tradutor-go-v2.1.10.go:486
+#: chili-tradutor-go-v2.1.12.go:681
 msgid "Tipo"
 msgstr "Typ"
 
-#: src/chili-tradutor-go-v2.1.10.go:487
+#: chili-tradutor-go-v2.1.12.go:682
 msgid "Motor"
 msgstr "Motor"
 
-#: src/chili-tradutor-go-v2.1.10.go:488
+#: chili-tradutor-go-v2.1.12.go:683
 msgid "Origem"
 msgstr "Ursprung"
 
-#: src/chili-tradutor-go-v2.1.10.go:488
+#: chili-tradutor-go-v2.1.12.go:683
 msgid "Auto-detect se auto"
 msgstr "Automatische Erkennung, wenn selbst"
 
-#: src/chili-tradutor-go-v2.1.10.go:489
+#: chili-tradutor-go-v2.1.12.go:684
 msgid "Jobs"
 msgstr "Jobs"
 
-#: src/chili-tradutor-go-v2.1.10.go:490
+#: chili-tradutor-go-v2.1.12.go:685
 msgid "Cache"
 msgstr "Cache"
 
-#: src/chili-tradutor-go-v2.1.10.go:496
+#: chili-tradutor-go-v2.1.12.go:691
 msgid "Concluído"
 msgstr "Abgeschlossen"
 
-#: src/chili-tradutor-go-v2.1.10.go:496
+#: chili-tradutor-go-v2.1.12.go:691
 msgid "Cache:"
 msgstr "Cache:"
 
-#: src/chili-tradutor-go-v2.1.10.go:496
+#: chili-tradutor-go-v2.1.12.go:691
 msgid "Net:"
 msgstr "Netto:"
 
-#: src/chili-tradutor-go-v2.1.10.go:496
+#: chili-tradutor-go-v2.1.12.go:691
 msgid "Total:"
 msgstr "Insgesamt:"
 
-#: src/chili-tradutor-go-v2.1.10.go:500
-msgid "RESUMO EXECUTIVO:"
-msgstr "EXECUTIVE SUMMARY:"
+#: chili-tradutor-go-v2.1.12.go:695
+msgid "RESUMO EXECUTIVO FINAL:"
+msgstr "ABSCHLIESSENDE ZUSAMMENFASSUNG:"
 
-#: src/chili-tradutor-go-v2.1.10.go:501
+#: chili-tradutor-go-v2.1.12.go:696
 msgid "Tempo Total"
 msgstr "Gesamtzeit"
 
-#: src/chili-tradutor-go-v2.1.10.go:502
+#: chili-tradutor-go-v2.1.12.go:697
 msgid "Cache Hits"
 msgstr "Cache-Treffer"
 
-#: src/chili-tradutor-go-v2.1.10.go:503
+#: chili-tradutor-go-v2.1.12.go:698
 msgid "Chamadas Rede"
 msgstr "Netzwerkanrufe"
 
-#: src/chili-tradutor-go-v2.1.10.go:504
+#: chili-tradutor-go-v2.1.12.go:699
 msgid "Falhas"
 msgstr "Fehler"
 
-#: src/chili-tradutor-go-v2.1.10.go:511
+#: chili-tradutor-go-v2.1.12.go:706
 msgid "Removidos"
 msgstr "Entfernt"
 
-#: src/chili-tradutor-go-v2.1.10.go:511
+#: chili-tradutor-go-v2.1.12.go:706
 msgid "itens obsoletos do cache."
 msgstr "veraltete Cache-Elemente."
 
-#: src/chili-tradutor-go-v2.1.10.go:516
+#: chili-tradutor-go-v2.1.12.go:711
 msgid "Uso"
 msgstr "Verwendung"
 
-#: src/chili-tradutor-go-v2.1.10.go:516
+#: chili-tradutor-go-v2.1.12.go:711
 msgid "<arquivo> [opções]"
 msgstr "<Datei> [Optionen]"
 
-#: src/chili-tradutor-go-v2.1.10.go:517
+#: chili-tradutor-go-v2.1.12.go:712
 msgid "Opções"
 msgstr "Optionen"
 
-#: src/chili-tradutor-go-v2.1.10.go:520
+#: chili-tradutor-go-v2.1.12.go:715
 msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)"
 msgstr "Quelldatei (.sh, .py, .md, .json, .yaml, .pot)"
 
-#: src/chili-tradutor-go-v2.1.10.go:521
+#: chili-tradutor-go-v2.1.12.go:716
 msgid "Motor: google, bing, yandex (padrão: google)"
 msgstr "Suchmaschine: Google, Bing, Yandex (Standard: Google)"
 
-#: src/chili-tradutor-go-v2.1.10.go:522
+#: chili-tradutor-go-v2.1.12.go:717
 msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
 msgstr "Ausgangssprache (z. B. pt, en) (Standard: automatisch)"
 
-#: src/chili-tradutor-go-v2.1.10.go:523
+#: chili-tradutor-go-v2.1.12.go:718
 #, go-format
 msgid "Idiomas (ex: pt-BR,en) ou 'all' (padrão: %s)"
 msgstr "Sprachen (z. B. pt-BR,en) oder „alle“ (Standard: %s)"
 
-#: src/chili-tradutor-go-v2.1.10.go:524
+#: chili-tradutor-go-v2.1.12.go:719
 msgid "Traduções simultâneas (padrão: 8)"
 msgstr "Simultandolmetschungen (Standard: 8)"
 
-#: src/chili-tradutor-go-v2.1.10.go:525
+#: chili-tradutor-go-v2.1.12.go:720
 msgid "Força nova tradução (ignora cache)"
 msgstr "Neue Übersetzung erzwingen (Cache ignorieren)"
 
-#: src/chili-tradutor-go-v2.1.10.go:526
+#: chili-tradutor-go-v2.1.12.go:721
 msgid ""
 "Extração especializada para o próprio chili-tradutor-go (keyword T, no-wrap)"
 msgstr ""
 
-#: src/chili-tradutor-go-v2.1.10.go:527
+#: chili-tradutor-go-v2.1.12.go:723
 msgid "Remove entradas de cache não usadas há 30 dias"
 msgstr "Entfernen Sie Cache-Einträge, die 30 Tage lang nicht verwendet wurden"
 
-#: src/chili-tradutor-go-v2.1.10.go:529
+#: chili-tradutor-go-v2.1.12.go:725
 msgid "Mostrar detalhes"
 msgstr "Details anzeigen"
 
-#: src/chili-tradutor-go-v2.1.10.go:530
+#: chili-tradutor-go-v2.1.12.go:726
 msgid "Mostra a versão do programa"
 msgstr "Zeigt die Programmversion an"
