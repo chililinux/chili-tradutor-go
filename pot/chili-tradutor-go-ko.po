@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-13 00:49-0400\n"
-"PO-Revision-Date: 2026-01-13 00:49-0400\n"
+"POT-Creation-Date: 2026-01-14 01:52-0400\n"
+"PO-Revision-Date: 2026-01-14 01:52-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -17,311 +17,310 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: chili-tradutor-go-v2.1.12.go:129
+#: chili-tradutor-go-v2.1.13.go:129
 msgid "Todos os arquivos foram processados!"
 msgstr "모든 파일이 처리되었습니다!"
 
-#: chili-tradutor-go-v2.1.12.go:136
+#: chili-tradutor-go-v2.1.13.go:136
 msgid "ERRO:"
 msgstr "오류:"
 
-#: chili-tradutor-go-v2.1.12.go:136
+#: chili-tradutor-go-v2.1.13.go:136
 msgid "Arquivo não encontrado:"
 msgstr "파일을 찾을 수 없습니다:"
 
-#: chili-tradutor-go-v2.1.12.go:150
+#: chili-tradutor-go-v2.1.13.go:150
 msgid "[AVISO]"
 msgstr "[알아채다]"
 
-#: chili-tradutor-go-v2.1.12.go:150
+#: chili-tradutor-go-v2.1.13.go:150
 msgid "Nada para traduzir ou arquivo protegido."
 msgstr "번역할 것도 없고 파일을 보호할 것도 없습니다."
 
-#: chili-tradutor-go-v2.1.12.go:153
+#: chili-tradutor-go-v2.1.13.go:153
 msgid "[STEP 2]"
 msgstr "[2단계]"
 
-#: chili-tradutor-go-v2.1.12.go:153
+#: chili-tradutor-go-v2.1.13.go:153
 msgid "Iniciando processamento paralelo..."
 msgstr "병렬 처리 시작 중..."
 
-#: chili-tradutor-go-v2.1.12.go:155
+#: chili-tradutor-go-v2.1.13.go:155
 msgid "[Aguardando...]"
 msgstr "[대기 중...]"
 
-#: chili-tradutor-go-v2.1.12.go:189
+#: chili-tradutor-go-v2.1.13.go:193
 msgid "Dependências e Conectividade"
 msgstr "종속성과 연결성"
 
-#: chili-tradutor-go-v2.1.12.go:194
+#: chili-tradutor-go-v2.1.13.go:198
 msgid "Proteção de Variáveis ($VAR)"
 msgstr "변수 보호($VAR)"
 
-#: chili-tradutor-go-v2.1.12.go:205
+#: chili-tradutor-go-v2.1.13.go:209
 msgid "Validação de Markdown (.md)"
 msgstr "마크다운 유효성 검사(.md)"
 
-#: chili-tradutor-go-v2.1.12.go:218
+#: chili-tradutor-go-v2.1.13.go:223
 msgid "Validação de YAML/JSON"
 msgstr "YAML/JSON 검증"
 
-#: chili-tradutor-go-v2.1.12.go:231
+#: chili-tradutor-go-v2.1.13.go:237
 msgid "Extração de Scripts (SH/PY)"
 msgstr "스크립트 추출(SH/PY)"
 
-#: chili-tradutor-go-v2.1.12.go:244
+#: chili-tradutor-go-v2.1.13.go:251
 msgid "Stress de Concorrência (Async)"
 msgstr "동시성 스트레스(비동기)"
 
-#: chili-tradutor-go-v2.1.12.go:257
+#: chili-tradutor-go-v2.1.13.go:264
 msgid "Tradução Real (Network)"
 msgstr "실제번역(네트워크)"
 
-#: chili-tradutor-go-v2.1.12.go:268
+#: chili-tradutor-go-v2.1.13.go:275
 msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
 msgstr "모든 수준에서 100% 검증된 시스템입니다."
 
-#: chili-tradutor-go-v2.1.12.go:332
+#: chili-tradutor-go-v2.1.13.go:348
 msgid "[STATUS]"
 msgstr "[상태]"
 
-#: chili-tradutor-go-v2.1.12.go:332
+#: chili-tradutor-go-v2.1.13.go:348
 msgid "idiomas concluídos..."
-msgstr "언어 완료..."
+msgstr "언어 완성..."
 
-#: chili-tradutor-go-v2.1.12.go:395
+#: chili-tradutor-go-v2.1.13.go:433
 msgid "Arquivo fonte"
 msgstr "소스 파일"
 
-#: chili-tradutor-go-v2.1.12.go:396
+#: chili-tradutor-go-v2.1.13.go:434
 msgid "Motor de tradução"
 msgstr "번역 엔진"
 
-#: chili-tradutor-go-v2.1.12.go:397
+#: chili-tradutor-go-v2.1.13.go:435
 msgid "Idioma de origem"
 msgstr "소스 언어"
 
-#: chili-tradutor-go-v2.1.12.go:398
+#: chili-tradutor-go-v2.1.13.go:436
 msgid "Idiomas destino"
 msgstr "대상 언어"
 
-#: chili-tradutor-go-v2.1.12.go:399
+#: chili-tradutor-go-v2.1.13.go:437
 msgid "Traduções simultâneas"
 msgstr "동시번역"
 
-#: chili-tradutor-go-v2.1.12.go:400
+#: chili-tradutor-go-v2.1.13.go:438
 msgid "Ignora o cache"
 msgstr "캐시 우회"
 
-#: chili-tradutor-go-v2.1.12.go:401
+#: chili-tradutor-go-v2.1.13.go:439
 msgid "Limpa cache antigo"
 msgstr "오래된 캐시 지우기"
 
-#: chili-tradutor-go-v2.1.12.go:402
+#: chili-tradutor-go-v2.1.13.go:440 chili-tradutor-go-v2.1.13.go:952
 msgid "Extração especializada para o próprio chili-tradutor-go"
 msgstr "chill-translator-go 자체에 대한 특화된 추출"
 
-#: chili-tradutor-go-v2.1.12.go:403 chili-tradutor-go-v2.1.12.go:722
+#: chili-tradutor-go-v2.1.13.go:441 chili-tradutor-go-v2.1.13.go:953
 msgid "Executa auto-teste de integridade"
 msgstr "무결성 자체 테스트를 수행합니다."
 
-#: chili-tradutor-go-v2.1.12.go:404 chili-tradutor-go-v2.1.12.go:724
+#: chili-tradutor-go-v2.1.13.go:442 chili-tradutor-go-v2.1.13.go:955
 msgid "Modo silencioso"
-msgstr "조용 모드"
+msgstr "무음 모드"
 
-#: chili-tradutor-go-v2.1.12.go:405
+#: chili-tradutor-go-v2.1.13.go:443
 msgid "Modo detalhado"
 msgstr "상세 모드"
 
-#: chili-tradutor-go-v2.1.12.go:406
+#: chili-tradutor-go-v2.1.13.go:444
 msgid "Mostra versão"
 msgstr "버전 표시"
 
-#: chili-tradutor-go-v2.1.12.go:533
+#: chili-tradutor-go-v2.1.13.go:703
 #, go-format
 msgid "Script (%s)"
 msgstr "스크립트(%s)"
 
-#: chili-tradutor-go-v2.1.12.go:535
+#: chili-tradutor-go-v2.1.13.go:706
 #, go-format
 msgid "Código %s (%s)"
 msgstr "코드 %s (%s)"
 
-#: chili-tradutor-go-v2.1.12.go:537
+#: chili-tradutor-go-v2.1.13.go:710
 msgid "Markdown"
 msgstr "가격 인하"
 
-#: chili-tradutor-go-v2.1.12.go:538
+#: chili-tradutor-go-v2.1.13.go:712
 msgid "JSON"
 msgstr "JSON"
 
-#: chili-tradutor-go-v2.1.12.go:539
+#: chili-tradutor-go-v2.1.13.go:714
 msgid "YAML"
 msgstr "YAML"
 
-#: chili-tradutor-go-v2.1.12.go:540
+#: chili-tradutor-go-v2.1.13.go:716
 msgid "Template POT"
 msgstr "냄비 템플릿"
 
-#: chili-tradutor-go-v2.1.12.go:542
+#: chili-tradutor-go-v2.1.13.go:718
 #, go-format
 msgid "Arquivo %s"
 msgstr "%s 파일"
 
-#: chili-tradutor-go-v2.1.12.go:605
+#: chili-tradutor-go-v2.1.13.go:803
 msgid "Dependências ausentes: "
 msgstr "누락된 종속성:"
 
-#: chili-tradutor-go-v2.1.12.go:606
+#: chili-tradutor-go-v2.1.13.go:804
 msgid "Comandos de instalação sugeridos:"
 msgstr "권장 설치 명령:"
 
-#: chili-tradutor-go-v2.1.12.go:625
+#: chili-tradutor-go-v2.1.13.go:827
 msgid "Deseja instalar automaticamente para"
 msgstr "자동으로 설치하시겠습니까?"
 
-#: chili-tradutor-go-v2.1.12.go:635
+#: chili-tradutor-go-v2.1.13.go:837
 msgid ""
 "\n"
 "Dependências instaladas! Reiniciando...\n"
 msgstr ""
 
-#: chili-tradutor-go-v2.1.12.go:643
+#: chili-tradutor-go-v2.1.13.go:845
 msgid ""
 "\n"
 "Por favor, instale as dependências manualmente e tente novamente."
 msgstr ""
 
-#: chili-tradutor-go-v2.1.12.go:679
+#: chili-tradutor-go-v2.1.13.go:895
 msgid "[STEP 1]"
 msgstr "[1단계]"
 
-#: chili-tradutor-go-v2.1.12.go:679
+#: chili-tradutor-go-v2.1.13.go:895
 msgid "Ambiente preparado com sucesso."
 msgstr "환경이 성공적으로 준비되었습니다."
 
-#: chili-tradutor-go-v2.1.12.go:680
+#: chili-tradutor-go-v2.1.13.go:896
 msgid "Arquivo"
 msgstr "파일"
 
-#: chili-tradutor-go-v2.1.12.go:681
+#: chili-tradutor-go-v2.1.13.go:897
 msgid "Tipo"
 msgstr "유형"
 
-#: chili-tradutor-go-v2.1.12.go:682
+#: chili-tradutor-go-v2.1.13.go:898
 msgid "Motor"
 msgstr "모터"
 
-#: chili-tradutor-go-v2.1.12.go:683
+#: chili-tradutor-go-v2.1.13.go:899
 msgid "Origem"
-msgstr "출처"
+msgstr "기원"
 
-#: chili-tradutor-go-v2.1.12.go:683
+#: chili-tradutor-go-v2.1.13.go:899
 msgid "Auto-detect se auto"
 msgstr "자신이 있는지 자동 감지"
 
-#: chili-tradutor-go-v2.1.12.go:684
+#: chili-tradutor-go-v2.1.13.go:900
 msgid "Jobs"
-msgstr "직업"
+msgstr "채용 정보"
 
-#: chili-tradutor-go-v2.1.12.go:685
+#: chili-tradutor-go-v2.1.13.go:901
 msgid "Cache"
 msgstr "은닉처"
 
-#: chili-tradutor-go-v2.1.12.go:691
+#: chili-tradutor-go-v2.1.13.go:911
 msgid "Concluído"
-msgstr "완료"
+msgstr "완전한"
 
-#: chili-tradutor-go-v2.1.12.go:691
+#: chili-tradutor-go-v2.1.13.go:911
 msgid "Cache:"
-msgstr "캐시:"
+msgstr "은닉처:"
 
-#: chili-tradutor-go-v2.1.12.go:691
+#: chili-tradutor-go-v2.1.13.go:911
 msgid "Net:"
-msgstr "순이익:"
+msgstr "그물:"
 
-#: chili-tradutor-go-v2.1.12.go:691
+#: chili-tradutor-go-v2.1.13.go:911
 msgid "Total:"
-msgstr "총계:"
+msgstr "총:"
 
-#: chili-tradutor-go-v2.1.12.go:695
+#: chili-tradutor-go-v2.1.13.go:915
 msgid "RESUMO EXECUTIVO FINAL:"
 msgstr "최종 요약:"
 
-#: chili-tradutor-go-v2.1.12.go:696
+#: chili-tradutor-go-v2.1.13.go:916
 msgid "Tempo Total"
 msgstr "총 시간"
 
-#: chili-tradutor-go-v2.1.12.go:697
+#: chili-tradutor-go-v2.1.13.go:917
 msgid "Cache Hits"
 msgstr "캐시 적중"
 
-#: chili-tradutor-go-v2.1.12.go:698
+#: chili-tradutor-go-v2.1.13.go:918
 msgid "Chamadas Rede"
 msgstr "네트워크 통화"
 
-#: chili-tradutor-go-v2.1.12.go:699
+#: chili-tradutor-go-v2.1.13.go:920
 msgid "Falhas"
-msgstr "실패"
+msgstr "결함"
 
-#: chili-tradutor-go-v2.1.12.go:706
+#: chili-tradutor-go-v2.1.13.go:936
 msgid "Removidos"
 msgstr "제거됨"
 
-#: chili-tradutor-go-v2.1.12.go:706
+#: chili-tradutor-go-v2.1.13.go:936
 msgid "itens obsoletos do cache."
-msgstr "캐시의 오래된 항목."
+msgstr "오래된 캐시 항목."
 
-#: chili-tradutor-go-v2.1.12.go:711
+#: chili-tradutor-go-v2.1.13.go:941
 msgid "Uso"
 msgstr "사용"
 
-#: chili-tradutor-go-v2.1.12.go:711
+#: chili-tradutor-go-v2.1.13.go:941
 msgid "<arquivo> [opções]"
 msgstr "<파일> [옵션]"
 
-#: chili-tradutor-go-v2.1.12.go:712
+#: chili-tradutor-go-v2.1.13.go:942
 msgid "Opções"
 msgstr "옵션"
 
-#: chili-tradutor-go-v2.1.12.go:715
-msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .pot)"
-msgstr "소스 파일(.sh, .py, .md, .json, .yaml, .pot)"
+#: chili-tradutor-go-v2.1.13.go:946
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .html, .pot)"
+msgstr "소스 파일(.sh, .py, .md, .json, .yaml, .html, .pot)"
 
-#: chili-tradutor-go-v2.1.12.go:716
-msgid "Motor: google, bing, yandex (padrão: google)"
-msgstr "검색 엔진: 구글, 빙, 얀덱스 (기본값: 구글)"
-
-#: chili-tradutor-go-v2.1.12.go:717
-msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
-msgstr "출발어(예: pt, en) (기본값: auto)"
-
-#: chili-tradutor-go-v2.1.12.go:718
+#: chili-tradutor-go-v2.1.13.go:947
 #, go-format
 msgid "Idiomas (ex: pt-BR,en) ou 'all' (padrão: %s)"
 msgstr "언어(예: pt-BR,en) 또는 'all'(기본값: %s)"
 
-#: chili-tradutor-go-v2.1.12.go:719
+#: chili-tradutor-go-v2.1.13.go:948
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "엔진: google, bing, yandex (기본값: google)"
+
+#: chili-tradutor-go-v2.1.13.go:949
 msgid "Traduções simultâneas (padrão: 8)"
-msgstr "동시 통역 (기본값: 8)"
+msgstr "동시번역 (기본값: 8)"
 
-#: chili-tradutor-go-v2.1.12.go:720
+#: chili-tradutor-go-v2.1.13.go:950
+msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
+msgstr "출발어(예: pt, en) (기본값: auto)"
+
+#: chili-tradutor-go-v2.1.13.go:951
 msgid "Força nova tradução (ignora cache)"
-msgstr "새 번역 강제 적용 (캐시 무시)"
+msgstr "새로운 번역 강제(캐시 우회)"
 
-#: chili-tradutor-go-v2.1.12.go:721
-msgid ""
-"Extração especializada para o próprio chili-tradutor-go (keyword T, no-wrap)"
-msgstr ""
-
-#: chili-tradutor-go-v2.1.12.go:723
+#: chili-tradutor-go-v2.1.13.go:954
 msgid "Remove entradas de cache não usadas há 30 dias"
 msgstr "30일 동안 사용되지 않은 캐시 항목 제거"
 
-#: chili-tradutor-go-v2.1.12.go:725
+#: chili-tradutor-go-v2.1.13.go:956
 msgid "Mostrar detalhes"
-msgstr "세부 정보 보기"
+msgstr "세부정보 표시"
 
-#: chili-tradutor-go-v2.1.12.go:726
+#: chili-tradutor-go-v2.1.13.go:957
 msgid "Mostra a versão do programa"
-msgstr "프로그램 버전을 표시합니다"
+msgstr "프로그램 버전을 표시합니다."
+
+#: chili-tradutor-go-v2.1.13.go:967
+msgid "Exemplos"
+msgstr "예"

@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js void-light">
+	<head>
+		<!-- Book generated using mdBook -->
+		<meta charset="UTF-8">
+		<title>About - The Void Linux Handbook</title>
+
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" />
+
+		<link rel="shortcut icon" href="favicon.png">
+		<link rel="stylesheet" href="css/variables.css">
+		<link rel="stylesheet" href="css/general.css">
+		<link rel="stylesheet" href="css/chrome.css">
+		<link rel="stylesheet" href="css/print.css" media="print">
+	</head>
+	<body>
+		<!-- Provide site root to javascript -->
+		<script type="text/javascript">
+			var path_to_root = "";
+			var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "void-dark" : "void-light";
+		</script>
+		<!-- Work around some values being stored in localStorage wrapped in quotes -->
+		<script type="text/javascript">
+			try {
+				var theme = localStorage.getItem('mdbook-theme');
+				var sidebar = localStorage.getItem('mdbook-sidebar');
+
+				if (theme.startsWith('"') && theme.endsWith('"')) {
+					localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+				}
+				if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+					localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+				}
+			} catch (e) { }
+		</script>
+
+		<!-- Set the theme before any content is loaded, prevents flash -->
+		<script type="text/javascript">
+			var theme;
+			try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+			if (theme === null || theme === undefined) { theme = default_theme; }
+			var html = document.querySelector('html');
+			html.classList.remove('no-js')
+			html.classList.remove('void-light')
+			html.classList.add(theme);
+			html.classList.add('js');
+		</script>
+
+		<!-- Hide / unhide sidebar before it is displayed -->
+		<script type="text/javascript">
+			var html = document.querySelector('html');
+			var sidebar = 'hidden';
+			if (document.body.clientWidth >= 1080) {
+				try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+				sidebar = sidebar || 'visible';
+			}
+			html.classList.remove('sidebar-visible');
+			html.classList.add("sidebar-" + sidebar);
+		</script>
+
+		<header>
+			<nav id="void-nav">
+				<ul>
+					<li><a id="skip-to-content" tabindex="1" href="#main">Skip to content</a></li>
+					<li>
+						<a id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M1 3v2h18V3zm0 8h18V9H1zm0 6h18v-2H1z"/>
+							</svg>
+						</a>
+					</li>
+					<li>
+						<a id="theme-toggle" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+							<svg id="icon-theme-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/>
+							</svg>
+							<svg id="icon-theme-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/>
+							</svg>
+						</a>
+					</li>
+					<li>
+						<a href="print.html" title="Print this book" aria-label="Print this book">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/>
+							</svg>
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/void-linux/void-docs/edit/master/src/about/index.md" title="Suggest an edit" aria-label="Suggest an edit">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+								<path d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/>
+							</svg>
+						</a>
+					</li>
+					<li>
+						<button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46C10.79 14.43 9.21 15 7.5 15 3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z"/>
+							</svg>
+						</button>
+					</li>
+					<noscript>
+						<li class="js-unavailable">Search functionality requires JavaScript</li>
+					</noscript>
+				</ul>
+				<ul id="nav-right">
+					<li><a href="https://www.voidlinux.org">Home</a></li>
+					<li><a href="https://www.voidlinux.org/news/">News</a></li>
+					<li><a href="https://www.voidlinux.org/download/">Download</a></li>
+					<li><a href="https://www.voidlinux.org/packages/">Packages</a></li>
+					<li><a href="https://docs.voidlinux.org">Documentation</a></li>
+					<li><a href="https://man.voidlinux.org/">Manual Pages</a></li>
+					<li><a href="https://github.com/void-linux">GitHub</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div id="content">
+			<!-- Hide / unhide sidebar before it is displayed -->
+			<script type="text/javascript">
+				var html = document.querySelector('html');
+				var sidebar = 'hidden';
+				if (document.body.clientWidth >= 1080) {
+					try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+					sidebar = sidebar || 'visible';
+				}
+				html.classList.remove('sidebar-visible');
+				html.classList.add("sidebar-" + sidebar);
+			</script>
+
+			<nav id="sidebar" aria-label="Table of contents">
+				<ol class="chapter"><li class="chapter-item expanded "><a href="about/index.html" class="active"><strong aria-hidden="true">1.</strong> About</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="about/history.html"><strong aria-hidden="true">1.1.</strong> History</a></li><li class="chapter-item expanded "><a href="about/about-this-handbook.html"><strong aria-hidden="true">1.2.</strong> About This Handbook</a></li><li class="chapter-item expanded "><a href="about/infradocs.html"><strong aria-hidden="true">1.3.</strong> InfraDocs</a></li></ol></li><li class="chapter-item expanded "><a href="installation/index.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation/live-images/index.html"><strong aria-hidden="true">2.1.</strong> Live Installers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation/live-images/prep.html"><strong aria-hidden="true">2.1.1.</strong> Prepare Installation Media</a></li><li class="chapter-item expanded "><a href="installation/live-images/partitions.html"><strong aria-hidden="true">2.1.2.</strong> Partitioning Notes</a></li><li class="chapter-item expanded "><a href="installation/live-images/guide.html"><strong aria-hidden="true">2.1.3.</strong> Installation Guide</a></li></ol></li><li class="chapter-item expanded "><a href="installation/guides/index.html"><strong aria-hidden="true">2.2.</strong> Advanced Installation Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation/guides/chroot.html"><strong aria-hidden="true">2.2.1.</strong> Installation via chroot (x86/x86_64/aarch64)</a></li><li class="chapter-item expanded "><a href="installation/guides/fde.html"><strong aria-hidden="true">2.2.2.</strong> Full Disk Encryption</a></li><li class="chapter-item expanded "><a href="installation/guides/zfs.html"><strong aria-hidden="true">2.2.3.</strong> Root on ZFS</a></li><li class="chapter-item expanded "><a href="installation/guides/arm-devices/index.html"><strong aria-hidden="true">2.2.4.</strong> ARM Devices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation/guides/arm-devices/apple-silicon.html"><strong aria-hidden="true">2.2.4.1.</strong> Apple Silicon (Asahi)</a></li><li class="chapter-item expanded "><a href="installation/guides/arm-devices/thinkpad-x13s.html"><strong aria-hidden="true">2.2.4.2.</strong> Lenovo Thinkpad X13s</a></li><li class="chapter-item expanded "><a href="installation/guides/arm-devices/pinebook-pro.html"><strong aria-hidden="true">2.2.4.3.</strong> Pinebook Pro</a></li><li class="chapter-item expanded "><a href="installation/guides/arm-devices/raspberry-pi.html"><strong aria-hidden="true">2.2.4.4.</strong> Raspberry Pi</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="installation/musl.html"><strong aria-hidden="true">2.3.</strong> musl</a></li></ol></li><li class="chapter-item expanded "><a href="config/index.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/package-documentation/index.html"><strong aria-hidden="true">3.1.</strong> Package Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/package-documentation/man.html"><strong aria-hidden="true">3.1.1.</strong> Manual Pages</a></li></ol></li><li class="chapter-item expanded "><a href="config/firmware.html"><strong aria-hidden="true">3.2.</strong> Firmware</a></li><li class="chapter-item expanded "><a href="config/locales.html"><strong aria-hidden="true">3.3.</strong> Locales and Translations</a></li><li class="chapter-item expanded "><a href="config/users-and-groups.html"><strong aria-hidden="true">3.4.</strong> Users and Groups</a></li><li class="chapter-item expanded "><a href="config/services/index.html"><strong aria-hidden="true">3.5.</strong> Services and Daemons - runit</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/services/user-services.html"><strong aria-hidden="true">3.5.1.</strong> Per-User Services</a></li><li class="chapter-item expanded "><a href="config/services/logging.html"><strong aria-hidden="true">3.5.2.</strong> Logging</a></li></ol></li><li class="chapter-item expanded "><a href="config/rc-files.html"><strong aria-hidden="true">3.6.</strong> rc.conf, rc.local and rc.shutdown</a></li><li class="chapter-item expanded "><a href="config/cron.html"><strong aria-hidden="true">3.7.</strong> Cron</a></li><li class="chapter-item expanded "><a href="config/ssd.html"><strong aria-hidden="true">3.8.</strong> Solid State Drives</a></li><li class="chapter-item expanded "><a href="config/security/index.html"><strong aria-hidden="true">3.9.</strong> Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/security/apparmor.html"><strong aria-hidden="true">3.9.1.</strong> AppArmor</a></li></ol></li><li class="chapter-item expanded "><a href="config/date-time.html"><strong aria-hidden="true">3.10.</strong> Date and Time</a></li><li class="chapter-item expanded "><a href="config/kernel.html"><strong aria-hidden="true">3.11.</strong> Kernel</a></li><li class="chapter-item expanded "><a href="config/power-management.html"><strong aria-hidden="true">3.12.</strong> Power Management</a></li><li class="chapter-item expanded "><a href="config/network/index.html"><strong aria-hidden="true">3.13.</strong> Network</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/network/firewalls.html"><strong aria-hidden="true">3.13.1.</strong> Firewalls</a></li><li class="chapter-item expanded "><a href="config/network/wpa_supplicant.html"><strong aria-hidden="true">3.13.2.</strong> wpa_supplicant</a></li><li class="chapter-item expanded "><a href="config/network/iwd.html"><strong aria-hidden="true">3.13.3.</strong> IWD</a></li><li class="chapter-item expanded "><a href="config/network/networkmanager.html"><strong aria-hidden="true">3.13.4.</strong> NetworkManager</a></li><li class="chapter-item expanded "><a href="config/network/connman.html"><strong aria-hidden="true">3.13.5.</strong> ConnMan</a></li></ol></li><li class="chapter-item expanded "><a href="config/network-filesystems.html"><strong aria-hidden="true">3.14.</strong> Network Filesystems</a></li><li class="chapter-item expanded "><a href="config/session-management.html"><strong aria-hidden="true">3.15.</strong> Session and Seat Management</a></li><li class="chapter-item expanded "><a href="config/graphical-session/index.html"><strong aria-hidden="true">3.16.</strong> Graphical Session</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/graphical-session/graphics-drivers/index.html"><strong aria-hidden="true">3.16.1.</strong> Graphics Drivers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/graphical-session/graphics-drivers/amd.html"><strong aria-hidden="true">3.16.1.1.</strong> AMD or ATI</a></li><li class="chapter-item expanded "><a href="config/graphical-session/graphics-drivers/intel.html"><strong aria-hidden="true">3.16.1.2.</strong> Intel</a></li><li class="chapter-item expanded "><a href="config/graphical-session/graphics-drivers/nvidia.html"><strong aria-hidden="true">3.16.1.3.</strong> NVIDIA</a></li><li class="chapter-item expanded "><a href="config/graphical-session/graphics-drivers/optimus.html"><strong aria-hidden="true">3.16.1.4.</strong> NVIDIA Optimus</a></li></ol></li><li class="chapter-item expanded "><a href="config/graphical-session/xorg.html"><strong aria-hidden="true">3.16.2.</strong> Xorg</a></li><li class="chapter-item expanded "><a href="config/graphical-session/wayland.html"><strong aria-hidden="true">3.16.3.</strong> Wayland</a></li><li class="chapter-item expanded "><a href="config/graphical-session/fonts.html"><strong aria-hidden="true">3.16.4.</strong> Fonts</a></li><li class="chapter-item expanded "><a href="config/graphical-session/icons.html"><strong aria-hidden="true">3.16.5.</strong> Icons</a></li><li class="chapter-item expanded "><a href="config/graphical-session/portals.html"><strong aria-hidden="true">3.16.6.</strong> XDG Desktop Portals</a></li><li class="chapter-item expanded "><a href="config/graphical-session/gnome.html"><strong aria-hidden="true">3.16.7.</strong> GNOME</a></li><li class="chapter-item expanded "><a href="config/graphical-session/kde.html"><strong aria-hidden="true">3.16.8.</strong> KDE</a></li></ol></li><li class="chapter-item expanded "><a href="config/media/index.html"><strong aria-hidden="true">3.17.</strong> Multimedia</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/media/alsa.html"><strong aria-hidden="true">3.17.1.</strong> ALSA</a></li><li class="chapter-item expanded "><a href="config/media/pipewire.html"><strong aria-hidden="true">3.17.2.</strong> PipeWire</a></li><li class="chapter-item expanded "><a href="config/media/pulseaudio.html"><strong aria-hidden="true">3.17.3.</strong> PulseAudio</a></li></ol></li><li class="chapter-item expanded "><a href="config/bluetooth.html"><strong aria-hidden="true">3.18.</strong> Bluetooth</a></li><li class="chapter-item expanded "><a href="config/texlive.html"><strong aria-hidden="true">3.19.</strong> TeX Live</a></li><li class="chapter-item expanded "><a href="config/external-applications.html"><strong aria-hidden="true">3.20.</strong> External Applications</a></li><li class="chapter-item expanded "><a href="config/print/index.html"><strong aria-hidden="true">3.21.</strong> Printing</a></li><li class="chapter-item expanded "><a href="config/containers-and-vms/index.html"><strong aria-hidden="true">3.22.</strong> Containers and Virtual Machines</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config/containers-and-vms/chroot.html"><strong aria-hidden="true">3.22.1.</strong> Chroots and Containers</a></li><li class="chapter-item expanded "><a href="config/containers-and-vms/libvirt.html"><strong aria-hidden="true">3.22.2.</strong> libvirt</a></li><li class="chapter-item expanded "><a href="config/containers-and-vms/lxc.html"><strong aria-hidden="true">3.22.3.</strong> LXC</a></li></ol></li><li class="chapter-item expanded "><a href="config/openpgp.html"><strong aria-hidden="true">3.23.</strong> OpenPGP</a></li><li class="chapter-item expanded "><a href="config/php.html"><strong aria-hidden="true">3.24.</strong> PHP</a></li></ol></li><li class="chapter-item expanded "><a href="xbps/index.html"><strong aria-hidden="true">4.</strong> XBPS Package Manager</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="xbps/advanced-usage.html"><strong aria-hidden="true">4.1.</strong> Advanced Usage</a></li><li class="chapter-item expanded "><a href="xbps/repositories/index.html"><strong aria-hidden="true">4.2.</strong> Repositories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="xbps/repositories/mirrors/index.html"><strong aria-hidden="true">4.2.1.</strong> Mirrors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="xbps/repositories/mirrors/changing.html"><strong aria-hidden="true">4.2.1.1.</strong> Changing Mirrors</a></li><li class="chapter-item expanded "><a href="xbps/repositories/mirrors/tor.html"><strong aria-hidden="true">4.2.1.2.</strong> Using Tor Mirrors</a></li></ol></li><li class="chapter-item expanded "><a href="xbps/repositories/restricted.html"><strong aria-hidden="true">4.2.2.</strong> Restricted Packages</a></li><li class="chapter-item expanded "><a href="xbps/repositories/custom.html"><strong aria-hidden="true">4.2.3.</strong> Custom Repositories</a></li><li class="chapter-item expanded "><a href="xbps/repositories/signing.html"><strong aria-hidden="true">4.2.4.</strong> Signing Repositories</a></li></ol></li><li class="chapter-item expanded "><a href="xbps/troubleshooting/index.html"><strong aria-hidden="true">4.3.</strong> Troubleshooting XBPS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="xbps/troubleshooting/common-issues.html"><strong aria-hidden="true">4.3.1.</strong> Common Issues</a></li><li class="chapter-item expanded "><a href="xbps/troubleshooting/static.html"><strong aria-hidden="true">4.3.2.</strong> Static XBPS</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="contributing/index.html"><strong aria-hidden="true">5.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/void-docs/index.html"><strong aria-hidden="true">5.1.</strong> Contributing To void-docs</a></li></ol></li></ol>
+			</nav>
+
+			<div id="page-wrapper" class="page-wrapper">
+
+
+					<div id="search-wrapper" class="hidden">
+						<form id="searchbar-outer" class="searchbar-outer">
+							<input type="search" name="search" id="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+						</form>
+						<div id="searchresults-outer" class="searchresults-outer hidden">
+							<div id="searchresults-header" class="searchresults-header"></div>
+							<ul id="searchresults">
+							</ul>
+						</div>
+					</div>
+
+					<!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+					<script type="text/javascript">
+						document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+						document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+						Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+							link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+						});
+					</script>
+
+					<main id="main">
+						<h1 id="about"><a class="header" href="#about">About</a></h1>
+<p>Welcome to the Void Handbook! Please be sure to read the &quot;<a href="./about-this-handbook.html">About This
+Handbook</a>&quot; section to learn how to use this
+documentation effectively. A local copy of this handbook, in several formats,
+can be <a href="../xbps/index.html">installed</a> via the <code>void-docs</code> package and accessed
+with the <a href="https://man.voidlinux.org/void-docs.1">void-docs(1)</a> utility.</p>
+<p>Void is an independent, <a href="https://en.wikipedia.org/wiki/Rolling_release">rolling
+release</a> Linux distribution,
+developed from scratch rather than as a fork, with a focus on stability over
+<a href="https://en.wikipedia.org/wiki/Bleeding_edge_technology">bleeding-edge</a>. In
+addition, there are several features that make Void unique:</p>
+<ul>
+<li>The <a href="https://github.com/void-linux/xbps">XBPS</a> package manager, which is
+extremely fast, developed in-house, and performs checks when installing
+updates to ensure that libraries are not changed to incompatible versions
+which can break dependencies.</li>
+<li>The <a href="https://musl.libc.org/">musl libc</a>, which focuses on standards compliance
+and correctness, has first class support. This allows us to build certain
+components for musl systems statically, which would not be practical on glibc
+systems.</li>
+<li><a href="../config/services/index.html">runit</a> is used for
+<a href="https://man.voidlinux.org/init.8">init(8)</a> and service supervision. This
+allows Void to support musl as a second libc choice, which would not be
+possible with <a href="https://www.freedesktop.org/wiki/Software/systemd/">systemd</a>.
+A side effect of this decision is a core system with clean and efficient
+operation, and a small code base.</li>
+</ul>
+<p>Void is developed in the spare time of a handful of developers, and is generally
+considered stable enough for daily use. We do this for fun and hope that our
+work will be useful to others.</p>
+<p>The name &quot;Void&quot; comes from the C literal <code>void</code>. It was chosen rather randomly,
+and is void of any meaning.</p>
+
+					</main>
+
+					<nav class="nav-wrapper" aria-label="Page navigation">
+						<!-- Mobile navigation buttons -->
+
+							<a rel="next" href="about/history.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+									<path d="M7 1L5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>
+								</svg>
+							</a>
+
+						<div style="clear: both"></div>
+					</nav>
+
+				<nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+						<a rel="next" href="about/history.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+								<path d="M7 1L5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>
+							</svg>
+						</a>
+				</nav>
+			</div>
+		</div>
+
+
+		<script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="book.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
