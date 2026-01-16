@@ -1,0 +1,311 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 01:09-0400\n"
+"PO-Revision-Date: 2026-01-16 01:09-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/chili-tradutor-go-v2.1.17.go:147
+msgid "Todos os arquivos foram processados!"
+msgstr "모든 파일이 처리되었습니다!"
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "ERRO:"
+msgstr "오류:"
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "Arquivo não encontrado:"
+msgstr "파일을 찾을 수 없습니다:"
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "[AVISO]"
+msgstr "[알아채다]"
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "Nada para traduzir ou arquivo protegido."
+msgstr "번역할 것도 없고 파일을 보호할 것도 없습니다."
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "[STEP 2]"
+msgstr "[2단계]"
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "Iniciando processamento paralelo..."
+msgstr "병렬 처리 시작 중..."
+
+#: src/chili-tradutor-go-v2.1.17.go:173
+msgid "[Aguardando...]"
+msgstr "[대기 중...]"
+
+#: src/chili-tradutor-go-v2.1.17.go:210
+msgid "Dependências e Conectividade"
+msgstr "종속성과 연결성"
+
+#: src/chili-tradutor-go-v2.1.17.go:214
+msgid "Proteção de Variáveis ($VAR)"
+msgstr "변수 보호($VAR)"
+
+#: src/chili-tradutor-go-v2.1.17.go:224
+msgid "Validação de Markdown (.md)"
+msgstr "마크다운 유효성 검사(.md)"
+
+#: src/chili-tradutor-go-v2.1.17.go:237
+msgid "Validação de YAML/JSON"
+msgstr "YAML/JSON 검증"
+
+#: src/chili-tradutor-go-v2.1.17.go:250
+msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
+msgstr "모든 수준에서 100% 검증된 시스템입니다."
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "[STATUS]"
+msgstr "[상태]"
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "idiomas concluídos..."
+msgstr "언어 완성..."
+
+#: src/chili-tradutor-go-v2.1.17.go:424
+msgid "Arquivo fonte"
+msgstr "소스 파일"
+
+#: src/chili-tradutor-go-v2.1.17.go:425
+msgid "Motor de tradução"
+msgstr "번역 엔진"
+
+#: src/chili-tradutor-go-v2.1.17.go:426
+msgid "Idioma de origem"
+msgstr "소스 언어"
+
+#: src/chili-tradutor-go-v2.1.17.go:427
+msgid "Idiomas destino"
+msgstr "대상 언어"
+
+#: src/chili-tradutor-go-v2.1.17.go:428
+msgid "Traduções simultâneas"
+msgstr "동시번역"
+
+#: src/chili-tradutor-go-v2.1.17.go:429
+msgid "Ignora o cache"
+msgstr "캐시 우회"
+
+#: src/chili-tradutor-go-v2.1.17.go:430
+msgid "Limpa cache antigo"
+msgstr "오래된 캐시 지우기"
+
+#: src/chili-tradutor-go-v2.1.17.go:431 src/chili-tradutor-go-v2.1.17.go:952
+msgid "Extração especializada para o próprio chili-tradutor-go"
+msgstr "chill-translator-go 자체에 대한 특화된 추출"
+
+#: src/chili-tradutor-go-v2.1.17.go:432 src/chili-tradutor-go-v2.1.17.go:953
+msgid "Executa auto-teste de integridade"
+msgstr "무결성 자체 테스트를 수행합니다."
+
+#: src/chili-tradutor-go-v2.1.17.go:433 src/chili-tradutor-go-v2.1.17.go:955
+msgid "Modo silencioso"
+msgstr "무음 모드"
+
+#: src/chili-tradutor-go-v2.1.17.go:434
+msgid "Modo detalhado"
+msgstr "상세 모드"
+
+#: src/chili-tradutor-go-v2.1.17.go:435
+msgid "Mostra versão"
+msgstr "버전 표시"
+
+#: src/chili-tradutor-go-v2.1.17.go:701
+#, go-format
+msgid "Script (%s)"
+msgstr "스크립트(%s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:704
+#, go-format
+msgid "Código %s (%s)"
+msgstr "코드 %s (%s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:708
+msgid "Markdown"
+msgstr "가격 인하"
+
+#: src/chili-tradutor-go-v2.1.17.go:710
+msgid "JSON"
+msgstr "JSON"
+
+#: src/chili-tradutor-go-v2.1.17.go:712
+msgid "YAML"
+msgstr "YAML"
+
+#: src/chili-tradutor-go-v2.1.17.go:714
+msgid "Template POT"
+msgstr "냄비 템플릿"
+
+#: src/chili-tradutor-go-v2.1.17.go:716
+#, go-format
+msgid "Arquivo %s"
+msgstr "%s 파일"
+
+#: src/chili-tradutor-go-v2.1.17.go:801
+msgid "Dependências ausentes: "
+msgstr "누락된 종속성:"
+
+#: src/chili-tradutor-go-v2.1.17.go:802
+msgid "Comandos de instalação sugeridos:"
+msgstr "권장 설치 명령:"
+
+#: src/chili-tradutor-go-v2.1.17.go:825
+msgid "Deseja instalar automaticamente para"
+msgstr "자동으로 설치하시겠습니까?"
+
+#: src/chili-tradutor-go-v2.1.17.go:835
+msgid ""
+"\n"
+"Dependências instaladas! Reiniciando...\n"
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:843
+msgid ""
+"\n"
+"Por favor, instale as dependências manualmente e tente novamente."
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "[STEP 1]"
+msgstr "[1단계]"
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "Ambiente preparado com sucesso."
+msgstr "환경이 성공적으로 준비되었습니다."
+
+#: src/chili-tradutor-go-v2.1.17.go:894
+msgid "Arquivo"
+msgstr "파일"
+
+#: src/chili-tradutor-go-v2.1.17.go:895
+msgid "Tipo"
+msgstr "유형"
+
+#: src/chili-tradutor-go-v2.1.17.go:896
+msgid "Motor"
+msgstr "모터"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Origem"
+msgstr "기원"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Auto-detect se auto"
+msgstr "자신이 있는지 자동 감지"
+
+#: src/chili-tradutor-go-v2.1.17.go:898
+msgid "Jobs"
+msgstr "채용 정보"
+
+#: src/chili-tradutor-go-v2.1.17.go:899
+msgid "Cache"
+msgstr "은닉처"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Concluído"
+msgstr "완전한"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Cache:"
+msgstr "은닉처:"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Net:"
+msgstr "그물:"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Total:"
+msgstr "총:"
+
+#: src/chili-tradutor-go-v2.1.17.go:913
+msgid "RESUMO EXECUTIVO FINAL:"
+msgstr "최종 요약:"
+
+#: src/chili-tradutor-go-v2.1.17.go:914
+msgid "Tempo Total"
+msgstr "총 시간"
+
+#: src/chili-tradutor-go-v2.1.17.go:915
+msgid "Cache Hits"
+msgstr "캐시 적중"
+
+#: src/chili-tradutor-go-v2.1.17.go:916
+msgid "Chamadas Rede"
+msgstr "네트워크 통화"
+
+#: src/chili-tradutor-go-v2.1.17.go:918
+msgid "Falhas"
+msgstr "결함"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "Removidos"
+msgstr "제거됨"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "itens obsoletos do cache."
+msgstr "오래된 캐시 항목."
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "Uso"
+msgstr "사용"
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "<arquivo> [opções]"
+msgstr "<파일> [옵션]"
+
+#: src/chili-tradutor-go-v2.1.17.go:942
+msgid "Opções"
+msgstr "옵션"
+
+#: src/chili-tradutor-go-v2.1.17.go:946
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .html, .pot)"
+msgstr "소스 파일(.sh, .py, .md, .json, .yaml, .html, .pot)"
+
+#: src/chili-tradutor-go-v2.1.17.go:947
+#, go-format
+msgid "Idiomas (ex: pt_BR,en) ou 'all' (padrão: %s)"
+msgstr "언어 (예: pt_BR,en) 또는 'all'(기본값: %s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:948
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "엔진: google, bing, yandex (기본값: google)"
+
+#: src/chili-tradutor-go-v2.1.17.go:949
+msgid "Traduções simultâneas (padrão: 8)"
+msgstr "동시번역 (기본값: 8)"
+
+#: src/chili-tradutor-go-v2.1.17.go:950
+msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
+msgstr "출발어(예: pt, en) (기본값: auto)"
+
+#: src/chili-tradutor-go-v2.1.17.go:951
+msgid "Força nova tradução (ignora cache)"
+msgstr "새로운 번역 강제(캐시 우회)"
+
+#: src/chili-tradutor-go-v2.1.17.go:954
+msgid "Remove entradas de cache não usadas há 30 dias"
+msgstr "30일 동안 사용되지 않은 캐시 항목 제거"
+
+#: src/chili-tradutor-go-v2.1.17.go:956
+msgid "Mostrar detalhes"
+msgstr "세부정보 표시"
+
+#: src/chili-tradutor-go-v2.1.17.go:957
+msgid "Mostra a versão do programa"
+msgstr "프로그램 버전을 표시합니다."
+
+#: src/chili-tradutor-go-v2.1.17.go:967
+msgid "Exemplos"
+msgstr "예"

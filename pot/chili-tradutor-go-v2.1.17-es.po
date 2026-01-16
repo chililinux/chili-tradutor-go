@@ -1,0 +1,311 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 01:09-0400\n"
+"PO-Revision-Date: 2026-01-16 01:09-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/chili-tradutor-go-v2.1.17.go:147
+msgid "Todos os arquivos foram processados!"
+msgstr "¡Todos los archivos han sido procesados!"
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "ERRO:"
+msgstr "ERROR:"
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "Arquivo não encontrado:"
+msgstr "Archivo no encontrado:"
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "[AVISO]"
+msgstr "[AVISO]"
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "Nada para traduzir ou arquivo protegido."
+msgstr "Nada que traducir o archivar protegido."
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "[STEP 2]"
+msgstr "[PASO 2]"
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "Iniciando processamento paralelo..."
+msgstr "Iniciando procesamiento paralelo..."
+
+#: src/chili-tradutor-go-v2.1.17.go:173
+msgid "[Aguardando...]"
+msgstr "[Espera...]"
+
+#: src/chili-tradutor-go-v2.1.17.go:210
+msgid "Dependências e Conectividade"
+msgstr "Dependencias y conectividad"
+
+#: src/chili-tradutor-go-v2.1.17.go:214
+msgid "Proteção de Variáveis ($VAR)"
+msgstr "Protección variable ($VAR)"
+
+#: src/chili-tradutor-go-v2.1.17.go:224
+msgid "Validação de Markdown (.md)"
+msgstr "Validación de rebajas (.md)"
+
+#: src/chili-tradutor-go-v2.1.17.go:237
+msgid "Validação de YAML/JSON"
+msgstr "Validación YAML/JSON"
+
+#: src/chili-tradutor-go-v2.1.17.go:250
+msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
+msgstr "SISTEMA 100% VALIDADO EN TODOS LOS NIVELES."
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "[STATUS]"
+msgstr "[ESTADO]"
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "idiomas concluídos..."
+msgstr "idiomas completados..."
+
+#: src/chili-tradutor-go-v2.1.17.go:424
+msgid "Arquivo fonte"
+msgstr "Archivo fuente"
+
+#: src/chili-tradutor-go-v2.1.17.go:425
+msgid "Motor de tradução"
+msgstr "Motor de traducción"
+
+#: src/chili-tradutor-go-v2.1.17.go:426
+msgid "Idioma de origem"
+msgstr "Idioma de origen"
+
+#: src/chili-tradutor-go-v2.1.17.go:427
+msgid "Idiomas destino"
+msgstr "Idiomas de destino"
+
+#: src/chili-tradutor-go-v2.1.17.go:428
+msgid "Traduções simultâneas"
+msgstr "Traducciones simultáneas"
+
+#: src/chili-tradutor-go-v2.1.17.go:429
+msgid "Ignora o cache"
+msgstr "Omitir caché"
+
+#: src/chili-tradutor-go-v2.1.17.go:430
+msgid "Limpa cache antigo"
+msgstr "Borrar caché antiguo"
+
+#: src/chili-tradutor-go-v2.1.17.go:431 src/chili-tradutor-go-v2.1.17.go:952
+msgid "Extração especializada para o próprio chili-tradutor-go"
+msgstr "Extracción especializada para el propio chili-translator-go"
+
+#: src/chili-tradutor-go-v2.1.17.go:432 src/chili-tradutor-go-v2.1.17.go:953
+msgid "Executa auto-teste de integridade"
+msgstr "Realiza una autoprueba de integridad"
+
+#: src/chili-tradutor-go-v2.1.17.go:433 src/chili-tradutor-go-v2.1.17.go:955
+msgid "Modo silencioso"
+msgstr "Modo silencioso"
+
+#: src/chili-tradutor-go-v2.1.17.go:434
+msgid "Modo detalhado"
+msgstr "Modo detallado"
+
+#: src/chili-tradutor-go-v2.1.17.go:435
+msgid "Mostra versão"
+msgstr "Mostrar versión"
+
+#: src/chili-tradutor-go-v2.1.17.go:701
+#, go-format
+msgid "Script (%s)"
+msgstr "Guión (%s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:704
+#, go-format
+msgid "Código %s (%s)"
+msgstr "Código %s (%s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:708
+msgid "Markdown"
+msgstr "Reducción"
+
+#: src/chili-tradutor-go-v2.1.17.go:710
+msgid "JSON"
+msgstr "JSON"
+
+#: src/chili-tradutor-go-v2.1.17.go:712
+msgid "YAML"
+msgstr "YAML"
+
+#: src/chili-tradutor-go-v2.1.17.go:714
+msgid "Template POT"
+msgstr "Plantillas de bote"
+
+#: src/chili-tradutor-go-v2.1.17.go:716
+#, go-format
+msgid "Arquivo %s"
+msgstr "Archivo %s"
+
+#: src/chili-tradutor-go-v2.1.17.go:801
+msgid "Dependências ausentes: "
+msgstr "Dependencias faltantes:"
+
+#: src/chili-tradutor-go-v2.1.17.go:802
+msgid "Comandos de instalação sugeridos:"
+msgstr "Comandos de instalación sugeridos:"
+
+#: src/chili-tradutor-go-v2.1.17.go:825
+msgid "Deseja instalar automaticamente para"
+msgstr "¿Quieres instalar automáticamente en"
+
+#: src/chili-tradutor-go-v2.1.17.go:835
+msgid ""
+"\n"
+"Dependências instaladas! Reiniciando...\n"
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:843
+msgid ""
+"\n"
+"Por favor, instale as dependências manualmente e tente novamente."
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "[STEP 1]"
+msgstr "[PASO 1]"
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "Ambiente preparado com sucesso."
+msgstr "Entorno preparado con éxito."
+
+#: src/chili-tradutor-go-v2.1.17.go:894
+msgid "Arquivo"
+msgstr "Archivo"
+
+#: src/chili-tradutor-go-v2.1.17.go:895
+msgid "Tipo"
+msgstr "Tipo"
+
+#: src/chili-tradutor-go-v2.1.17.go:896
+msgid "Motor"
+msgstr "Motor"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Origem"
+msgstr "Origen"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Auto-detect se auto"
+msgstr "Detectar automáticamente si es uno mismo"
+
+#: src/chili-tradutor-go-v2.1.17.go:898
+msgid "Jobs"
+msgstr "Empleos"
+
+#: src/chili-tradutor-go-v2.1.17.go:899
+msgid "Cache"
+msgstr "Cache"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Concluído"
+msgstr "Terminado"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Cache:"
+msgstr "Cache:"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Net:"
+msgstr "Neto:"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Total:"
+msgstr "Total:"
+
+#: src/chili-tradutor-go-v2.1.17.go:913
+msgid "RESUMO EXECUTIVO FINAL:"
+msgstr "RESUMEN EJECUTIVO FINAL:"
+
+#: src/chili-tradutor-go-v2.1.17.go:914
+msgid "Tempo Total"
+msgstr "Tiempo Total"
+
+#: src/chili-tradutor-go-v2.1.17.go:915
+msgid "Cache Hits"
+msgstr "Visitas de caché"
+
+#: src/chili-tradutor-go-v2.1.17.go:916
+msgid "Chamadas Rede"
+msgstr "Llamadas de red"
+
+#: src/chili-tradutor-go-v2.1.17.go:918
+msgid "Falhas"
+msgstr "Fallos"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "Removidos"
+msgstr "Remoto"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "itens obsoletos do cache."
+msgstr "elementos de caché obsoletos."
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "Uso"
+msgstr "Usar"
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "<arquivo> [opções]"
+msgstr "<archivo> [opciones]"
+
+#: src/chili-tradutor-go-v2.1.17.go:942
+msgid "Opções"
+msgstr "Opciones"
+
+#: src/chili-tradutor-go-v2.1.17.go:946
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .html, .pot)"
+msgstr "Archivo fuente (.sh, .py, .md, .json, .yaml, .html, .pot)"
+
+#: src/chili-tradutor-go-v2.1.17.go:947
+#, go-format
+msgid "Idiomas (ex: pt_BR,en) ou 'all' (padrão: %s)"
+msgstr "Idiomas (ej: pt_BR,en) o 'todos' (predeterminado: %s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:948
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "Motor: google, bing, yandex (predeterminado: google)"
+
+#: src/chili-tradutor-go-v2.1.17.go:949
+msgid "Traduções simultâneas (padrão: 8)"
+msgstr "Traducciones simultáneas (predeterminado: 8)"
+
+#: src/chili-tradutor-go-v2.1.17.go:950
+msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
+msgstr "Idioma de origen (ej: pt, en) (predeterminado: auto)"
+
+#: src/chili-tradutor-go-v2.1.17.go:951
+msgid "Força nova tradução (ignora cache)"
+msgstr "Forzar nueva traducción (evitar caché)"
+
+#: src/chili-tradutor-go-v2.1.17.go:954
+msgid "Remove entradas de cache não usadas há 30 dias"
+msgstr "Eliminar las entradas de caché que no se utilicen durante 30 días"
+
+#: src/chili-tradutor-go-v2.1.17.go:956
+msgid "Mostrar detalhes"
+msgstr "Mostrar detalles"
+
+#: src/chili-tradutor-go-v2.1.17.go:957
+msgid "Mostra a versão do programa"
+msgstr "Muestra la versión del programa."
+
+#: src/chili-tradutor-go-v2.1.17.go:967
+msgid "Exemplos"
+msgstr "Ejemplos"

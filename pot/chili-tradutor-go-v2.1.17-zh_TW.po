@@ -1,0 +1,311 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 01:09-0400\n"
+"PO-Revision-Date: 2026-01-16 01:09-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/chili-tradutor-go-v2.1.17.go:147
+msgid "Todos os arquivos foram processados!"
+msgstr "所有文件均已處理！"
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "ERRO:"
+msgstr "錯誤："
+
+#: src/chili-tradutor-go-v2.1.17.go:154
+msgid "Arquivo não encontrado:"
+msgstr "未找到文件："
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "[AVISO]"
+msgstr "[注意]"
+
+#: src/chili-tradutor-go-v2.1.17.go:168
+msgid "Nada para traduzir ou arquivo protegido."
+msgstr "沒有任何需要翻譯或文件受保護的內容。"
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "[STEP 2]"
+msgstr "[第2步]"
+
+#: src/chili-tradutor-go-v2.1.17.go:171
+msgid "Iniciando processamento paralelo..."
+msgstr "開始並行處理..."
+
+#: src/chili-tradutor-go-v2.1.17.go:173
+msgid "[Aguardando...]"
+msgstr "[等待...]"
+
+#: src/chili-tradutor-go-v2.1.17.go:210
+msgid "Dependências e Conectividade"
+msgstr "依賴性和連接性"
+
+#: src/chili-tradutor-go-v2.1.17.go:214
+msgid "Proteção de Variáveis ($VAR)"
+msgstr "變量保護 ($VAR)"
+
+#: src/chili-tradutor-go-v2.1.17.go:224
+msgid "Validação de Markdown (.md)"
+msgstr "Markdown 驗證 (.md)"
+
+#: src/chili-tradutor-go-v2.1.17.go:237
+msgid "Validação de YAML/JSON"
+msgstr "YAML/JSON 驗證"
+
+#: src/chili-tradutor-go-v2.1.17.go:250
+msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
+msgstr "各個級別的系統均經過 100% 驗證。"
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "[STATUS]"
+msgstr "[地位]"
+
+#: src/chili-tradutor-go-v2.1.17.go:335
+msgid "idiomas concluídos..."
+msgstr "語言完成..."
+
+#: src/chili-tradutor-go-v2.1.17.go:424
+msgid "Arquivo fonte"
+msgstr "源文件"
+
+#: src/chili-tradutor-go-v2.1.17.go:425
+msgid "Motor de tradução"
+msgstr "翻譯引擎"
+
+#: src/chili-tradutor-go-v2.1.17.go:426
+msgid "Idioma de origem"
+msgstr "源語言"
+
+#: src/chili-tradutor-go-v2.1.17.go:427
+msgid "Idiomas destino"
+msgstr "目的地語言"
+
+#: src/chili-tradutor-go-v2.1.17.go:428
+msgid "Traduções simultâneas"
+msgstr "同聲傳譯"
+
+#: src/chili-tradutor-go-v2.1.17.go:429
+msgid "Ignora o cache"
+msgstr "忽略或緩存"
+
+#: src/chili-tradutor-go-v2.1.17.go:430
+msgid "Limpa cache antigo"
+msgstr "清除舊緩存"
+
+#: src/chili-tradutor-go-v2.1.17.go:431 src/chili-tradutor-go-v2.1.17.go:952
+msgid "Extração especializada para o próprio chili-tradutor-go"
+msgstr "針對 chili-translator-go 本身的專門提取"
+
+#: src/chili-tradutor-go-v2.1.17.go:432 src/chili-tradutor-go-v2.1.17.go:953
+msgid "Executa auto-teste de integridade"
+msgstr "執行完整性自檢"
+
+#: src/chili-tradutor-go-v2.1.17.go:433 src/chili-tradutor-go-v2.1.17.go:955
+msgid "Modo silencioso"
+msgstr "靜音模式"
+
+#: src/chili-tradutor-go-v2.1.17.go:434
+msgid "Modo detalhado"
+msgstr "詳細模式"
+
+#: src/chili-tradutor-go-v2.1.17.go:435
+msgid "Mostra versão"
+msgstr "顯示版本"
+
+#: src/chili-tradutor-go-v2.1.17.go:701
+#, go-format
+msgid "Script (%s)"
+msgstr "腳本（%s）"
+
+#: src/chili-tradutor-go-v2.1.17.go:704
+#, go-format
+msgid "Código %s (%s)"
+msgstr "科迪戈 %s (%s)"
+
+#: src/chili-tradutor-go-v2.1.17.go:708
+msgid "Markdown"
+msgstr "降價"
+
+#: src/chili-tradutor-go-v2.1.17.go:710
+msgid "JSON"
+msgstr "JSON"
+
+#: src/chili-tradutor-go-v2.1.17.go:712
+msgid "YAML"
+msgstr "YAML"
+
+#: src/chili-tradutor-go-v2.1.17.go:714
+msgid "Template POT"
+msgstr "模板鍋"
+
+#: src/chili-tradutor-go-v2.1.17.go:716
+#, go-format
+msgid "Arquivo %s"
+msgstr "阿基沃 %s"
+
+#: src/chili-tradutor-go-v2.1.17.go:801
+msgid "Dependências ausentes: "
+msgstr "缺少依賴項："
+
+#: src/chili-tradutor-go-v2.1.17.go:802
+msgid "Comandos de instalação sugeridos:"
+msgstr "建議安裝命令："
+
+#: src/chili-tradutor-go-v2.1.17.go:825
+msgid "Deseja instalar automaticamente para"
+msgstr "您想自動安裝到"
+
+#: src/chili-tradutor-go-v2.1.17.go:835
+msgid ""
+"\n"
+"Dependências instaladas! Reiniciando...\n"
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:843
+msgid ""
+"\n"
+"Por favor, instale as dependências manualmente e tente novamente."
+msgstr ""
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "[STEP 1]"
+msgstr "[步驟1]"
+
+#: src/chili-tradutor-go-v2.1.17.go:893
+msgid "Ambiente preparado com sucesso."
+msgstr "環境準備成功。"
+
+#: src/chili-tradutor-go-v2.1.17.go:894
+msgid "Arquivo"
+msgstr "文件"
+
+#: src/chili-tradutor-go-v2.1.17.go:895
+msgid "Tipo"
+msgstr "類型"
+
+#: src/chili-tradutor-go-v2.1.17.go:896
+msgid "Motor"
+msgstr "發動機"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Origem"
+msgstr "起源"
+
+#: src/chili-tradutor-go-v2.1.17.go:897
+msgid "Auto-detect se auto"
+msgstr "Auto-detect se auto"
+
+#: src/chili-tradutor-go-v2.1.17.go:898
+msgid "Jobs"
+msgstr "工作機會"
+
+#: src/chili-tradutor-go-v2.1.17.go:899
+msgid "Cache"
+msgstr "快取"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Concluído"
+msgstr "完全的"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Cache:"
+msgstr "快取:"
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Net:"
+msgstr "網："
+
+#: src/chili-tradutor-go-v2.1.17.go:909
+msgid "Total:"
+msgstr "全部的："
+
+#: src/chili-tradutor-go-v2.1.17.go:913
+msgid "RESUMO EXECUTIVO FINAL:"
+msgstr "最終執行摘要："
+
+#: src/chili-tradutor-go-v2.1.17.go:914
+msgid "Tempo Total"
+msgstr "總時間"
+
+#: src/chili-tradutor-go-v2.1.17.go:915
+msgid "Cache Hits"
+msgstr "緩存命中"
+
+#: src/chili-tradutor-go-v2.1.17.go:916
+msgid "Chamadas Rede"
+msgstr "網絡通話"
+
+#: src/chili-tradutor-go-v2.1.17.go:918
+msgid "Falhas"
+msgstr "故障"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "Removidos"
+msgstr "已刪除"
+
+#: src/chili-tradutor-go-v2.1.17.go:934
+msgid "itens obsoletos do cache."
+msgstr "陳舊的緩存項目。"
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "Uso"
+msgstr "使用"
+
+#: src/chili-tradutor-go-v2.1.17.go:941
+msgid "<arquivo> [opções]"
+msgstr "<文件> [選項]"
+
+#: src/chili-tradutor-go-v2.1.17.go:942
+msgid "Opções"
+msgstr "選項"
+
+#: src/chili-tradutor-go-v2.1.17.go:946
+msgid "Arquivo fonte (.sh, .py, .md, .json, .yaml, .html, .pot)"
+msgstr "源文件（.sh、.py、.md、.json、.yaml、.html、.pot）"
+
+#: src/chili-tradutor-go-v2.1.17.go:947
+#, go-format
+msgid "Idiomas (ex: pt_BR,en) ou 'all' (padrão: %s)"
+msgstr "語言（例如：pt_BR,en）或“全部”（默認值：%s）"
+
+#: src/chili-tradutor-go-v2.1.17.go:948
+msgid "Motor: google, bing, yandex (padrão: google)"
+msgstr "引擎：google、bing、yandex（默認：google）"
+
+#: src/chili-tradutor-go-v2.1.17.go:949
+msgid "Traduções simultâneas (padrão: 8)"
+msgstr "同聲傳譯（默認：8）"
+
+#: src/chili-tradutor-go-v2.1.17.go:950
+msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
+msgstr "源語言（例如：pt、en）（默認：auto）"
+
+#: src/chili-tradutor-go-v2.1.17.go:951
+msgid "Força nova tradução (ignora cache)"
+msgstr "強制新翻譯（繞過緩存）"
+
+#: src/chili-tradutor-go-v2.1.17.go:954
+msgid "Remove entradas de cache não usadas há 30 dias"
+msgstr "刪除 30 天內未使用的緩存條目"
+
+#: src/chili-tradutor-go-v2.1.17.go:956
+msgid "Mostrar detalhes"
+msgstr "顯示詳情"
+
+#: src/chili-tradutor-go-v2.1.17.go:957
+msgid "Mostra a versão do programa"
+msgstr "顯示程序版本"
+
+#: src/chili-tradutor-go-v2.1.17.go:967
+msgid "Exemplos"
+msgstr "示例"
