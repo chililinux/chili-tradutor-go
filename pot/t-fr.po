@@ -1,0 +1,97 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 08:14-0400\n"
+"PO-Revision-Date: 2026-01-16 08:14-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: t:362
+msgid "Este é um software livre: você é livre para alterá-lo e redistribuí-lo."
+msgstr "Il s'agit d'un logiciel libre : vous êtes libre de le modifier et de le redistribuer."
+
+#: t:363
+#, sh-format
+msgid ""
+"O $APP é disponibilizado para você sob a ${yellow}Licença MIT${black}, e"
+msgstr ""
+
+#: t:364
+msgid "inclui software de código aberto sob uma variedade de outras licenças."
+msgstr "comprend des logiciels open source sous diverses autres licences."
+
+#: t:365
+msgid "Você pode ler instruções sobre como baixar e criar para você mesmo"
+msgstr "Vous pouvez lire les instructions sur la façon de télécharger et de créer par vous-même"
+
+#: t:366
+msgid "o código fonte específico usado para criar esta cópia."
+msgstr "le code source spécifique utilisé pour créer cette copie."
+
+#: t:367
+msgid "Este programa vem com absolutamente NENHUMA garantia."
+msgstr "Ce programme est livré avec absolument AUCUNE garantie."
+
+#: t:408
+msgid "Não foi possível encontrar o comando"
+msgstr "Impossible de trouver la commande"
+
+#: t:409
+msgid "instalar pacote"
+msgstr "installer le paquet"
+
+#: t:425
+msgid "IMPOSSÍVEL CONTINUAR"
+msgstr "IMPOSSIBLE DE CONTINUER"
+
+#: t:426
+msgid "Este script precisa dos comandos listados acima"
+msgstr "Ce script nécessite les commandes répertoriées ci-dessus"
+
+#: t:427
+msgid "Instale-os e/ou verifique se eles estão em seu"
+msgstr "Installez-les et/ou assurez-vous qu'ils sont sur votre"
+
+#: t:435
+msgid "Instalar dependências base agora?"
+msgstr "Installer les dépendances de base maintenant ?"
+
+#: t:436
+msgid "Preparando ambiente para"
+msgstr "Préparation de l'environnement pour"
+
+#: t:440
+msgid "Erro Crítico:"
+msgstr "Erreur critique :"
+
+#: t:440
+msgid "A instalação dos pacotes básicos falhou."
+msgstr "L'installation des packages de base a échoué."
+
+#: t:444
+msgid "Sucesso:"
+msgstr "Succès:"
+
+#: t:444
+msgid "Dependências instaladas."
+msgstr "Dépendances installées."
+
+#: t:455
+msgid "Hello World"
+msgstr "Bonjour le monde"
+
+#: t:456
+msgid "Traduzindo essa porra"
+msgstr "Traduire cette merde"
+
+#: t:457
+msgid "Vive la france"
+msgstr "Vive la france"

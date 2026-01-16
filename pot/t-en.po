@@ -1,0 +1,99 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 08:14-0400\n"
+"PO-Revision-Date: 2026-01-16 08:14-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: t:362
+msgid "Este é um software livre: você é livre para alterá-lo e redistribuí-lo."
+msgstr "This is free software: you are free to change and redistribute it."
+"Este é um software livre: você é livre para alterá-lo e redistribuí-lo."
+
+#: t:363
+#, sh-format
+msgid ""
+"O $APP é disponibilizado para você sob a ${yellow}Licença MIT${black}, e"
+msgstr ""
+"O $APP é disponibilizado para você sob a ${yellow}Licença MIT${black}, e"
+
+#: t:364
+msgid "inclui software de código aberto sob uma variedade de outras licenças."
+msgstr "includes open source software under a variety of other licenses."
+
+#: t:365
+msgid "Você pode ler instruções sobre como baixar e criar para você mesmo"
+msgstr "You can read instructions on how to download and create for yourself"
+
+#: t:366
+msgid "o código fonte específico usado para criar esta cópia."
+msgstr "the specific source code used to create this copy."
+
+#: t:367
+msgid "Este programa vem com absolutamente NENHUMA garantia."
+msgstr "This program comes with absolutely NO guarantees."
+
+#: t:408
+msgid "Não foi possível encontrar o comando"
+msgstr "Unable to find command"
+
+#: t:409
+msgid "instalar pacote"
+msgstr "install package"
+
+#: t:425
+msgid "IMPOSSÍVEL CONTINUAR"
+msgstr "IMPOSSIBLE TO CONTINUE"
+
+#: t:426
+msgid "Este script precisa dos comandos listados acima"
+msgstr "This script needs the commands listed above"
+
+#: t:427
+msgid "Instale-os e/ou verifique se eles estão em seu"
+msgstr "Install them and/or make sure they are on your"
+
+#: t:435
+msgid "Instalar dependências base agora?"
+msgstr "Install base dependencies now?"
+
+#: t:436
+msgid "Preparando ambiente para"
+msgstr "Preparing environment for"
+
+#: t:440
+msgid "Erro Crítico:"
+msgstr "Critical Error:"
+
+#: t:440
+msgid "A instalação dos pacotes básicos falhou."
+msgstr "Installation of base packages failed."
+
+#: t:444
+msgid "Sucesso:"
+msgstr "Success:"
+
+#: t:444
+msgid "Dependências instaladas."
+msgstr "Installed dependencies."
+
+#: t:455
+msgid "Hello World"
+msgstr "Hello World"
+
+#: t:456
+msgid "Traduzindo essa porra"
+msgstr "Translating this shit"
+
+#: t:457
+msgid "Vive la france"
+msgstr "Long live France"

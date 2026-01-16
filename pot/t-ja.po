@@ -1,0 +1,97 @@
+# Chili Tradutor Go - 2.1.17-20260116
+# Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
+# This file is distributed under the same license as the chili-tradutor-go package.
+msgid ""
+msgstr ""
+"Project-Id-Version: chili-tradutor-go 2.1.17-20260116\n"
+"POT-Creation-Date: 2026-01-16 08:14-0400\n"
+"PO-Revision-Date: 2026-01-16 08:14-0400\n"
+"Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
+"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: t:362
+msgid "Este é um software livre: você é livre para alterá-lo e redistribuí-lo."
+msgstr "これはフリー ソフトウェアです。自由に変更したり再配布したりできます。"
+
+#: t:363
+#, sh-format
+msgid ""
+"O $APP é disponibilizado para você sob a ${yellow}Licença MIT${black}, e"
+msgstr ""
+
+#: t:364
+msgid "inclui software de código aberto sob uma variedade de outras licenças."
+msgstr "他のさまざまなライセンスに基づくオープンソース ソフトウェアが含まれます。"
+
+#: t:365
+msgid "Você pode ler instruções sobre como baixar e criar para você mesmo"
+msgstr "ダウンロードして自分で作成する方法についての説明を読むことができます"
+
+#: t:366
+msgid "o código fonte específico usado para criar esta cópia."
+msgstr "このコピーの作成に使用された特定のソース コード。"
+
+#: t:367
+msgid "Este programa vem com absolutamente NENHUMA garantia."
+msgstr "このプログラムには一切の保証がありません。"
+
+#: t:408
+msgid "Não foi possível encontrar o comando"
+msgstr "コマンドが見つかりません"
+
+#: t:409
+msgid "instalar pacote"
+msgstr "パッケージをインストールする"
+
+#: t:425
+msgid "IMPOSSÍVEL CONTINUAR"
+msgstr "続行不可能"
+
+#: t:426
+msgid "Este script precisa dos comandos listados acima"
+msgstr "このスクリプトには上記のコマンドが必要です"
+
+#: t:427
+msgid "Instale-os e/ou verifique se eles estão em seu"
+msgstr "それらをインストールするか、それらがあなたのコンピュータにあることを確認してください。"
+
+#: t:435
+msgid "Instalar dependências base agora?"
+msgstr "基本の依存関係を今すぐインストールしますか?"
+
+#: t:436
+msgid "Preparando ambiente para"
+msgstr "環境の準備"
+
+#: t:440
+msgid "Erro Crítico:"
+msgstr "重大なエラー:"
+
+#: t:440
+msgid "A instalação dos pacotes básicos falhou."
+msgstr "基本パッケージのインストールに失敗しました。"
+
+#: t:444
+msgid "Sucesso:"
+msgstr "成功："
+
+#: t:444
+msgid "Dependências instaladas."
+msgstr "インストールされた依存関係。"
+
+#: t:455
+msgid "Hello World"
+msgstr "こんにちは世界"
+
+#: t:456
+msgid "Traduzindo essa porra"
+msgstr "このたわごとを翻訳する"
+
+#: t:457
+msgid "Vive la france"
+msgstr "フランス万歳"
