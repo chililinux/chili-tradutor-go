@@ -11,7 +11,7 @@ url="https://github.com/voidlinuxbr/$pkgname"
 provides=("$pkgname")
 source=("git+${url}.git")
 md5sums=('SKIP')
-depends=("bash>=0")
+depends=("bash>=0" gettext translate-shell)
 
 package() {
 	local dirs=("usr" "etc" "opt")
