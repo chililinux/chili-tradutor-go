@@ -1,1 +1,1 @@
-chili-tradutor-go-v2.1.24.go
+chili-tradutor-go-v2.1.25.go
