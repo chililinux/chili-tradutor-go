@@ -1,390 +1,451 @@
-# Chili Tradutor Go - 2.1.24-20260816
+# Chili Tradutor Go - 2.1.30-20260928
 # Copyright (C) 2019-2026 Vilmar Catafesta <vcatafesta@gmail.com>
 # This file is distributed under the same license as the chili-tradutor-go package.
 msgid ""
 msgstr ""
-"Project-Id-Version: chili-tradutor-go 2.1.24-20260816\n"
-"POT-Creation-Date: 2026-08-17 00:34-0400\n"
-"PO-Revision-Date: 2026-08-17 00:34-0400\n"
+"Project-Id-Version: chili-tradutor-go\n"
+"POT-Creation-Date: 2026-09-28 20:14-0400\n"
+"PO-Revision-Date: 2026-09-28 20:14-0400\n"
 "Last-Translator: Vilmar Catafesta <vcatafesta@gmail.com>\n"
-"Language-Team: Portuguese <https://github.com/chililinux/chili-tradutor-go>\n"
+"Language-Team: ru <https://github.com/chililinux/chili-tradutor-go>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: chili-tradutor-go.go:218 chili-tradutor-go.go:266 chili-tradutor-go.go:693
-#: chili-tradutor-go.go:748 chili-tradutor-go.go:821 chili-tradutor-go.go:878
-#: chili-tradutor-go.go:902 chili-tradutor-go.go:964 chili-tradutor-go.go:972
-#: chili-tradutor-go.go:1118 chili-tradutor-go.go:1129
-#: chili-tradutor-go.go:1135 chili-tradutor-go.go:1150
-#: chili-tradutor-go.go:1157
+#: chili-tradutor-go.go:322 chili-tradutor-go.go:395 chili-tradutor-go.go:980
+#: chili-tradutor-go.go:1033 chili-tradutor-go.go:1087
+#: chili-tradutor-go.go:1096 chili-tradutor-go.go:1163
+#: chili-tradutor-go.go:1172 chili-tradutor-go.go:1226
+#: chili-tradutor-go.go:1235 chili-tradutor-go.go:1256
+#: chili-tradutor-go.go:1345 chili-tradutor-go.go:1354
+#: chili-tradutor-go.go:1526 chili-tradutor-go.go:1538
+#: chili-tradutor-go.go:1557 chili-tradutor-go.go:1569
+#: chili-tradutor-go.go:1577
 msgid "ERRO:"
 msgstr "ОШИБКА:"
 
-#: chili-tradutor-go.go:218
+#: chili-tradutor-go.go:322
 msgid "Não foi possível carregar o glossário"
 msgstr "Не удалось загрузить глоссарий"
 
-#: chili-tradutor-go.go:222
+#: chili-tradutor-go.go:326
 msgid "Glossário carregado"
 msgstr "Глоссарий загружен"
 
-#: chili-tradutor-go.go:222
+#: chili-tradutor-go.go:326
 msgid "termo(s)"
-msgstr "условия)"
+msgstr "термин(ы)"
 
-#: chili-tradutor-go.go:227
+#: chili-tradutor-go.go:331
 msgid "[DRY-RUN]"
-msgstr "[СУХОЙ ПРОгон]"
+msgstr "[ПРОБНЫЙ ЗАПУСК]"
 
-#: chili-tradutor-go.go:227
+#: chili-tradutor-go.go:331
 msgid "Simulação ativa: nenhuma chamada de rede ou gravação real será feita."
-msgstr "Активная симуляция: сетевые вызовы и реальные записи производиться не будут."
+msgstr "Активное моделирование: никаких сетевых вызовов или фактической записи не будет."
 
-#: chili-tradutor-go.go:259
+#: chili-tradutor-go.go:366 chili-tradutor-go.go:817 chili-tradutor-go.go:2407
+msgid "AVISO:"
+msgstr "ПРЕДУПРЕЖДЕНИЕ:"
+
+#: chili-tradutor-go.go:366
+msgid ""
+"sem conexão com a internet: nenhum texto será traduzido (só cache e "
+"glossário)."
+msgstr "без подключения к Интернету: никакой текст не будет переведен (только кэш и глоссарий)."
+
+#: chili-tradutor-go.go:376
 msgid "Todos os arquivos foram processados!"
-msgstr "Все файлы обработаны!"
+msgstr "Все файлы были обработаны!"
 
-#: chili-tradutor-go.go:266
+#: chili-tradutor-go.go:395
 msgid "Arquivo não encontrado:"
 msgstr "Файл не найден:"
 
-#: chili-tradutor-go.go:283 chili-tradutor-go.go:566 chili-tradutor-go.go:638
-#: chili-tradutor-go.go:641 chili-tradutor-go.go:1569
+#: chili-tradutor-go.go:414 chili-tradutor-go.go:853 chili-tradutor-go.go:925
+#: chili-tradutor-go.go:928 chili-tradutor-go.go:2258 chili-tradutor-go.go:2277
 msgid "[AVISO]"
-msgstr "[УВЕДОМЛЕНИЕ]"
+msgstr "[ПРЕДУПРЕЖДЕНИЕ]"
 
-#: chili-tradutor-go.go:283
+#: chili-tradutor-go.go:414
 msgid "Nada para traduzir ou arquivo protegido."
-msgstr "Ничего не нужно переводить и файл не защищен."
+msgstr "Нечего переводить или файл защищен."
 
-#: chili-tradutor-go.go:286
+#: chili-tradutor-go.go:418
 msgid "[STEP 2]"
 msgstr "[ШАГ 2]"
 
-#: chili-tradutor-go.go:286
+#: chili-tradutor-go.go:418
 msgid "Iniciando processamento paralelo..."
 msgstr "Запуск параллельной обработки..."
 
-#: chili-tradutor-go.go:288
+#: chili-tradutor-go.go:420
 msgid "[Aguardando...]"
-msgstr "[Ожидающий...]"
+msgstr "[Ожидание...]"
 
-#: chili-tradutor-go.go:356
+#: chili-tradutor-go.go:493
 msgid "Dependências e Conectividade"
-msgstr "Зависимости и связность"
+msgstr "Зависимости и подключение"
 
-#: chili-tradutor-go.go:360
+#: chili-tradutor-go.go:497
 msgid "Proteção de Variáveis ($VAR)"
-msgstr "Переменная защита ($VAR)"
+msgstr "Защита переменных ($VAR)"
 
-#: chili-tradutor-go.go:370
+#: chili-tradutor-go.go:507
 msgid "SISTEMA 100% VALIDADO EM TODOS OS NÍVEIS."
-msgstr "100% ПРОВЕРЕННАЯ СИСТЕМА НА ВСЕХ УРОВНЯХ."
+msgstr "СИСТЕМА 100% ПОДТВЕРЖДЕНА НА ВСЕХ УРОВНЯХ."
 
-#: chili-tradutor-go.go:464
+#: chili-tradutor-go.go:647
 msgid "[STATUS]"
 msgstr "[СТАТУС]"
 
-#: chili-tradutor-go.go:464
+#: chili-tradutor-go.go:647
 msgid "idiomas concluídos..."
 msgstr "языки завершены..."
 
-#: chili-tradutor-go.go:605
+#: chili-tradutor-go.go:658
+#, go-format
+msgid ""
+"o motor '%s' bloqueou por excesso de pedidos (rate limiting). Tente mais "
+"tarde, use outro motor (-e bing) ou reduza -j."
+msgstr "двигатель '%s' заблокирован из-за превышения количества запросов (ограничение скорости). Попробуйте позже, используйте другой двигатель (-e bing) или уменьшите -j."
+
+#: chili-tradutor-go.go:892
 msgid "Arquivo fonte"
 msgstr "Исходный файл"
 
-#: chili-tradutor-go.go:606
+#: chili-tradutor-go.go:893
 msgid "Motor de tradução"
-msgstr "Механизм перевода"
+msgstr "Переводческий движок"
 
-#: chili-tradutor-go.go:607
+#: chili-tradutor-go.go:894
 msgid "Idioma de origem"
-msgstr "Исходный язык"
+msgstr "Язык оригинала"
 
-#: chili-tradutor-go.go:608
+#: chili-tradutor-go.go:895
 msgid "Idiomas destino"
-msgstr "Целевые языки"
+msgstr "Языки назначения"
 
-#: chili-tradutor-go.go:609
+#: chili-tradutor-go.go:896
 msgid "Traduções simultâneas"
 msgstr "Синхронные переводы"
 
-#: chili-tradutor-go.go:610
+#: chili-tradutor-go.go:897
 msgid "Ignora o cache"
-msgstr "Обход кэша"
+msgstr "Игнорировать кэш"
 
-#: chili-tradutor-go.go:611
+#: chili-tradutor-go.go:898
 msgid "Limpa cache antigo"
 msgstr "Очистить старый кэш"
 
-#: chili-tradutor-go.go:612 chili-tradutor-go.go:1710
+#: chili-tradutor-go.go:899 chili-tradutor-go.go:2466
 msgid "Extração especializada para o próprio chili-tradutor-go"
-msgstr "Специализированное извлечение для самого chili-translator-go"
+msgstr "Специализированная экстракция для собственного chili-translator-go"
 
-#: chili-tradutor-go.go:613 chili-tradutor-go.go:1711
+#: chili-tradutor-go.go:900 chili-tradutor-go.go:2467
 msgid "Executa auto-teste de integridade"
-msgstr "Выполняет самопроверку целостности"
+msgstr "Выполняет автотест целостности"
 
-#: chili-tradutor-go.go:614 chili-tradutor-go.go:1715
+#: chili-tradutor-go.go:901 chili-tradutor-go.go:2471
 msgid "Modo silencioso"
-msgstr "Тихий режим"
+msgstr "Режим без звука"
 
-#: chili-tradutor-go.go:615
+#: chili-tradutor-go.go:902
 msgid "Modo detalhado"
 msgstr "Подробный режим"
 
-#: chili-tradutor-go.go:616
+#: chili-tradutor-go.go:903
 msgid "Mostra versão"
 msgstr "Показать версию"
 
-#: chili-tradutor-go.go:617 chili-tradutor-go.go:1713
+#: chili-tradutor-go.go:904 chili-tradutor-go.go:2469
 msgid "Simula a execução sem chamadas de rede nem gravação de arquivos"
-msgstr "Имитирует выполнение без сетевых вызовов или записи файлов."
+msgstr "Имитирует выполнение без сетевых вызовов и записи файлов"
 
-#: chili-tradutor-go.go:618
+#: chili-tradutor-go.go:905
 msgid ""
 "Arquivo com termos que nunca devem ser traduzidos (um 'termo' ou "
 "'termo=tradução_fixa' por linha)"
-msgstr "Файл с терминами, которые ни в коем случае не следует переводить (по одному «термину» или «term=fixed_translation» в каждой строке)."
+msgstr "Файл с терминами, которые никогда не должны переводиться (один 'термин' или 'термин=фиксированный_перевод' на строку)"
 
-#: chili-tradutor-go.go:638
+#: chili-tradutor-go.go:925
 msgid "--jobs deve ser >= 1; usando o padrão 8."
-msgstr "--jobs должно быть >= 1; используя узор 8."
+msgstr "--jobs должно быть >= 1; используется значение по умолчанию 8."
 
-#: chili-tradutor-go.go:641
+#: chili-tradutor-go.go:928
 #, go-format
 msgid "--jobs limitado a %d."
-msgstr "--jobs ограничено %d."
+msgstr "--работ ограничено %d."
 
-#: chili-tradutor-go.go:693
+#: chili-tradutor-go.go:980
 msgid "Falha ao copiar arquivo .pot"
-msgstr "Не удалось скопировать файл .pot."
+msgstr "Не удалось скопировать файл .pot"
 
-#: chili-tradutor-go.go:748 chili-tradutor-go.go:821 chili-tradutor-go.go:878
-#: chili-tradutor-go.go:902 chili-tradutor-go.go:1157
-msgid "Não foi possível gravar"
-msgstr "Невозможно записать"
-
-#: chili-tradutor-go.go:964
-msgid "Não foi possível abrir"
-msgstr "Невозможно открыть"
-
-#: chili-tradutor-go.go:972
-msgid "Não foi possível criar"
-msgstr "Невозможно создать"
-
-#: chili-tradutor-go.go:1118
+#: chili-tradutor-go.go:1033 chili-tradutor-go.go:1096
+#: chili-tradutor-go.go:1172 chili-tradutor-go.go:1235
+#: chili-tradutor-go.go:1526
 msgid "Não foi possível ler"
-msgstr "Невозможно прочитать"
+msgstr "Не удалось прочитать"
 
-#: chili-tradutor-go.go:1129
+#: chili-tradutor-go.go:1087 chili-tradutor-go.go:1163
+#: chili-tradutor-go.go:1226 chili-tradutor-go.go:1256
+#: chili-tradutor-go.go:1577
+msgid "Não foi possível gravar"
+msgstr "Не удалось записать"
+
+#: chili-tradutor-go.go:1345
+msgid "Não foi possível abrir"
+msgstr "Не удалось открыть"
+
+#: chili-tradutor-go.go:1354
+msgid "Não foi possível criar"
+msgstr "Не удалось создать"
+
+#: chili-tradutor-go.go:1538
 msgid "YAML inválido em"
 msgstr "Неверный YAML в"
 
-#: chili-tradutor-go.go:1135
+#: chili-tradutor-go.go:1557
 msgid "JSON inválido em"
 msgstr "Неверный JSON в"
 
-#: chili-tradutor-go.go:1150
+#: chili-tradutor-go.go:1569
 msgid "Falha ao gerar saída para"
-msgstr "Не удалось создать выходные данные для"
+msgstr "Не удалось сгенерировать выходные данные для"
 
-#: chili-tradutor-go.go:1446
+#: chili-tradutor-go.go:2106
 #, go-format
 msgid "Script (%s)"
-msgstr "Скрипт (%s)"
+msgstr "Сценарий (%s)"
 
-#: chili-tradutor-go.go:1448
+#: chili-tradutor-go.go:2108
 msgid "Texto Simples (sem extensão)"
-msgstr "Обычный текст (без расширения)"
+msgstr "Простой текст (без расширения)"
 
-#: chili-tradutor-go.go:1454
+#: chili-tradutor-go.go:2114
 #, go-format
 msgid "Manual do Linux (%s)"
 msgstr "Руководство по Linux (%s)"
 
-#: chili-tradutor-go.go:1464
+#: chili-tradutor-go.go:2124
 #, go-format
 msgid "Código %s (%s)"
 msgstr "Код %s (%s)"
 
-#: chili-tradutor-go.go:1468
+#: chili-tradutor-go.go:2128
 msgid "Markdown"
-msgstr "Уценка"
+msgstr "Маркадаун"
 
-#: chili-tradutor-go.go:1469
+#: chili-tradutor-go.go:2129
 msgid "Texto Simples"
-msgstr "Обычный текст"
+msgstr "Простой текст"
 
-#: chili-tradutor-go.go:1470
+#: chili-tradutor-go.go:2130
 msgid "JSON"
 msgstr "JSON"
 
-#: chili-tradutor-go.go:1471
+#: chili-tradutor-go.go:2131
 msgid "YAML"
-msgstr "ЯМЛ"
+msgstr "YAML"
 
-#: chili-tradutor-go.go:1472
+#: chili-tradutor-go.go:2132
 msgid "Template POT"
-msgstr "POT-шаблоны"
+msgstr "Шаблон POT"
 
-#: chili-tradutor-go.go:1475
+#: chili-tradutor-go.go:2135
 #, go-format
 msgid "Arquivo %s"
 msgstr "Файл %s"
 
-#: chili-tradutor-go.go:1535
+#: chili-tradutor-go.go:2224
 msgid "Dependências ausentes: "
-msgstr "Отсутствующие зависимости:"
+msgstr "Отсутствующие зависимости: "
 
-#: chili-tradutor-go.go:1545
+#: chili-tradutor-go.go:2234
 msgid "Deseja instalar automaticamente para"
-msgstr "Хотите ли вы автоматически установить"
+msgstr "Желаете установить автоматически для"
 
-#: chili-tradutor-go.go:1569
+#: chili-tradutor-go.go:2258
 msgid "Interrompido — salvando cache antes de encerrar..."
-msgstr "Остановлено — сохранение кеша перед выключением..."
+msgstr "Прервано — сохранение кэша перед закрытием..."
 
-#: chili-tradutor-go.go:1632
+#: chili-tradutor-go.go:2277
+msgid "Cache corrompido; cópia guardada em"
+msgstr "Кэш поврежден; сохранённая копия в"
+
+#: chili-tradutor-go.go:2365
 msgid "[STEP 1]"
 msgstr "[ШАГ 1]"
 
-#: chili-tradutor-go.go:1632
+#: chili-tradutor-go.go:2365
 msgid "Ambiente preparado com sucesso."
-msgstr "Окружающая среда успешно подготовлена."
+msgstr "Среда успешно подготовлена."
 
-#: chili-tradutor-go.go:1633
+#: chili-tradutor-go.go:2366
 msgid "Arquivo"
 msgstr "Файл"
 
-#: chili-tradutor-go.go:1634
+#: chili-tradutor-go.go:2367
 msgid "Tipo"
 msgstr "Тип"
 
-#: chili-tradutor-go.go:1635
+#: chili-tradutor-go.go:2368
 msgid "Motor"
-msgstr "Мотор"
+msgstr "Двигатель"
 
-#: chili-tradutor-go.go:1636
+#: chili-tradutor-go.go:2369
 msgid "Origem"
-msgstr "Источник"
+msgstr "Происхождение"
 
-#: chili-tradutor-go.go:1636
+#: chili-tradutor-go.go:2369
 msgid "Auto-detect se auto"
-msgstr "Автоматическое определение себя"
+msgstr "Авто-определение если авто"
 
-#: chili-tradutor-go.go:1637
+#: chili-tradutor-go.go:2370
 msgid "Jobs"
-msgstr "Вакансии"
+msgstr "Работа"
 
-#: chili-tradutor-go.go:1638
+#: chili-tradutor-go.go:2371
 msgid "Cache"
 msgstr "Кэш"
 
-#: chili-tradutor-go.go:1658
-msgid "Concluído"
-msgstr "Завершенный"
+#: chili-tradutor-go.go:2392
+#, go-format
+msgid "Concluído em %v"
+msgstr "Завершено в %v"
 
-#: chili-tradutor-go.go:1659
+#: chili-tradutor-go.go:2393
 msgid "Cache:"
 msgstr "Кэш:"
 
-#: chili-tradutor-go.go:1660
+#: chili-tradutor-go.go:2394
 msgid "Net:"
-msgstr "Сеть:"
+msgstr "Нет:"
 
-#: chili-tradutor-go.go:1661
+#: chili-tradutor-go.go:2395
 msgid "Glossário:"
 msgstr "Глоссарий:"
 
-#: chili-tradutor-go.go:1662
+#: chili-tradutor-go.go:2396
 msgid "Total:"
-msgstr "Общий:"
+msgstr "Итого:"
 
-#: chili-tradutor-go.go:1669
+#: chili-tradutor-go.go:2399 chili-tradutor-go.go:2427
+msgid "Não traduzidos"
+msgstr "Не переведено"
+
+#: chili-tradutor-go.go:2400
+msgid ""
+"(ficaram no idioma original; nos .po, com msgstr vazio — rode de novo quando "
+"a conexão/trans estiver ok)"
+msgstr "(остались на оригинальном языке; в .po с пустым msgstr — запустите снова, когда соединение/трансмиссия будет в порядке)"
+
+#: chili-tradutor-go.go:2402
+msgid "Último erro do trans"
+msgstr "Последняя ошибка транс"
+
+#: chili-tradutor-go.go:2416
 msgid "RESUMO EXECUTIVO FINAL:"
-msgstr "ОКОНЧАТЕЛЬНОЕ РЕЗЮМЕ:"
+msgstr "ОКОНЧАТЕЛЬНОЕ ИСПОЛНИТЕЛЬНОЕ РЕЗЮМЕ:"
 
-#: chili-tradutor-go.go:1670
+#: chili-tradutor-go.go:2417
 msgid "Tempo Total"
 msgstr "Общее время"
 
-#: chili-tradutor-go.go:1671
+#: chili-tradutor-go.go:2418
 msgid "Cache Hits"
 msgstr "Попадания в кэш"
 
-#: chili-tradutor-go.go:1672
+#: chili-tradutor-go.go:2419
 msgid "Chamadas Rede"
 msgstr "Сетевые вызовы"
 
-#: chili-tradutor-go.go:1674
+#: chili-tradutor-go.go:2421
 msgid "Acertos Glossário"
-msgstr "Глоссарий Настройки"
+msgstr "Исправления Глоссария"
 
-#: chili-tradutor-go.go:1677
+#: chili-tradutor-go.go:2424
 msgid "Falhas"
-msgstr "Неисправности"
+msgstr "Сбои"
 
-#: chili-tradutor-go.go:1693
+#: chili-tradutor-go.go:2429
+msgid "Último erro"
+msgstr "Последняя ошибка"
+
+#: chili-tradutor-go.go:2432
+msgid "AVISO"
+msgstr "ПРЕДУПРЕЖДЕНИЕ"
+
+#: chili-tradutor-go.go:2449
 msgid "Removidos"
-msgstr "Удаленный"
+msgstr "Удалено"
 
-#: chili-tradutor-go.go:1693
+#: chili-tradutor-go.go:2449
 msgid "itens obsoletos do cache."
 msgstr "устаревшие элементы кэша."
 
-#: chili-tradutor-go.go:1700
+#: chili-tradutor-go.go:2456
 msgid "Uso"
-msgstr "Использовать"
+msgstr "Использование"
 
-#: chili-tradutor-go.go:1700
+#: chili-tradutor-go.go:2456
 msgid "<arquivo> [opções]"
 msgstr "<файл> [опции]"
 
-#: chili-tradutor-go.go:1701
+#: chili-tradutor-go.go:2457
 msgid "Opções"
-msgstr "Параметры"
+msgstr "Опции"
 
-#: chili-tradutor-go.go:1704
+#: chili-tradutor-go.go:2460
 msgid "Arquivo fonte (.sh, .py, .md, .txt, .json, .yaml, .html, .pot, .[1-9])"
-msgstr "Архив шрифта (.sh, .py, .md, .txt, .json, .yaml, .html, .pot, .[1-9])"
+msgstr "Исходный файл (.sh, .py, .md, .txt, .json, .yaml, .html, .pot, .[1-9])"
 
-#: chili-tradutor-go.go:1705
+#: chili-tradutor-go.go:2461
 #, go-format
 msgid "Idiomas (ex: pt_BR,en) ou 'all' (padrão: %s)"
-msgstr "Языки (например: pt_BR,en) или «все» (по умолчанию: %s)"
+msgstr "Языки (например: pt_BR,en) или 'all' (по умолчанию: %s)"
 
-#: chili-tradutor-go.go:1706
+#: chili-tradutor-go.go:2462
 msgid "Motor: google, bing, yandex (padrão: google)"
-msgstr "Движок: google, bing, yandex (по умолчанию: google)"
+msgstr "Поисковая система: google, bing, yandex (по умолчанию: google)"
 
-#: chili-tradutor-go.go:1707
+#: chili-tradutor-go.go:2463
 msgid "Traduções simultâneas (padrão: 8)"
 msgstr "Синхронные переводы (по умолчанию: 8)"
 
-#: chili-tradutor-go.go:1708
+#: chili-tradutor-go.go:2464
 msgid "Idioma de origem (ex: pt, en) (padrão: auto)"
 msgstr "Исходный язык (например: pt, en) (по умолчанию: авто)"
 
-#: chili-tradutor-go.go:1709
+#: chili-tradutor-go.go:2465
 msgid "Força nova tradução (ignora cache)"
-msgstr "Принудительно выполнить новый перевод (обход кеша)"
+msgstr "Принудительный новый перевод (игнорировать кэш)"
 
-#: chili-tradutor-go.go:1712
+#: chili-tradutor-go.go:2468
 msgid "Remove entradas de cache não usadas há 30 dias"
-msgstr "Удалить записи кэша, не используемые в течение 30 дней."
+msgstr "Удалить кеш-записи, не использовавшиеся в течение 30 дней"
 
-#: chili-tradutor-go.go:1714
+#: chili-tradutor-go.go:2470
 msgid "Arquivo de termos protegidos (termo | termo=tradução | termo=en:x;fr:y)"
-msgstr "Файл защищенных терминов (term | term=translation | term=en:x;fr:y)"
+msgstr "Файл защищённых терминов (термин | термин=перевод | термин=en:x;fr:y)"
 
-#: chili-tradutor-go.go:1716
+#: chili-tradutor-go.go:2472
 msgid "Mostrar detalhes"
 msgstr "Показать детали"
 
-#: chili-tradutor-go.go:1717
+#: chili-tradutor-go.go:2473
 msgid "Mostra a versão do programa"
-msgstr "Показывает версию программы"
+msgstr "Показать версию программы"
+
+#: chili-tradutor-go.go:2482
+msgid "Código de saída"
+msgstr "Код выхода"
+
+#: chili-tradutor-go.go:2483
+msgid ""
+"0 = ok, 1 = erro (arquivo ausente, leitura/gravação), 2 = ficaram textos sem "
+"tradução"
+msgstr "0 = ок, 1 = ошибка (файл отсутствует, чтение/запись), 2 = остались тексты без перевода"
